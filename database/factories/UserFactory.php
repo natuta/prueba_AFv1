@@ -25,14 +25,13 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Admin',
-            'apellido' => 'Remote',
-            'email' => 'adminremote@afibo.com',
+            'name' => $this->faker->firstNameMale,
+            'apellido' => $this->faker->lastName,
+            'email' => $this->faker->companyEmail,
             'sexo' => 'Hombre',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
             'estado_id' => rand(1,3),
-            'contacto_id' => rand(1,1),
             'remember_token' => Str::random(10),
         ];
     }

@@ -35,7 +35,7 @@
                 <tr>
                     <td>{{$city->id_ciudad}}</td>
                     <td>{{$city->nombre}}</td>
-                    <td>
+                    <td width="10px">
                         <a href="{{route('ciudades.show',[$city->id_ciudad])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
                 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800
@@ -44,7 +44,7 @@
                         </a>
                     </td>
 
-                    <td>
+                    <td width="10px">
                         <form method="POST" action="{{route('ciudades.destroy',[$city->id_ciudad]) }}">
                             @csrf
                             @method('DELETE')

@@ -14,6 +14,13 @@ class SolicitudMovimientoController extends Controller
 {
 
     public static $TipoSolicitud = 1;
+
+    public function __construct()
+    {
+        $this->middleware('can:movimientos.index')->only('index');
+        $this->middleware('can:movimientos.create')->only('create');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -94,7 +101,9 @@ class SolicitudMovimientoController extends Controller
      */
     public function show($id)
     {
-        //
+        $af = Activo_Fijo::all();
+        $dpto = Departamento::all();
+        return view('solicitudes_movimientos.show',['afs'=>$af,'dpto'=>$dpto]);
     }
 
     /**

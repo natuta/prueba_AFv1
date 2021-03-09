@@ -1,4 +1,5 @@
-<x-jet-form-section submit="updatePassword">
+
+    <x-jet-form-section submit="updatePassword">
     <x-slot name="title">
         {{ __('Update Password') }}
     </x-slot>
@@ -37,3 +38,4 @@
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
+

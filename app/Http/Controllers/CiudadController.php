@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CiudadController extends Controller
 {
+    public function __construct(){
+        $this->middleware(['can:ciudades.index'])->only('index');
+        $this->middleware(['can:ciudades.create'])->only('create');
+        $this->middleware(['can:ciudades.edit'])->only('edit');
+        $this->middleware(['can:ciudades.destroy'])->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

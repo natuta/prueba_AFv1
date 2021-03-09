@@ -58,11 +58,6 @@
                             <input type="text" id="inputvalue2" value="" readonly>
                         </div>
 
-                        @php
-                            $edificios = \App\Models\Edificio::all()->where('ciudad_id','=','3');
-                        @endphp
-<!--                        <livewire:edificios :edificios="$edificios" /> -->
-
                         <div class="col-span-6 sm:col-span-4">
                             <button type="submit"  class="inline-flex items-center px-4 py-2 bg-indigo-500 border
                                 border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700

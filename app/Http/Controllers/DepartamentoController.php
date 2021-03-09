@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
 {
+    public function __construc(){
+        $this->middleware('can:departamentos.index')->only('index');
+        $this->middleware('can:departamentos.create')->only('create');
+        $this->middleware('can:departamentos.edit')->only('edit');
+        $this->middleware('can:departamentos.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -61,7 +67,14 @@ class DepartamentoController extends Controller
      */
     public function show($id)
     {
-        //TODO:falta crear la vista de mostrar y edicion
+        $dpto =  Departamento::findOrFail($id);
+        $edificios = Edificio::all()->sortBy('ciudad_id');
+        $ciudades =  Ciudad::all();
+        return view('departamentos.show',[
+            'edificios'=> $edificios,
+            'ciudades'=>$ciudades,
+            'dpto'=>$dpto,
+        ]);
     }
 
     /**
@@ -84,7 +97,12 @@ class DepartamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dpto = Departamento::findOrFail($id);
+        $dpto->nombre = $request->input('nombre');
+        $dpto->descripcion = $request->input('descripcion');
+        $dpto->edificio_id = $request->input('edificio_id');
+        $dpto->save();
+        return redirect()->route('departamentos.index');
     }
 
     /**
@@ -95,6 +113,8 @@ class DepartamentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dpto = Departamento::findOrFail($id);
+        $dpto->delete();
+        return redirect()->route('departamentos.index');
     }
 }

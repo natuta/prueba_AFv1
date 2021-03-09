@@ -13,6 +13,11 @@ use phpDocumentor\Reflection\Types\Self_;
 
 class RevisionTecnicaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:revisiones_tecnicas.index')->only('index');
+        $this->middleware('can:revisiones_tecnicas.create')->only('create');
+        $this->middleware('can:revisiones_tecnicas.show')->only('show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +26,6 @@ class RevisionTecnicaController extends Controller
     public function index()
     {
         $revision = Revision_Tecnica::paginate(5);
-        //return dd($revision);
         return view('revisiones_tecnicas.index',['revisiones'=>$revision]);
     }
 

@@ -9,6 +9,11 @@ use App\Models\Mantenimiento;
 
 class MantenimientoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:mantenimientos.index')->only('index');
+        $this->middleware('can:mantenimientos.show')->only('show');
+        $this->middleware('can:mantenimientos.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CiudadController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\EdificioController;
 use App\Http\Controllers\EgresoController;
@@ -67,27 +68,45 @@ Route::get('/dashboard', function(){
 })->middleware(['auth','verified'])->name('dashboard');
 
 
+Route::middleware(['auth'])->group(function(){
+    Route::resource('rubros', RubroController::class);
+    Route::resource('categorias', CategoriaController::class);
+    Route::resource('estados', EstadoController::class);
+    Route::resource('usuarios', UsuarioController::class);
+    Route::resource('contactos', ContactoController::class);
+    Route::post('contactos/crear/{id}', [ContactoController::class,'crear'])->name('contactos.crear');
+
+    route::get('/usuarios/{id}/habilitar_usuario', [UsuarioController::class,'habilitar'])->name('usuarios.habilitar');
+    route::get('/usuarios/{id}/deshabilitar_usuario', [UsuarioController::class,'deshabilitar'])->name('usuarios.deshabilitar');
+
+    Route::get('usuarios/{id}/asignar_rol', [UsuarioController::class,'AsignarRol'])->name('usuarios.asignar_rol');
+    Route::get('usuarios/{id}/asignar_estado', [UsuarioController::class,'AsignarEstado'])->name('usuarios.asignar_estado');
+    Route::get('usuarios/{id}/asignar_contacto', [UsuarioController::class,'AsignarContacto'])->name('usuarios.asignar_contacto');
+
+    route::resource('proveedores', ProveedorController::class);
+    route::resource('ciudades', CiudadController::class);
+    route::resource('edificios', EdificioController::class);
+    route::resource('departamentos', DepartamentoController::class);
+    route::resource('solicitudes/movimientos', SolicitudMovimientoController::class);
+    route::resource('solicitudes/compras', SolicitudCompraController::class);
+    route::post('solicitudes/movements/llenarformulario',[SolicitudMovimientoController::class,'llenarformulario'])->name('movimientos.formulario');
+    route::post('solicitudes/shop/llenarformulario',[SolicitudCompraController::class,'llenarformulario'])->name('compras.formulario');
+    route::resource('mantenimientos', MantenimientoController::class);
+    route::resource('egresos', EgresoController::class);
+    route::get('egresos/{id}/crear', [EgresoController::class,'crear'])->name('egresos.crear');
+    route::resource('revisiones_tecnicas', RevisionTecnicaController::class);
+    route::resource('revaluos', RevaluoController::class);
+    route::resource('roles', \App\Http\Controllers\RolController::class);
+    route::get('privilegios', function (){
+        return view('privilegios.index');
+    })->name('privilegios.index');
+    route::resource('activos_fijos',\App\Http\Controllers\ActivoController::class);
+    route::resource('almacenes',\App\Http\Controllers\AlmacenController::class);
+});
 
 
-Route::resource('rubros', RubroController::class);
-Route::resource('categorias', CategoriaController::class);
-Route::resource('estados', EstadoController::class);
-Route::resource('usuarios', UsuarioController::class);
-route::get('/usuarios/{id}/habilitar_usuario', [UsuarioController::class,'habilitar'])->name('usuarios.habilitar');
-route::get('/usuarios/{id}/deshabilitar_usuario', [UsuarioController::class,'deshabilitar'])->name('usuarios.deshabilitar');
-route::resource('proveedores', ProveedorController::class);
-route::resource('ciudades', CiudadController::class);
-route::resource('edificios', EdificioController::class);
-route::resource('departamentos', DepartamentoController::class);
-route::resource('solicitudes/movimientos', SolicitudMovimientoController::class);
-route::resource('solicitudes/compras', SolicitudCompraController::class);
-route::post('solicitudes/movements/llenarformulario',[SolicitudMovimientoController::class,'llenarformulario'])->name('movimientos.formulario');
-route::post('solicitudes/shop/llenarformulario',[SolicitudCompraController::class,'llenarformulario'])->name('compras.formulario');
-route::resource('mantenimientos', MantenimientoController::class);
-route::resource('egresos', EgresoController::class);
-route::get('egresos/{id}/crear', [EgresoController::class,'crear'])->name('egresos.crear');
-route::resource('revisiones_tecnicas', RevisionTecnicaController::class);
-route::resource('revaluos', RevaluoController::class);
+
+
 
 
 route::get('prueba/proveedor&contacto',function (){

@@ -12,6 +12,13 @@ class EstadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('can:estados.index')->only('index');
+        $this->middleware('can:estados.create')->only('create');
+        $this->middleware('can:estados.show')->only('show');
+        $this->middleware('can:estados.edit')->only('edit');
+        $this->middleware('can:estados.destroy')->only('destroy');
+    }
     public function index()
     {
         $status = Estado::paginate(5);

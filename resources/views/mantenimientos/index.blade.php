@@ -61,6 +61,6 @@
             @endforeach
             </tbody>
         </table>
-        <span>{{$mantenimiento->links()}}</span>
+        <span>{{$mantenimientos->links()}}</span>
     </div>
 </x-app-layout>

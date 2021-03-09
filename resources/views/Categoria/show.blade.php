@@ -51,26 +51,34 @@
                                 <x-jet-input-error for="coeficiente" class="mt-2" />
                             </div>
                         </div>
-
-                        <div class="col-span-6 sm:col-span-4">
-                            <a type="button" class="inline-flex items-center px-4 py-2 bg-green-400
+                        <div class="col-span-6 sm:col-span-6">
+                            @can('categorias.update')
+                                <div class="col-span-6 sm:col-span-2">
+                                    <a type="button" class="inline-flex items-center px-4 py-2 bg-green-400
                                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
                                 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800
                                 active:bg-gray-50 transition ease-in-out duration-150" onclick="habilitarinputs()">
-                                Editar
-                            </a>
-                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-indigo-500 border
+                                        Editar
+                                    </a>
+                                    <div class="col-span-6 sm:col-span-2">
+                                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-indigo-500 border
                                 border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
                                 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition
                                 ease-in-out duration-150" id="input" disabled="">
-                                Actualizar
-                            </button>
-                            <a type="button" href="{{route('categorias.index')}}" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border
+                                            Actualizar
+                                        </button>
+                                    </div>
+                                    @endcan
+                                    <div class="col-span-6 sm:col-span-6">
+                                        <a type="button" href="{{route('categorias.index')}}" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border
                                 border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500
                                 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">
-                                Cancelar
-                            </a>
+                                            Cancelar
+                                        </a>
+                                    </div>
+                                </div>
                         </div>
+
                     </div>
                 </div>
             </div>

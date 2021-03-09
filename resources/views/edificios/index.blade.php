@@ -29,7 +29,7 @@
                 <th>Dirección</th>
                 <th>Ciudad</th>
                 <th>Acciones</th>
-                <th colspan="2">&nbsp</th>
+                <th colspan="3">&nbsp</th>
             </tr>
             </thead>
             <tbody>

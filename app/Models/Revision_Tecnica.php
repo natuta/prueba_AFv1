@@ -23,7 +23,7 @@ class Revision_Tecnica extends Model
     }
 
     public function revaluo(){
-        return $this->hasOne(Revaluo::class,'revision_id');
+        return $this->hasMany(Revaluo::class,'revision_id');
     }
 
     public function user(){

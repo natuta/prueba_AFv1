@@ -8,6 +8,12 @@ use App\Models\Egreso;
 
 class EgresoController extends Controller
 {
+    public function __construc(){
+        $this->middleware('can:egresos.index')->only('index');
+        $this->middleware('can:egresos.crear')->only('crear');
+        $this->middleware('can:egresos.show')->only('show');
+        $this->middleware('can:egresos.index')->only('index');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -14,6 +14,13 @@ use phpDocumentor\Reflection\Types\Self_;
 class SolicitudCompraController extends Controller
 {
     public static $TipoSolicitud = 2;
+
+    public function __construct()
+    {
+        $this->middleware('can:compras.index')->only('index');
+        $this->middleware('can:compras.create')->only('create');
+        $this->middleware('can:compras.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

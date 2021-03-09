@@ -18,7 +18,7 @@ class CreateRevaluosTable extends Migration
             $table->unsignedBigInteger('revision_id');
             $table->unsignedBigInteger('AF_id');
             $table->timestamps();
-            $table->unsignedBigInteger('estado_id');
+            $table->unsignedBigInteger('estado_id')->nullable();
             $table->dateTime('fecha');
             $table->unsignedBigInteger('monto');
             $table->string('descripcion');

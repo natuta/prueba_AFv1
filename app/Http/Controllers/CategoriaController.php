@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['can:categorias.index'])->only('index');
+        $this->middleware(['can:categorias.create'])->only('create');
+        $this->middleware(['can:categorias.edit'])->only('edit');
+        $this->middleware(['can:categorias.destroy'])->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +46,7 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
+
         $cat = new Categoria();
         $cat->nombre = $request->input('nombre');
         $cat->descripcion = $request->input('descripcion');
@@ -46,6 +55,8 @@ class CategoriaController extends Controller
         $cat->actualiza = $request->input('actualiza');
         $cat->save();
         return redirect()->route('categorias.index')->with('success','Categoria registrada correctamente');
+
+        //return dd($request)->with('success','Categoria registrada correctamente');
     }
 
     /**

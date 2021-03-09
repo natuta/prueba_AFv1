@@ -16,8 +16,7 @@
                 {{__('Formulario para agregar nuevo usuario desde dentro del sistema')}}
             </x-slot>
         </x-jet-section-title>
-        <!-- TODO: Seria bueno agregar un boton ' agregar contacto' que al presionarlo se desplegue un formulario en el que se pueda añadir los datos de contacto.-->
-        <form method="POST" action="{{ route('register') }}" class="mt-4 md:mt-0 md:col-span-2">
+        <form method="POST" action="{{ route('usuarios.store') }}" class="mt-4 md:mt-0 md:col-span-2">
             @csrf
             @method("POST")
             <div class="shadow overflow-hidden sm:rounded-md">

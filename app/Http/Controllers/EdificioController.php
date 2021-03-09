@@ -13,6 +13,12 @@ class EdificioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('can:edificios.index')->only('index');
+        $this->middleware('can:edificios.create')->only('create');
+        $this->middleware('can:edificios.edit')->only('edit');
+        $this->middleware('can:edificios.destroy')->only('destroy');
+    }
     public function index()
     {
         $edificios = Edificio::paginate(5);

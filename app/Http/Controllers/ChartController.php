@@ -28,7 +28,7 @@ class ChartController extends Controller
         $datas= array(0,0,0,0,0,0,0,0,0,0,0,0);
         foreach($months as $index => $month)
         {
-            $datas[$month]=$users[$index];
+            $datas[$month-1]=$users[$index];
         }
         return view ('chart',compact('datas'));
     }
@@ -53,7 +53,7 @@ class ChartController extends Controller
         $datas= array(0,0,0,0,0,0,0,0,0,0,0,0);
         foreach($months as $index => $month)
         {
-            $datas[$month]=$users[$index];
+            $datas[$month-1]=$users[$index];
         }
         return view ('bar-chart',compact('datas'));
     }

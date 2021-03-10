@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\DepartamentoController;
@@ -132,5 +133,6 @@ route::get('prueba/mantenimientos/revisiones',function (){
     return ['edificio'=> $edificio];
 })->name('prueba/mantenimientos');
 
-
+Route::get('/chart',[ChartController::class,'index']);
+Route::get('/bar-chart',[ChartController::class,'barChart']);
 //route::delete('/prueba/{id}/destroy/proveedores/',[\App\Http\Controllers\ProveedorController::class,'prueba'])->name('proveedores.prueba');

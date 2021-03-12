@@ -12,16 +12,14 @@
     <script>
         var ctx= document.getElementById("myChart").getContext("2d");
         var myChart= new Chart(ctx,{
-            type:"pie",
+            type:"bar",
             data:{
-                labels:['col1','col2','col3'],
+                labels:['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
                 datasets:[{
-                        label:'Num datos',
-                        data:[10,9,15],
+                        label:'Incremento de nuevos Usuarios,2021',
+                        data:datas,
                         backgroundColor:[
-                            'rgb(66, 134, 244,0.5)',
-                            'rgb(74, 135, 72,0.5)',
-                            'rgb(229, 89, 50,0.5)'
+                            'red','orange','yellow','green','blue','indigo','grey','gold','silver','brown','dark-blue','purple'
                         ]
                 }]
             },

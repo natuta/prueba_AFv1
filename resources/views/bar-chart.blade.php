@@ -7,11 +7,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
     </head>
     <body>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="barChart" width="400" height="400"></canvas>
     </body>
     <script>
-        var ctx= document.getElementById("myChart").getContext("2d");
-        var myChart= new Chart(ctx,{
+        $(function(){
+             var datas= <?php echo json_encode($datas);?>;
+             var barCanvas=$("#barChart");
+             var barChart = new Chart(barCanvas,{
             type:"bar",
             data:{
                 labels:['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],

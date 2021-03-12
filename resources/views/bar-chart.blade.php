@@ -1,55 +1,39 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-       <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
     </head>
     <body>
-   <div style="height: 488px; width: 980px; margin:auto;">
-          <canvas id= "bartChart"></canvas>
-    </div>
-
-    <script>
-            $(function(){
-             var datas= <?php echo json_encode($datas);?>;
-             var barCanvas=$("#barChart");
-             var barChart = new Chart(barCanvas,{
-                type: 'bar',
-                data:{
-                    labels: ['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
-                    datasets:[
-                        {
-                            label:'Incremento de nuevos Usuarios,2021',
-                            data:datas,
-                            backgroundColor:['red','orange','yellow','green','blue','indigo','grey','gold','silver','brown','dark-blue','purple']
-                        }
-
-                    ]
-                },
-                options: {
-                    scales: {
-                        yAxes:[{
-                                ticks:{
-                                    beginAtZero:true
-                                }
-                            }]
-
-                    }
-
-                }
-
-             })
-            });
-
-
-    </script>
-       
-      
+        <canvas id="myChart" width="400" height="400"></canvas>
     </body>
+    <script>
+        var ctx= document.getElementById("myChart").getContext("2d");
+        var myChart= new Chart(ctx,{
+            type:"pie",
+            data:{
+                labels:['col1','col2','col3'],
+                datasets:[{
+                        label:'Num datos',
+                        data:[10,9,15],
+                        backgroundColor:[
+                            'rgb(66, 134, 244,0.5)',
+                            'rgb(74, 135, 72,0.5)',
+                            'rgb(229, 89, 50,0.5)'
+                        ]
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }
+        });
+    </script>
 </html>
-

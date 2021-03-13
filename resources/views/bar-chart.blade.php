@@ -12,7 +12,7 @@
     </body>
     <script>
         $(function(){
-             var datas= <?php echo json_encode($datas);?>;
+             var datas= <?php echo json_encode($datas1);?>;
              var barCanvas=$("#barChart");
              var barChart = new Chart(barCanvas,{
             type:"bar",
@@ -20,7 +20,7 @@
                 labels:['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
                 datasets:[{
                         label:'Incremento de nuevos Usuarios,2021',
-                        data:datas,
+                        data:datas1,
                         backgroundColor:[
                             'red','orange','yellow','green','blue','indigo','grey','gold','silver','brown','dark-blue','purple'
                         ]

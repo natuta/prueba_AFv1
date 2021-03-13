@@ -39,7 +39,7 @@ class ChartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function barChart()
-    {
+    { /*
         $users= User::select(DB::raw("COUNT(*)as count"))
         ->whereYear("created_at",date('Y'))
         ->groupBy(DB::raw("Month(created_at)"))
@@ -56,14 +56,30 @@ class ChartController extends Controller
             $datas[$month-1]=$users[$index];
         }
         return view ('bar-chart',compact('datas'));
-    }
+*/
+ $valores= DB::table('detalles_de_compras')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
+ ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
+ ->pluck('valor');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+ $categorias= DB::table('detalles_de_compras')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
+ ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
+  ->pluck('categorias.nombre');
+    
+    
+    foreach($categorias as $index => $categoria)
+    {
+        $datas1[$categoria]=$valores[$index];
+    }
+     return view ('bar-chart',compact('datas1'));
+    
+    }
+  
     public function store(Request $request)
     {
         //

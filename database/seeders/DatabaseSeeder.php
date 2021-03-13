@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RolSeeder::class,
-            AlmacenSeeder::class,
+           /* AlmacenSeeder::class,
             EstadoSeeder::class,
             ContactoSeeder::class,
             ProveedorSeeder::class,
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             CiudadSeeder::class,
             EdificioSeeder::class,
-            DepartamentoSeeder::class,
+            DepartamentoSeeder::class,*/
         ]);
 
     }

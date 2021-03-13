@@ -1,10 +1,14 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\User;
+use App\Models\Solicitud;
+use App\Models\Solicitud_Compra;
+use App\Models\Detalle_Compra;
 
 class RolSeeder extends Seeder
 {
@@ -15,6 +19,47 @@ class RolSeeder extends Seeder
      */
     public function run()
     {
+
+        
+
+/*$consulta= DB::table('solicitudes')->groupBy('categorias.nombre')->selectRaw(['categorias.nombre, count(*)'])
+->join('solicitudes_compras','solicitudes.id_solicitud','=','solicitudes_compras.solicitud_id')
+->join('detalles_de_compras','solicitudes_compras.id_sol_compra','=','detalles_de_compras.sol_compra_id')
+->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
+->get();
+
+ dd($consulta);*/
+//consulta me devuelve el valor neto en compra, por categoria
+ $consulta= DB::table('detalles_de_compras')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
+ ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
+ ->get();
+ 
+
+
+ $valores= DB::table('detalles_de_compras')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
+ ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
+ ->pluck('valor');
+
+
+
+ $categorias= DB::table('detalles_de_compras')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
+ ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
+  ->pluck('categorias.nombre');
+    
+    
+    foreach($categorias as $index => $categoria)
+    {
+        $datas[$categoria]=$valores[$index];
+    }
+
+    dd($datas);
+        /*
         $rol1 = Role::create(['name'=>'Propietario']);
         $rol2 = Role::create(['name'=>'Administrador']);
         $rol3 = Role::create(['name'=>'Responsable']);
@@ -118,5 +163,6 @@ class RolSeeder extends Seeder
         Permission::create(['name'=>'revaluos.destroy','description'=>'eliminar un revaluo'])->assignRole([$rol1]);
         Permission::create(['name'=>'revaluos.create','description'=>'crear un revaluo'])->assignRole([$rol1]);
         Permission::create(['name'=>'revaluos.edit','description'=>'editar un revaluo'])->assignRole([$rol1]);
+    */
     }
 }

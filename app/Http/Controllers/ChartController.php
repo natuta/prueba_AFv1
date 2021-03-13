@@ -74,9 +74,9 @@ class ChartController extends Controller
     
     foreach($categorias as $index => $categoria)
     {
-        $datas1[$categoria]=$valores[$index];
+        $datas[$categoria]=$valores[$index];
     }
-     return view ('bar-chart',compact('datas1'));
+     return view ('bar-chart',compact('datas'));
     
     }
   

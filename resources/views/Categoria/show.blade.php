@@ -52,8 +52,8 @@
                             </div>
                         </div>
                         <div class="col-span-6 sm:col-span-6">
-                            @can('categorias.update')
                                 <div class="col-span-6 sm:col-span-2">
+                                    @can('categorias.edit')
                                     <a type="button" class="inline-flex items-center px-4 py-2 bg-green-400
                                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
                                 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800

@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Ciudad;
 use App\Models\Departamento;
 use App\Models\Edificio;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
 {
+    use HasBitacora;
+
     public function __construc(){
         $this->middleware('can:departamentos.index')->only('index');
         $this->middleware('can:departamentos.create')->only('create');
@@ -54,6 +57,10 @@ class DepartamentoController extends Controller
         $dpto->descripcion = $request->input('descripcion');
         $dpto->edificio_id = $request->input('edificio_id');
         $dpto->save();
+
+        $modelo = class_basename($dpto);
+        HasBitacora::Created($modelo,$dpto->id_departamento);
+
         return redirect()->route('departamentos.index')->with('success','Departamento registrado correctamente');
         //return dd($dpto);
 
@@ -102,6 +109,10 @@ class DepartamentoController extends Controller
         $dpto->descripcion = $request->input('descripcion');
         $dpto->edificio_id = $request->input('edificio_id');
         $dpto->save();
+
+        $modelo = class_basename($dpto);
+        HasBitacora::Edited($modelo,$dpto->id_departamento);
+
         return redirect()->route('departamentos.index');
     }
 
@@ -114,6 +125,8 @@ class DepartamentoController extends Controller
     public function destroy($id)
     {
         $dpto = Departamento::findOrFail($id);
+        $modelo = class_basename($dpto);
+        HasBitacora::Deleted($modelo,$dpto->id_departamento);
         $dpto->delete();
         return redirect()->route('departamentos.index');
     }

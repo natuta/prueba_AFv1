@@ -7,10 +7,22 @@ use App\Models\Almacen;
 use App\Models\Categoria;
 use App\Models\Departamento;
 use App\Models\Estado;
+use App\Models\Revaluo;
+use App\Models\Revision_Tecnica;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class ActivoController extends Controller
 {
+    use HasBitacora;
+
+    public function __construct(){
+        $this->middleware('can:activos.index')->only('index');
+        $this->middleware('can:activos.create')->only('create');
+        $this->middleware('can:activos.show')->only('show');
+        $this->middleware('can:activos.edit')->only('edit');
+        $this->middleware('can:activos.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -59,6 +71,9 @@ class ActivoController extends Controller
         $activo->almacen_id = $request->input('almacen_id');
         $activo->save();
 
+        $modelo = class_basename($activo);
+        HasBitacora::Created($modelo,$activo->id_AF);
+
         return redirect()->route('activos_fijos.index')->with('success','Activo fijo registrado con exito');
     }
 
@@ -71,7 +86,9 @@ class ActivoController extends Controller
     public function show($id)
     {
         $activo = Activo_Fijo::findOrFail($id);
-        return view('activos.show',['activo'=>$activo]);
+        $revisiones = Revaluo::all()->where('AF_id','=',$id);
+        return view('activos.show',['activo'=>$activo,'revisiones'=>$revisiones]);
+        //return dd($revisiones);
     }
 
     /**
@@ -116,6 +133,9 @@ class ActivoController extends Controller
         $activo->almacen_id = $request->input('almacen_id');
         $activo->save();
 
+        $modelo = class_basename($activo);
+        HasBitacora::Edited($modelo,$activo->id_AF);
+
         return redirect()->route('activos_fijos.index')->with('success','Activo fijo editado con exito');
     }
 
@@ -128,6 +148,8 @@ class ActivoController extends Controller
     public function destroy($id)
     {
         $activo = Activo_Fijo::findOrFail($id);
+        $modelo = class_basename($activo);
+        HasBitacora::Deleted($modelo,$activo->id_AF);
         $activo->delete();
         return redirect()->route('activos_fijos.index');
     }

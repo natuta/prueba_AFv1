@@ -56,7 +56,7 @@ class RevisionTecnicaController extends Controller
         $revision->user_id = auth()->user()->id;
         $revision->estado_id =  $request->input('estado_id');
         $revision->AF_id =  $request->input('activo_id');
-        $revision->conclusion =  false;
+        $revision->conclusion =  0;
         $revision->save();
 
 
@@ -112,6 +112,8 @@ class RevisionTecnicaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rev = Revision_Tecnica::findOrFail($id);
+        $rev->delete();
+        return redirect()->route('revisiones_tecnicas.index')->with('success','la revision tecnica se ha eliminado con exito');
     }
 }

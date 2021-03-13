@@ -12,6 +12,7 @@
             </div>
         @endif
         <div >
+            @can('departamentos.create')
             <a type="button" href="{{route('departamentos.create')}}"
                class="inline-flex items-center px-4 py-2 bg-indigo-500 border
             border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
@@ -19,7 +20,7 @@
             ease-in-out duration-150">
                 {{__('Agregar departamento')}}
             </a>
-
+            @endcan
         </div>
         <table class="table">
             <thead>
@@ -41,6 +42,7 @@
                     <td>{{$dpto->descripcion}}</td>
                     <th colspan="2">&nbsp</th>
                     <td>{{$dpto->edificio->nombre}}</td>
+                    @can('departamentos.show')
                     <td>
                         <a href="{{route('departamentos.show',[$dpto->id_departamento])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -49,7 +51,8 @@
                             Ver
                         </a>
                     </td>
-
+                    @endcan
+                    @can('departamentos.destroy')
                     <td>
                         <form method="POST" action="{{route('departamentos.destroy',[$dpto->id_departamento]) }}">
                             @csrf
@@ -59,6 +62,7 @@
                     focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">Eliminar</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
             </tbody>

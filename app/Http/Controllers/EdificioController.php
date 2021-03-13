@@ -4,21 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Ciudad;
 use App\Models\Edificio;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class EdificioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    use HasBitacora;
+
     public function __construct(){
         $this->middleware('can:edificios.index')->only('index');
         $this->middleware('can:edificios.create')->only('create');
         $this->middleware('can:edificios.edit')->only('edit');
         $this->middleware('can:edificios.destroy')->only('destroy');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $edificios = Edificio::paginate(5);
@@ -49,8 +54,9 @@ class EdificioController extends Controller
         $edif->direccion = $request->input('direccion');
         $edif->ciudad_id = $request->input('ciudad_id');
         $edif->save();
+        $modelo = class_basename($edif);
+        HasBitacora::Created($modelo,$edif->id_edificio);
         return redirect()->route('edificios.index')->with('success','Categoria registrada correctamente');
-        //return dd($edif);
 
     }
 
@@ -92,6 +98,9 @@ class EdificioController extends Controller
         $edif->direccion = $request->input('direccion');
         $edif->ciudad_id = $request->input('ciudad_id');
         $edif->save();
+
+        $modelo = class_basename($edif);
+        HasBitacora::Edited($modelo,$edif->id_edificio);
         return redirect()->route('edificios.index');
 
     }
@@ -105,6 +114,8 @@ class EdificioController extends Controller
     public function destroy($id)
     {
         $edif = Edificio::findOrFail($id);
+        $modelo = class_basename($edif);
+        HasBitacora::Deleted($modelo,$edif->id_edificio);
         $edif->delete();
         return redirect()->route('edificios.index');
     }

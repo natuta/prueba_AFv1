@@ -13,6 +13,7 @@
             </div>
         @endif
         <div>
+            @can('movimientos.create')
             <a type="button" href="{{route('movimientos.create')}}"
                class="inline-flex items-center px-4 py-2 bg-indigo-500 border
             border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
@@ -20,6 +21,7 @@
             ease-in-out duration-150">
                 {{__('Realizar movimiento ')}}
             </a>
+            @endcan
 
         </div>
         <table class="table">
@@ -39,6 +41,7 @@
                     <td>{{$mov->id_sol_mov}}</td>
                     <td>{{$mov->solicitud->user->name}}  {{$mov->solicitud->user->apellido}} </td>
                     <td>{{$mov->solicitud->fecha}}</td>
+                    @can('movimientos.show')
                     <td width="10px">
                         <a href="{{route('movimientos.show',[$mov->id_sol_mov])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -47,6 +50,7 @@
                             Ver
                         </a>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
             </tbody>

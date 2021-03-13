@@ -62,6 +62,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    protected $dates = [
+        'banned_until'
+    ];
+
     public function contacto(){
         return $this->belongsTo(Contacto::class,'contacto_id');
     }

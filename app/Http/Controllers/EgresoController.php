@@ -49,7 +49,11 @@ class EgresoController extends Controller
         $egreso->descripcion =  $request->input('descripcion');
         $egreso->revision_id =  $request->input('revision_id');
         $egreso->save();
-        return redirect()->route('egresos.index');
+
+        $revision = Revision_Tecnica::findOrFail($egreso->revision_id);
+        $revision->conclusion = 3;
+        $revision->save();
+        return redirect()->route('egresos.index')->with('success','el activo fijo se ha egresado correctamente');
         //return dd($request);
     }
 

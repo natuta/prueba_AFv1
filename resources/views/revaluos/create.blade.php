@@ -23,45 +23,50 @@
 
                         <div class="col-span-6 sm:col-span-1">
                             <x-jet-label for="user_id" value="{{ __('Cod. usuario ') }}" />
-                            <input type="text" readonly name="user_id" value="{{auth()->user()->id}} ">
+                            <input type="text" readonly  name="user_id" value="{{auth()->user()->id}} ">
                         </div>
                         <div class="col-span-6 sm:col-span-3">
                             <x-jet-label for="user_name" value="{{ __('Nombre del usuario registrante') }}" />
                             <input type="text" readonly name="user_name" value="{{auth()->user()->name}} {{auth()->user()->apellido}} ">
                         </div>
                         <div class="col-span-6 sm:col-span-2">
-                            <x-jet-label for="fecha_revaluo" value="{{ __('Fecha de Revaluo') }}" />
-                            <input type="text" readonly name="fecha_revaluo" value=" {{ \Carbon\Carbon::now('America/Caracas')}} ">
+                            <x-jet-label for="fecha" value="{{ __('Fecha de Revaluo') }}" />
+                            <input type="text" readonly name="fecha" value=" {{ \Carbon\Carbon::now('America/Caracas')}} ">
                         </div>
+
+                        <div class="col-span-6 sm:col-span-1">
+                            <x-jet-label for="revision_id" value="{{ __('Cod Rev Tec') }}" />
+                            <input type="text" name="revision_id" value="{{$revision->id_revision}}" readonly>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-1">
+                            <x-jet-label for="nuevoValor" value="{{ __('Cod activo') }}" />
+                            <input type="text" name="activo_id" value="{{$activo->id_AF}}" readonly>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-4">
+                            <x-jet-label for="nuevoValor" value="{{ __('Nombre del activo') }}" />
+                            <input type="text" name="activo_name" value="{{$activo->nombre}}" readonly>
+                        </div>
+
                         <div class="col-span-6 sm:col-span-6">
-                            <x-jet-label for="descripcion" value="{{ __('Descripcion acerca de  la Revalorizacion') }}" />
+                            <input type="text" name="monto" value="{{$monto}}" hidden>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="antiguoValor" value="{{ __('Antiguo valor Bs.') }}" />
+                            <input type="text" name="antiguoValor" value="{{$monto}}" readonly>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="nuevoValor" value="{{ __('Nuevo valor Bs.') }}" />
+                            <input type="text" name="nuevoValor" value="{{$nuevo_monto}}" readonly>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-6">
+                            <x-jet-label for="descripcion" value="{{ __('Descripcion acerca de la Revalorizacion') }}" />
                             <input type="text" name="descripcion" required>
                         </div>
-
-                        <div class="col-span-6 sm:col-span-6">
-                            <x-jet-label for="valor" value="{{ __('Nuevo Valor Bs.') }}" />
-                            <input type="text" name="valor" required>
-                        </div>
-                        
-                        <div class="col-span-6 sm:col-span-2">
-                            <x-jet-label for="activo_id" value="{{ __('Seleccione el Activo Fijo a Revalorizar') }}" />
-                            <select name="activo_id" required>
-                                <option selected>-- Escoja un Activo fijo--</option>
-                                @foreach( $afs as $activo)
-                                    <option value="{{$activo->id_AF}}">{{$activo->nombre}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-span-6 sm:col-span-2">
-                            <x-jet-label for="revision_id" value="{{ __('Seleccione la Revision Tecnica Correspondiente') }}" />
-                            <select name="revision_id" required>
-                                <option selected>-- Escoja la Revision--</option>
-                                @foreach( $revisiones as $revi)
-                                    <option value="{{$revi->id_revision}}"> {{$revi->id_revision}}  </option>
-                                @endforeach
-                            </select>
-                        </div>
-
 
 
                         <div class="col-span-6 sm:col-span-4">
@@ -71,11 +76,6 @@
                                 ease-in-out duration-150">
                                 Continuar
                             </button>
-                            <a type="button" href="{{route('revaluos.index')}}" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border
-                                border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500
-                                focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">
-                                Cancelar
-                            </a>
                         </div>
                     </div>
                 </div>

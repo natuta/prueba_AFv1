@@ -21,7 +21,7 @@ class CreateMantenimientosTable extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
             $table->unsignedBigInteger('duracion')->nullable();
-            $table->unsignedBigInteger('costo')->nullable();
+            $table->unsignedFloat('costo')->nullable();
             $table->unsignedBigInteger('revision_id');
 
             $table->foreign('revision_id')->references('id_revision')->on('revisiones_tecnicas')->cascadeOnDelete()->cascadeOnUpdate();

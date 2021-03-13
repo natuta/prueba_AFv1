@@ -26,12 +26,11 @@ class CreateUsersTable extends Migration
             $table->string('sexo')->nullable();
             $table->unsignedBigInteger('estado_id')->nullable();
             $table->unsignedBigInteger('contacto_id')->nullable();
-            //$table->unsignedBigInteger('rol_id');
+            $table->timestamp('banned_until')->nullable();
             $table->timestamps();
 
             $table->foreign('estado_id')->references('id_estado')->on('estados')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('contacto_id')->references('id_contacto')->on('contactos')->cascadeOnDelete()->cascadeOnUpdate();
-            //$table->foreign('rol_id')->references('id_rol')->on('roles')->cascadeOnDelete();
 
         });
     }

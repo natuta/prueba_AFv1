@@ -31,10 +31,22 @@
                             <x-jet-input-error for="af_id" class="mt-2" />
                         </div>
 
-                        <div class="col-span-6 sm:col-span-5">
+                        <div class="col-span-6 sm:col-span-4">
                             <x-jet-label for="AF_name" value="{{ __('Nombre activo fijo') }}" />
                             <input value="{{$revaluo->activo->nombre}}" type="text" name="AF_name" disabled required>
                             <x-jet-input-error for="AF_name" class="mt-2" />
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="valor" value="{{ __('Valor del Revaluo') }}" />
+                            <input value="{{$revaluo->monto}}" type="text"  name="valor" class="form-control" disabled required>
+                            <x-jet-input-error for="valor" class="mt-2" />
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <x-jet-label for="fecha" value="{{ __('Fecha de Revaluo') }}" />
+                            <input value="{{$revaluo->fecha}}" type="text"  name="fecha" class="form-control" disabled required>
+                            <x-jet-input-error for="fecha" class="mt-2" />
                         </div>
 
                         <div class="col-span-6 sm:col-span-6">
@@ -43,24 +55,10 @@
                             <x-jet-input-error for="descripcion" class="mt-2" />
                         </div>
 
+
+
+
                         <div class="col-span-6 sm:col-span-6">
-                            <x-jet-label for="valor" value="{{ __('Valor del Revaluo') }}" />
-                            <input value="{{$revaluo->monto}}" type="text"  name="valor" class="form-control" disabled required>
-                            <x-jet-input-error for="valor" class="mt-2" />
-                        </div>
-
-                        <div class="col-span-6 sm:col-span-1">
-                            <x-jet-label for="fecha" value="{{ __('Fecha de Revaluo') }}" />
-                            <input value="{{$revaluo->fecha}}" type="text"  name="fecha" class="form-control" disabled required>
-                            <x-jet-input-error for="fecha" class="mt-2" />
-                        </div>
-
-                   
-                              
-
-                       
-
-                        <div class="col-span-6 sm:col-span-4">
                             <a type="button" href="{{route('revaluos.index')}}" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border
                                 border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500
                                 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">

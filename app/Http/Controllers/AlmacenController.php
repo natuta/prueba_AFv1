@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Activo_Fijo;
 use App\Models\Almacen;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class AlmacenController extends Controller
 {
+    use HasBitacora;
+
     public function __construct(){
         $this->middleware('can:almacenes.index')->only('index');
         $this->middleware('can:almacenes.create')->only('create');
         $this->middleware('can:almacenes.show')->only('show');
         $this->middleware('can:almacenes.edit')->only('edit');
         $this->middleware('can:almacenes.destroy')->only('destroy');
-
     }
     /**
      * Display a listing of the resource.
@@ -49,6 +51,8 @@ class AlmacenController extends Controller
         $almacenes->direccion = $request->input('direccion');
         $almacenes->estado = $request->input('estado');
         $almacenes->save();
+        $modelo = class_basename($almacenes);
+        HasBitacora::Created($modelo,$almacenes->id_almacen);
         return redirect()->route('almacenes.index')->with('success','El almacen ha sido registrado con exito');
     }
 
@@ -90,6 +94,10 @@ class AlmacenController extends Controller
         $almacenes = Almacen::findOrFail($id);
         $almacenes->direccion = $request->input('direccion');
         $almacenes->save();
+
+        $modelo = class_basename($almacenes);
+        HasBitacora::Edited($modelo,$almacenes->id_almacen);
+
         return redirect()->route('almacenes.index');
     }
 
@@ -102,6 +110,8 @@ class AlmacenController extends Controller
     public function destroy($id)
     {
         $almacenes = Almacen::findOrFail($id);
+        $modelo = class_basename($almacenes);
+        HasBitacora::Deleted($modelo,$almacenes->id_almacen);
         $almacenes->delete();
         return redirect()->route('almacenes.index');
     }

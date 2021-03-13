@@ -13,14 +13,9 @@
             </div>
         @endif
         <div>
-            <a type="button" href="{{route('revaluos.create')}}"
-               class="inline-flex items-center px-4 py-2 bg-indigo-500 border
-            border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
-            active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition
-            ease-in-out duration-150">
-                {{__('Realizar Revalorizacion')}}
-            </a>
-
+            @can('revaluos.create')
+            <h4>Lista de revalorizaciones hechas:</h4>
+            @endcan
         </div>
         <table class="table">
             <thead>
@@ -28,7 +23,7 @@
                 <th>ID</th>
                 <th>Fecha</th>
                 <th>Descripcion</th>
-                <th>Revision</th>
+                <th>Cod Revision</th>
                 <th>Acciones</th>
                 <th colspan="2">&nbsp</th>
             </tr>
@@ -48,7 +43,7 @@
                             Ver
                         </a>
                     </td>
-
+                    @can('revaluos.destroy')
                     <td>
                         <form method="POST" action="">
                             @csrf
@@ -58,6 +53,7 @@
                     focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">Eliminar</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
             </tbody>

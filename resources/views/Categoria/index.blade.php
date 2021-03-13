@@ -44,6 +44,7 @@
                                     <td>{{$cat->descripcion}}</td>
                                     <td colspan="2">&nbsp</td>
                                     <td>{{$cat->rubro->nombre}}</td>
+                                    @can('categorias.show')
                                     <td>
                                         <a href="{{route('categorias.show',[$cat->id_categoria])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -52,6 +53,8 @@
                                             Ver
                                         </a>
                                     </td>
+                                    @endcan
+                                    @can('categorias.destroy')
                                     <td>
                                         <form method="POST" action="{{route('categorias.destroy',[$cat->id_categoria]) }}">
                                             @csrf
@@ -61,6 +64,7 @@
                     focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">Eliminar</button>
                                         </form>
                                     </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                             </tbody>

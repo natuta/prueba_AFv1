@@ -97,6 +97,7 @@ Route::middleware(['auth'])->group(function(){
     route::get('egresos/{id}/crear', [EgresoController::class,'crear'])->name('egresos.crear');
     route::resource('revisiones_tecnicas', RevisionTecnicaController::class);
     route::resource('revaluos', RevaluoController::class);
+    route::get('revaluos/crear/{activo}/{revision}/{monto}',[RevaluoController::class,'crear'])->name('revaluos.crear');
     route::resource('roles', \App\Http\Controllers\RolController::class);
     route::get('privilegios', function (){
         return view('privilegios.index');
@@ -133,6 +134,7 @@ route::get('prueba/mantenimientos/revisiones',function (){
     return ['edificio'=> $edificio];
 })->name('prueba/mantenimientos');
 
+
+//route::delete('/prueba/{id}/destroy/proveedores/',[\App\Http\Controllers\ProveedorController::class,'prueba'])->name('proveedores.prueba');
 Route::get('/chart',[ChartController::class,'index']);
 Route::get('/bar-chart',[ChartController::class,'barChart']);
-//route::delete('/prueba/{id}/destroy/proveedores/',[\App\Http\Controllers\ProveedorController::class,'prueba'])->name('proveedores.prueba');

@@ -16,6 +16,13 @@ use phpDocumentor\Reflection\Types\Self_;
 
 class RevaluoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:revaluos.index')->only('index');
+        $this->middleware('can:revaluos.show')->only('show');
+        $this->middleware('can:revaluos.create')->only('create');
+        $this->middleware('can:revaluos.edit')->only('edit');
+        $this->middleware('can:revaluos.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,11 +40,12 @@ class RevaluoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear($activo_id, $revision_id, $monto)
     {
-        $activos = Activo_Fijo::all();
-        $revisiones = Revision_Tecnica::all();
-        return view('revaluos.create',['afs'=>$activos,'revisiones'=>$revisiones]);
+        $activo = Activo_Fijo::findOrFail($activo_id);
+        $revision = Revision_Tecnica::findOrFail($revision_id);
+        $nuevoMonto = $this->nuevoValor($monto);
+        return view('revaluos.create',['activo'=>$activo,'revision'=>$revision,'nuevo_monto'=>$nuevoMonto,'monto'=>$monto]);
     }
 
     /**
@@ -49,19 +57,22 @@ class RevaluoController extends Controller
     public function store(Request $request)
     {
         $rev = new Revaluo();
+        $rev->AF_id = $request->input('activo_id');
+        $rev->revision_id = $request->input('revision_id');
+        $rev->estado_id = 1;
         $rev->fecha = Carbon::now('America/Caracas');
-       // $rev->user_id = auth()->user()->id;
-       // $rev->estado_id =  $request->input('estado_id');
-        $rev->AF_id =$request->input('activo_id');
-        $rev->descripcion=$request->input('descripcion');
-        $rev->monto =$request->input('valor');
-        $rev->estado_id=1;
-        $rev->revision_id=$request->input('revision_id');
+        $nuevoValor = $this->nuevoValor($request->input('monto'));
+        $rev->monto = $nuevoValor;
+        $rev->descripcion = $request->input('descripcion');
         $rev->save();
 
 
-       //return dd($revision,$mantenimiento);
-        return redirect()->route('revaluos.index');
+       //return dd($rev);
+        return redirect()->route('revaluos.index')->with('success','el activo fijo ha sido revalorizado');
+    }
+
+    public function nuevoValor($costo){
+        return ($costo*10);
     }
 
     /**

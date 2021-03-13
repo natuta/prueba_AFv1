@@ -42,7 +42,7 @@
                             <input type="date"  name="fecha_inicio" required>
                         </div>
                         <div class="col-span-6 sm:col-span-2">
-                            <x-jet-label for="activo_id" value="{{ __('Seleccione el activo fijo a trasladar') }}" />
+                            <x-jet-label for="activo_id" value="{{ __('Seleccione el activo fijo a revisar') }}" />
                             <select name="activo_id" required>
                                 <option selected>-- Escoja un activo fijo--</option>
                                 @foreach( $afs as $activo)

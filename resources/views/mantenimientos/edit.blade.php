@@ -59,8 +59,8 @@
                                 <x-jet-label for="conclusion" value="{{ __('Conclusion del mantenimiento') }}" />
                                 <select name="conclusion" id="conclusion">
                                     <option selected >-- Seleccione una opcion --</option>
-                                    <option value="0" > Reutilizar</option>
                                     <option value="1" > Egresar</option>
+                                    <option value="2" > Reutilizar</option>
                                 </select>
                                 <x-jet-input-error for="conclusion" class="mt-2" />
                             </div>

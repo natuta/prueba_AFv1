@@ -6,7 +6,8 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-        <div >
+        <div>
+            @can('revisiones_tecnicas.create')
             <a type="button" href="{{route('revisiones_tecnicas.create')}}"
                class="inline-flex items-center px-4 py-2 bg-indigo-500 border
             border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
@@ -14,6 +15,7 @@
             ease-in-out duration-150">
                 {{__('Nueva revision tecnica')}}
             </a>
+            @endcan
 
         </div>
         <div>
@@ -44,6 +46,7 @@
                         @else
                             <td>Egresable</td>
                         @endif
+                        @can('revisiones_tecnicas.show')
                         <td width="10px">
                             <a href="{{route('revisiones_tecnicas.show',[$rev->id_revision])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -52,17 +55,21 @@
                                 Ver
                             </a>
                         </td>
+                        @endcan
                         @if( $rev->conclusion == 0)
-                        <td width="10px">
-                            <a href="{{route('mantenimientos.edit',[$rev->mantenimiento->id_mantenimiento])}}" class="inline-flex items-center px-4 py-2 bg-green-400
-                border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
-                hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800
-                active:bg-gray-50 transition ease-in-out duration-150" >
-                                Finalizar Mant.
-                            </a>
-                        </td>
-                        @else
-
+                            @can('revisiones_tecnicas.finalizar')
+                                <td width="10px">
+                                    <a href="{{route('mantenimientos.edit',[$rev->mantenimiento->id_mantenimiento])}}" class="inline-flex items-center px-4 py-2 bg-green-400
+                        border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
+                        hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800
+                        active:bg-gray-50 transition ease-in-out duration-150" >
+                                        Finalizar Mant.
+                                    </a>
+                                </td>
+                            @endcan
+                        @endif
+                        @can('revisiones_tecnicas.egresar')
+                        @if($rev->conclusion == 1)
                         <td width="10px">
                             <a href="{{route('egresos.crear',[$rev->id_revision])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -72,6 +79,18 @@
                             </a>
                         </td>
                         @endif
+                        @endcan
+                        @if($rev->conclusion == 2)
+                            <td>
+                                <span class="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Finalizado</span>
+                            </td>
+                        @endif
+                        @if($rev->conclusion == 3)
+                            <td>
+                                <span class="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Egresado</span>
+                            </td>
+                        @endif
+                        @can('revisiones_tecnicas.destroy')
                         <td width="10px">
                             <form method="POST" action="{{route('revisiones_tecnicas.destroy',[$rev->id_revision]) }}">
                                 @csrf
@@ -81,6 +100,7 @@
                                         focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">Eliminar</button>
                             </form>
                         </td>
+                        @endcan
                     </tr>
                 @endforeach
                 </tbody>

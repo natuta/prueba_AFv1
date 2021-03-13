@@ -11,7 +11,8 @@
                 {{session('success')}}
             </div>
         @endif
-        <div >
+        <div>
+            @can('estados.create')
             <a type="button" href="{{route('estados.create')}}"
                class="inline-flex items-center px-4 py-2 bg-indigo-500 border
             border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
@@ -19,6 +20,7 @@
             ease-in-out duration-150">
                 {{__('Agregar estado')}}
             </a>
+            @endcan
             <li class="divider" style="margin: 10px"></li>
         </div>
         <table class="table">
@@ -38,6 +40,7 @@
                     <td>{{$stat->nombre}}</td>
                     <td>{{$stat->descripcion}}</td>
                     <td colspan="2">&nbsp</td>
+                    @can('estados.show')
                     <td>
                         <a href="{{route('estados.show',[$stat->id_estado])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -46,7 +49,8 @@
                             Ver
                         </a>
                     </td>
-
+                    @endcan
+                    @can('estados.destroy')
                     <td>
                         <form method="POST" action="{{route('estados.destroy',[$stat->id_estado]) }}">
                             @csrf
@@ -56,6 +60,7 @@
                     focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">Eliminar</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
             </tbody>

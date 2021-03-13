@@ -25,6 +25,8 @@ class RolSeeder extends Seeder
         Permission::create(['name'=>'revisiones_tecnicas.show','description'=>'ver una revision tecnica'])->assignRole([$rol1,$rol2,$rol4]);
         Permission::create(['name'=>'revisiones_tecnicas.destroy','description'=>'eliminar una revision tecnics'])->assignRole([$rol1,$rol2]);
         Permission::create(['name'=>'revisiones_tecnicas.create','description'=>'crea una revision tecnica'])->assignRole([$rol1,$rol2,$rol4]);
+        Permission::create(['name'=>'revisiones_tecnicas.finalizar','description'=>'finalizar una revision tecnica'])->assignRole([$rol1]);
+        Permission::create(['name'=>'revisiones_tecnicas.egresar','description'=>'egresar una revision tecnica'])->assignRole([$rol1]);
 
         Permission::create(['name'=>'rubros.index','description'=>'ver lista de rubros'])->assignRole([$rol1,$rol2,$rol4,$rol3]);
         Permission::create(['name'=>'rubros.create','description'=>'crear rubro'])->assignRole([$rol1, $rol2]);
@@ -52,7 +54,9 @@ class RolSeeder extends Seeder
 
         Permission::create(['name'=>'movimientos.index','description'=>'ver lista de movimientos'])->assignRole([$rol1,$rol2,$rol3]);
         Permission::create(['name'=>'movimientos.create','description'=>'realizar movimiento'])->assignRole([$rol1,$rol2]);
-        //eliminar movimiento
+        Permission::create(['name'=>'movimientos.show','description'=>'ver un movimiento'])->assignRole([$rol1,$rol2]);
+        Permission::create(['name'=>'movimientos.destroy','description'=>'eliminar un movimiento'])->assignRole([$rol1,$rol2]);
+        //aun falta probar
 
         Permission::create(['name'=>'compras.index','description'=>'ver lista de compras'])->assignRole([$rol1,$rol2]);
         Permission::create(['name'=>'compras.create','description'=>'realizar compra'])->assignRole([$rol1,$rol2]);
@@ -102,5 +106,17 @@ class RolSeeder extends Seeder
         Permission::create(['name'=>'almacenes.edit','description'=>'eidtar almacen'])->assignRole([$rol1]);
         Permission::create(['name'=>'almacenes.show','description'=>'ver almacen'])->assignRole([$rol1]);
         Permission::create(['name'=>'almacenes.destroy','description'=>'eliminar almacen'])->assignRole([$rol1]);
+
+        Permission::create(['name'=>'activos.index','description'=>'ver lista de activos fijos'])->assignRole([$rol1]);
+        Permission::create(['name'=>'activos.show','description'=>'ver un activo fijo'])->assignRole([$rol1]);
+        Permission::create(['name'=>'activos.create','description'=>'crear un activo fijo'])->assignRole([$rol1]);
+        Permission::create(['name'=>'activos.edit','description'=>'editar un activo fijo'])->assignRole([$rol1]);
+        Permission::create(['name'=>'activos.destroy','description'=>'eliminar un activo fijo'])->assignRole([$rol1]);
+
+        Permission::create(['name'=>'revaluos.index','description'=>'ver lista de revaluos'])->assignRole([$rol1]);
+        Permission::create(['name'=>'revaluos.show','description'=>'ver un revaluo'])->assignRole([$rol1]);
+        Permission::create(['name'=>'revaluos.destroy','description'=>'eliminar un revaluo'])->assignRole([$rol1]);
+        Permission::create(['name'=>'revaluos.create','description'=>'crear un revaluo'])->assignRole([$rol1]);
+        Permission::create(['name'=>'revaluos.edit','description'=>'editar un revaluo'])->assignRole([$rol1]);
     }
 }

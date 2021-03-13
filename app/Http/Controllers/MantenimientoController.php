@@ -105,8 +105,8 @@ class MantenimientoController extends Controller
             $revision->estado_id = 3;
             $mantenimiento->save();
             $revision->save();
-            //return dd($mantenimiento,$duracion,$revision);
-            return redirect()->route('revisiones_tecnicas.index');
+            //return dd($revision->activo->id_AF,$revision->id_revision,$mantenimiento->costo);
+            return redirect()->route('revaluos.crear',[$revision->activo->id_AF,$revision->id_revision,$mantenimiento->costo]);
             }
 
 

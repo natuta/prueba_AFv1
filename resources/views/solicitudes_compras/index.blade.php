@@ -12,7 +12,9 @@
                 {{session('success')}}
             </div>
         @endif
-        <div >
+
+        <div>
+            @can('compras.create')
             <a type="button" href="{{route('compras.create')}}"
                class="inline-flex items-center px-4 py-2 bg-indigo-500 border
             border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
@@ -20,7 +22,7 @@
             ease-in-out duration-150">
                 {{__('Realizar Solicitud de compra')}}
             </a>
-
+            @endcan
         </div>
         <table class="table">
             <thead>
@@ -42,16 +44,19 @@
                     <td>{{$cmp->solicitud->user->name}}  {{$cmp->solicitud->user->apellido}} </td>
                     <td>{{$cmp->proveedor->nombre}} </td>
                     <td>{{$cmp->solicitud->fecha}}</td>
-{{-- {{$cmp->detalle_compra->total}} --}}
+                    <td>{{$cmp->detalle_compra->total}}</td>
+                    @can('compras.show')
                     <td>
-                        <a href="{{route('movimientos.show',[$cmp->id_sol_compra])}}" class="inline-flex items-center px-4 py-2 bg-green-400
+                        <a href="{{route('compras.show',[$cmp->id_sol_compra])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
                 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800
                 active:bg-gray-50 transition ease-in-out duration-150" >
                             Ver
                         </a>
                     </td>
+                    @endcan
 
+                    @can('compras.destroy')
                     <td>
                         <form method="POST" action="{{route('compras.destroy',[$cmp->id_sol_compra]) }}">
                             @csrf
@@ -61,6 +66,7 @@
                     focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">Eliminar</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
             </tbody>

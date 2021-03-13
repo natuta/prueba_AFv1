@@ -6,6 +6,11 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+        @if(session('success'))
+            <div class="alert alert-dark" role="success">
+                {{session('success')}}
+            </div>
+        @endif
         <div>
             <li class="divider" style="margin: 10px"></li>
         </div>
@@ -29,6 +34,7 @@
                     <td>{{$egreso->descripcion}}</td>
                     <td colspan="2">&nbsp</td>
                     <td>{{$egreso->revision->id_revision}}</td>
+                    @can('egresos.show')
                     <td>
                         <a href="{{route('egresos.show',[$egreso->id_egreso])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -37,6 +43,9 @@
                             Ver
                         </a>
                     </td>
+                    @endcan
+
+                    @can('egresos.destroy')
                     <td>
                         <form method="POST" action="{{route('egresos.destroy',[$egreso->id_egreso]) }}">
                             @csrf
@@ -46,6 +55,7 @@
                     focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">Eliminar</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
             </tbody>

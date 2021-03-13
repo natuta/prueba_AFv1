@@ -13,6 +13,7 @@
 
         @endif
         <div class="pt-5" >
+            @can('activos.create')
             <a type="button" href="{{route('activos_fijos.create')}}"
                class="inline-flex items-center px-4 py-2 bg-indigo-500 border
             border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
@@ -20,6 +21,7 @@
             ease-in-out duration-150">
                 {{__('Agregar Activo fijo')}}
             </a>
+            @endcan
             <li class="divider" style="margin: 10px"></li>
         </div>
         <table class="table">
@@ -36,6 +38,7 @@
                 <tr>
                     <td>{{$activo->id_AF}}</td>
                     <td>{{$activo->nombre}}</td>
+                    @can('activos.show')
                     <td width="10px">
                         <a href="{{route('activos_fijos.show',[$activo->id_AF])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -44,6 +47,9 @@
                             Ver
                         </a>
                     </td>
+                    @endcan
+
+                    @can('activos.edit')
 
                     <td width="10px">
                         <a href="{{route('activos_fijos.edit',[$activo->id_AF])}}" class="inline-flex items-center px-4 py-2 bg-green-400
@@ -53,7 +59,9 @@
                             Editar
                         </a>
                     </td>
+                    @endcan
 
+                    @can('activos.destroy')
                     <td width="10px">
                         <form method="POST" action="{{route('activos_fijos.destroy',[$activo->id_AF]) }}">
                             @csrf
@@ -63,6 +71,7 @@
                     focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150">Eliminar</button>
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
             </tbody>

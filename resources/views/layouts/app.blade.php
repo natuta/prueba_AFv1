@@ -40,7 +40,6 @@
                 width: 100%;
                 height:64px;
             }
-
         </style>
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -68,18 +67,18 @@
                 {{ $slot }}
             </main>
 
-            <footer class="footer bg-blue-900 relative pt-2 ">
+
+
+            <!-- <footer class="footer bg-blue-900 relative pt-2 ">
                 <div class="container mx-auto px-6">
                     <div class="mt-1 flex flex-col items-center">
-                        <div class="sm:w-2/3 text-center py-1">
                             <p class="text-sm text-gray-50 font-bold mb-2">
                                 © 2021 by UAGRM - Sistemas de Informacion II - Grupo E
                             </p>
-                        </div>
                     </div>
                 </div>
             </footer>
-
+-->
 
         </div>
 

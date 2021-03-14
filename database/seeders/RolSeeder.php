@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use App\Models\Solicitud;
 use App\Models\Solicitud_Compra;
-use App\Models\Detalle_Compra;
+
 
 class RolSeeder extends Seeder
 {
@@ -30,36 +30,20 @@ class RolSeeder extends Seeder
 
  dd($consulta);*/
 //consulta me devuelve el valor neto en compra, por categoria
- $consulta= DB::table('detalles_de_compras')
+
+ $valores_mantenimientos= DB::table('mantenimientos')
  ->groupBy('categorias.nombre')
- ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
- ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
- ->get();
+ ->selectRaw('categorias.nombre, sum(mantenimientos.costo) as valor')
+ ->join('revisiones_tecnicas','mantenimientos.revision_id','=','revisiones_tecnicas.id_revision')
+ ->join('activos_fijos','revisiones_tecnicas.AF_id','=','activos_fijos.id_AF')
+ ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
+ ->get ();
+    
+    
  
-
-
- $valores= DB::table('detalles_de_compras')
- ->groupBy('categorias.nombre')
- ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
- ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
- ->pluck('valor');
-
-
-
- $categorias= DB::table('detalles_de_compras')
- ->groupBy('categorias.nombre')
- ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
- ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
-  ->pluck('categorias.nombre');
-    
-    
-  $colores= array();
-  for ( $i = 0; $i < sizeof($categorias); $i++ ) {
-    $colores[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';
- }
   
 
-    dd($colores);
+    dd($valores_mantenimientos);
         /*
         $rol1 = Role::create(['name'=>'Propietario']);
         $rol2 = Role::create(['name'=>'Administrador']);

@@ -21,7 +21,7 @@
             data:{
                 labels:datas1,
                 datasets:[{
-                        label:'Costo en Compras, por categorias',
+                        label:'Valor en Adquisiciones, por Categorias',
                         data:datas2,
                         backgroundColor:datas3
                             

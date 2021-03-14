@@ -58,13 +58,13 @@ class ChartController extends Controller
         }
         return view ('bar-chart',compact('datas'));
 */
+/*
  $valores= DB::table('detalles_de_compras')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
 
  ->pluck('valor');
-
 
 
  $categorias= DB::table('detalles_de_compras')
@@ -80,7 +80,26 @@ class ChartController extends Controller
  }
    
    
+*/
+$categorias= DB::table('mantenimientos')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, sum(mantenimientos.costo) as valor')
+ ->join('revisiones_tecnicas','mantenimientos.revision_id','=','revisiones_tecnicas.id_revision')
+ ->join('activos_fijos','revisiones_tecnicas.AF_id','=','activos_fijos.id_AF')
+ ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
+ ->pluck ('categorias.nombre');
 
+ $valores= DB::table('mantenimientos')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, sum(mantenimientos.costo) as valor')
+ ->join('revisiones_tecnicas','mantenimientos.revision_id','=','revisiones_tecnicas.id_revision')
+ ->join('activos_fijos','revisiones_tecnicas.AF_id','=','activos_fijos.id_AF')
+ ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
+ ->pluck ('valor');
+
+ $colores= array();
+  for ( $i = 0; $i < sizeof($categorias); $i++ ) {
+    $colores[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
 
      return view ('bar-chart',compact('categorias','valores','colores'));
     

@@ -72,8 +72,16 @@ class ChartController extends Controller
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
   ->pluck('categorias.nombre');
     
+  $colores= array();
+  foreach($categorias as $index)
+  {
+      $colores[$index]= sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+  }
    
-     return view ('bar-chart',compact('valores','categorias'));
+   
+
+
+     return view ('bar-chart',compact('valores','categorias','colores'));
     
     }
   

@@ -14,6 +14,7 @@
         $(function(){
              var datas1= <?php echo json_encode($valores);?>;
              var datas2= <?php echo json_encode($categorias);?>;
+             var datas3= <?php echo json_encode($colores);?>;
              var barCanvas=$("#barChart");
              var barChart = new Chart(barCanvas,{
             type:"pie",
@@ -22,9 +23,7 @@
                 datasets:[{
                         label:'Incremento de nuevos Usuarios,2021',
                         data:datas1,
-                        backgroundColor:[
-                            'red','orange','yellow'
-                        ]
+                        backgroundColor:datas3
                 }]
             }
            

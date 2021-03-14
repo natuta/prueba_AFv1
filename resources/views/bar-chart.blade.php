@@ -21,7 +21,7 @@
             data:{
                 labels:datas1,
                 datasets:[{
-                        label:'Incremento de nuevos Usuarios,2021',
+                        label:'Costo en Compras, por categorias, del año 2021',
                         data:datas2,
                         backgroundColor:datas3
                             

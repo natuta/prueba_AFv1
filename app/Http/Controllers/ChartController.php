@@ -62,6 +62,7 @@ class ChartController extends Controller
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
+ ->whereYear("created_at",date('Y'),'2021')
  ->pluck('valor');
 
 
@@ -70,6 +71,7 @@ class ChartController extends Controller
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
+ ->whereYear("created_at",date('Y'),'2021')
   ->pluck('categorias.nombre');
     
   $colores= array();

@@ -72,7 +72,7 @@ class ChartController extends Controller
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
   ->pluck('categorias.nombre');
     
-     $datas= new ArrayObject();
+   
     foreach($categorias as $index => $categoria)
     {
         $datas[$categoria]=$valores[$index];

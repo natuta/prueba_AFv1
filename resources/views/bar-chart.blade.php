@@ -15,26 +15,18 @@
              var datas= <?php echo json_encode($datas);?>;
              var barCanvas=$("#barChart");
              var barChart = new Chart(barCanvas,{
-            type:"bar",
+            type:"pie",
             data:{
-                labels:['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
+                labels:['Ene','Feb','Mzo'],
                 datasets:[{
                         label:'Incremento de nuevos Usuarios,2021',
                         data:datas,
                         backgroundColor:[
-                            'red','orange','yellow','green','blue','indigo','grey','gold','silver','brown','dark-blue','purple'
+                            'red','orange','yellow'
                         ]
                 }]
-            },
-            options:{
-                scales:{
-                    yAxes:[{
-                            ticks:{
-                                beginAtZero:true
-                            }
-                    }]
-                }
             }
+           
         })
         });
     </script>

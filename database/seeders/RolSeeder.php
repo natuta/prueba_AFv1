@@ -54,10 +54,10 @@ class RolSeeder extends Seeder
     
     
   $colores= array();
-  foreach($categorias as $index)
-  {
-      $colores[$index]=  'rgba('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';
-  }
+  for ( $i = 0; $i < sizeof($categorias); $i++ ) {
+    $colores[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';
+ }
+  
 
     dd($colores);
         /*

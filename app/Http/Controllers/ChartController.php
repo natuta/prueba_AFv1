@@ -81,7 +81,7 @@ class ChartController extends Controller
    
    
 */
-/*
+
 // el valor de todos los mantenimientos, por categoria
 $categorias= DB::table('mantenimientos')
  ->groupBy('categorias.nombre')
@@ -106,7 +106,7 @@ $categorias= DB::table('mantenimientos')
 
 
 
-    */
+    
      return view ('bar-chart',compact('categorias','valores','colores'));
     
     }

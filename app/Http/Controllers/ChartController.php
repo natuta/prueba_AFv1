@@ -81,6 +81,8 @@ class ChartController extends Controller
    
    
 */
+/*
+// el valor de todos los mantenimientos, por categoria
 $categorias= DB::table('mantenimientos')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(mantenimientos.costo) as valor')
@@ -101,6 +103,10 @@ $categorias= DB::table('mantenimientos')
   for ( $i = 0; $i < sizeof($categorias); $i++ ) {
     $colores[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
 
+
+
+
+    */
      return view ('bar-chart',compact('categorias','valores','colores'));
     
     }

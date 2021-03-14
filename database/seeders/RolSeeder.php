@@ -30,20 +30,17 @@ class RolSeeder extends Seeder
 
  dd($consulta);*/
 //consulta me devuelve el valor neto en compra, por categoria
-
- $valores_mantenimientos= DB::table('mantenimientos')
+//nro de egresos qye se han registrado por categoria
+ $estados_activos= DB::table('egresos')
  ->groupBy('categorias.nombre')
- ->selectRaw('categorias.nombre, sum(mantenimientos.costo) as valor')
- ->join('revisiones_tecnicas','mantenimientos.revision_id','=','revisiones_tecnicas.id_revision')
+ ->selectRaw('categorias.nombre, count(*) as egresos')
+ ->join('revisiones_tecnicas','egresos.revision_id','=','revisiones_tecnicas.id_revision')
  ->join('activos_fijos','revisiones_tecnicas.AF_id','=','activos_fijos.id_AF')
  ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
  ->get ();
     
     
- 
-  
-
-    dd($valores_mantenimientos);
+ dd($estados_activos);
         /*
         $rol1 = Role::create(['name'=>'Propietario']);
         $rol2 = Role::create(['name'=>'Administrador']);

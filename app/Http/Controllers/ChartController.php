@@ -73,11 +73,7 @@ class ChartController extends Controller
   ->pluck('categorias.nombre');
     
    
-    foreach($categorias as $index => $categoria)
-    {
-        $datas[$categoria]=$valores[$index];
-    }
-     return view ('bar-chart',compact('datas'));
+     return view ('bar-chart',compact('valores','categorias'));
     
     }
   

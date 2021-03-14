@@ -12,15 +12,16 @@
     </body>
     <script>
         $(function(){
-             var datas= <?php echo json_encode($datas);?>;
+             var datas1= <?php echo json_encode($valores);?>;
+             var datas2= <?php echo json_encode($categorias);?>;
              var barCanvas=$("#barChart");
              var barChart = new Chart(barCanvas,{
             type:"pie",
             data:{
-                labels:['Ene','Feb','Mzo'],
+                labels:datas2,
                 datasets:[{
                         label:'Incremento de nuevos Usuarios,2021',
-                        data:datas,
+                        data:datas1,
                         backgroundColor:[
                             'red','orange','yellow'
                         ]

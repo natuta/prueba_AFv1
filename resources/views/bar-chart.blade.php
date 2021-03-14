@@ -21,7 +21,7 @@
             data:{
                 labels:datas1,
                 datasets:[{
-                        label:'Costo en Compras, por categorias, del año 2021',
+                        label:'Costo en Compras, por categorias',
                         data:datas2,
                         backgroundColor:datas3
                             

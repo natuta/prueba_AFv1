@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,20 +9,37 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     </head>
     <body>
-        <section class="py-12">
-            <div class="container mx-auto ">
-                <div class="flex flex-wrap px-6 ">
-                    <div class="w-full lg:w-1/2  md:px-4 lg:px-6 py-5 ">
-                        <div class="bg-white hover:shadow-xl">
-                            <div class="px-4 py-4 md:px-10">
-                                <canvas id="barChart" width="50" height="50"></canvas>
+        
+            <div class="row">
+                <div class="col s2"></div>
+                 
+                <div class="row card-panel center">
+                     <div class="col s12 "> <h4>Formulario de Proveedor</h4></div>
+                  
+                            <div class="input-field col s6">
+                                <canvas id="barChart"></canvas>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </section>
-
+                            <div class="input-field col s6">
+                             
+                            </div>
+                            
+                            
+                                                
+                                    
+                                     
+            
+                                     
+                            
+                                    
+                                    
+                                    
+                                    
+                                      
+                                    </div>
+                  
+             
+                
+              </div>
         
     </body>
     <script>

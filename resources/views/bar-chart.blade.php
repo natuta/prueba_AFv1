@@ -50,6 +50,8 @@
              var barCanvas=$("#barChart");
              var barChart = new Chart(barCanvas,{
             type:"bar",
+            maintainAspectRatio: false,
+responsive: true,
             data:{
                 labels:datas1,
                 datasets:[{

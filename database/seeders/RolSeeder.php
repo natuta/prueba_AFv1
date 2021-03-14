@@ -53,12 +53,13 @@ class RolSeeder extends Seeder
   ->pluck('categorias.nombre');
     
     
-    foreach($categorias as $index => $categoria)
-    {
-        $datas[$categoria]=$valores[$index];
-    }
+  $colores= array();
+  foreach($categorias as $index)
+  {
+      $colores[$index]=  'rgba('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';
+  }
 
-    dd($datas);
+    dd($colores);
         /*
         $rol1 = Role::create(['name'=>'Propietario']);
         $rol2 = Role::create(['name'=>'Administrador']);

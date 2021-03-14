@@ -75,7 +75,7 @@ class ChartController extends Controller
   $colores= array();
   foreach($categorias as $index)
   {
-      $colores[$index]= sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+      $colores[$index]=  'rgba('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';
   }
    
    

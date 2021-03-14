@@ -20,7 +20,7 @@
                     <div class="w-full lg:w-1/2  md:px-4 lg:px-6 py-5 ">
                         <div class="bg-white hover:shadow-xl">
                             <div class="px-4 py-4 md:px-10">
-                                <canvas id="barChart" width="100" height="100"></canvas>
+                                <canvas id="barChart" width="50" height="50"></canvas>
                             </div>
                         </div>
                     </div>

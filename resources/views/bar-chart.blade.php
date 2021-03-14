@@ -17,7 +17,7 @@
                      <div class="col s12 "> <h4>Formulario de Proveedor</h4></div>
                   
                             <div class="input-field col s6">
-                                <canvas id="barChart" width="100" height="70"></canvas>
+                                <canvas id="barChart" width="100px" height="100px"></canvas>
                             </div>
                             <div class="input-field col s6">
                              

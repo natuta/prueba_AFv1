@@ -80,7 +80,7 @@ class ChartController extends Controller
    
 
 
-     return view ('bar-chart',compact('valores','categorias','colores'));
+     return view ('bar-chart',compact('categorias','valores','colores'));
     
     }
   

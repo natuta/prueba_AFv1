@@ -195,20 +195,20 @@ $('#downloadPdf').click(function(event) {
     <br/><br/>
     <div id="reportPage" style="width: 100%; height:100%">
         <div  style="width: 40%; height:40%; float:left;">
-        <canvas id="myChart" style="width: 70px; height:70px;"></canvas>
+        <canvas id="myChart" style="width: 50px; height:50px;"></canvas>
     </div>
 
     <div  style="width: 40%; height:40%; float:right;">
-        <canvas id="myChart2"style="width: 70px; height:70px;"></canvas>
+        <canvas id="myChart2"style="width: 50px; height:50px;"></canvas>
     </div>
 
     <br/><br/><br/>
 
     <div  style="width: 40%; height:40%; float:left;">
-        <canvas id="myChart3"style="width: 70px; height:70px;"></canvas>
+        <canvas id="myChart3"style="width: 50px; height:50px;"></canvas>
     </div>
     <div  style="width: 40%; height:40%; float:right;">
-        <canvas id="myChart4"style="width: 70px; height:70px;"></canvas>
+        <canvas id="myChart4"style="width: 50px; height:50px;"></canvas>
     </div>
 
     </div>

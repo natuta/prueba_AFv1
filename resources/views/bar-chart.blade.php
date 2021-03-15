@@ -195,28 +195,27 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
-    <div class="contenedor" style="display: flex;        
-        justify-content: center;">
+    <div class="contenedor" style="display: flex; justify-content: center;">
    <div id="reportPage"style=" margin: 0 auto;">
             <div><h2>Reportes Graficos</h2> </div>
             
             <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>
             
             <br/><br/>
-        <div id="chartContainer" style="width: 28%; border-color:gray; border-width: 1px; border-style: inset; padding:10px 20px;">
+        <div id="chartContainer" style="width: 28%; border-color:gray; border-width: 1px; border-style:solid; padding:10px 20px;">
             <canvas id="myChart"></canvas>
         </div>
 
-        <div style="width: 45%; border-color: gray; border-width: 1px; border-style: inset; padding:10px 20px;">
+        <div style="width: 45%; border-color: gray; border-width: 1px; border-style: solid; padding:10px 20px;">
             <canvas id="myChart2"></canvas>
         </div>
 
         <br/><br/><br/>
 
-        <div style="width: 45%; clear: both; border-color: gray; border-width: 1px;border-style:inset; padding:10px 20px;">
+        <div style="width: 45%; clear: both; border-color: gray; border-width: 1px;border-style:solid; padding:10px 20px;">
             <canvas id="myChart3" style="width: 45%"></canvas>
         </div>
-        <div style="width: 40%;clear: both; border-color: gray; border-width: 1px; border-style: inset; padding:10px 20px;">
+        <div style="width: 40%;clear: both; border-color: gray; border-width: 1px; border-style: solid; padding:10px 20px;">
             <canvas id="myChart4" style="width: 40%"></canvas>
         </div>
 </div>

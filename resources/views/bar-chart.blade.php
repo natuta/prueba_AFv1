@@ -194,7 +194,7 @@ $('#downloadPdf').click(function(event) {
     <button type="button" id="downloadPdf"> Descargar PDF </button> 
     <br/><br/>
     <div id="reportPage" style="width: 100%; height:100%">
-        <div  style="width: 40%; height:40%; float:left;">
+        <div  style="width: 25%; height:25%; float:left;">
         <canvas id="myChart"></canvas>
     </div>
 

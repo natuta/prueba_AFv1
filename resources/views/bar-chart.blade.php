@@ -18,6 +18,12 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
 #myChart2 {
   width: 45%
 };
+
+#reportPage {
+    width: 200px;       
+    height: 200px;
+    margin: 0 auto;
+};
       </style> 
       <script type="text/javascript">
     window.onload=function(){
@@ -195,7 +201,7 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
-    <div class="contenedor" style="margin: 0 auto;" >
+    <div class="contenedor" >
    <div id="reportPage">
             <div><h2>Reportes Graficos</h2> </div>
             

@@ -59,31 +59,50 @@ class ChartController extends Controller
         return view ('bar-chart',compact('datas'));
 */
 /*
- $valores= DB::table('detalles_de_compras')
+
+ }
+   
+   
+*/
+$valores1= DB::table('egresos')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, count(*) as egresoss')
+ ->join('revisiones_tecnicas','egresos.revision_id','=','revisiones_tecnicas.id_revision')
+ ->join('activos_fijos','revisiones_tecnicas.AF_id','=','activos_fijos.id_AF')
+ ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
+ ->pluck('egresoss');
+
+ $categorias1= DB::table('egresos')
+ ->groupBy('categorias.nombre')
+ ->selectRaw('categorias.nombre, count(*) as egresos')
+ ->join('revisiones_tecnicas','egresos.revision_id','=','revisiones_tecnicas.id_revision')
+ ->join('activos_fijos','revisiones_tecnicas.AF_id','=','activos_fijos.id_AF')
+ ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
+ ->pluck('categorias.nombre');
+ $colores1= array();
+ for ( $i = 0; $i < sizeof($categorias1); $i++ ) {
+   $colores[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
+
+$valores2= DB::table('detalles_de_compras')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
-
  ->pluck('valor');
 
+ 
 
- $categorias= DB::table('detalles_de_compras')
+ $categorias2= DB::table('detalles_de_compras')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
 
   ->pluck('categorias.nombre');
     
-  $colores= array();
-  for ( $i = 0; $i < sizeof($categorias); $i++ ) {
-    $colores[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';
- }
-   
-   
-*/
-
+  $colores2= array();
+  for ( $i = 0; $i < sizeof($categorias2); $i++ ) {
+    $colores[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
 // el valor de todos los mantenimientos, por categoria
-$categorias= DB::table('mantenimientos')
+$categorias3= DB::table('mantenimientos')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(mantenimientos.costo) as valor')
  ->join('revisiones_tecnicas','mantenimientos.revision_id','=','revisiones_tecnicas.id_revision')
@@ -91,7 +110,7 @@ $categorias= DB::table('mantenimientos')
  ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
  ->pluck ('categorias.nombre');
 
- $valores= DB::table('mantenimientos')
+ $valores3= DB::table('mantenimientos')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(mantenimientos.costo) as valor')
  ->join('revisiones_tecnicas','mantenimientos.revision_id','=','revisiones_tecnicas.id_revision')
@@ -99,15 +118,13 @@ $categorias= DB::table('mantenimientos')
  ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
  ->pluck ('valor');
 
- $colores= array();
-  for ( $i = 0; $i < sizeof($categorias); $i++ ) {
+ $colores3= array();
+  for ( $i = 0; $i < sizeof($categorias3); $i++ ) {
     $colores[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
 
 
 
-
-    
-     return view ('bar-chart',compact('categorias','valores','colores'));
+     return view ('bar-chart',compact('categorias1','valores1','colores1','categorias2','valores2','colores2','categorias3','valores3','colores3'));
     
     }
   

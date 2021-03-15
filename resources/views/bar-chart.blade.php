@@ -10,54 +10,44 @@
     </head>
     <body>
         
-            <div class="row">
-                <div class="col s2"></div>
+            <div class="card">
+                <div class="card-header">jhkhkj</div>
                  
-                <div class="row card-panel center">
-                     <div class="col s12 "> <h4>Formulario de Proveedor</h4></div>
+                <div class="card-body">
+                     <div class="row"> 
                   
-                            <div class="input-field col s6">
-                                <canvas id="barChart" width="100px" height="100px"></canvas>
+                            <div class="col-lg-4">
+                                <canvas id="barChart1" width="400" height="400"></canvas>
                             </div>
-                            <div class="input-field col s6">
-                             
+                            <div class="col-lg-4">
+                                <canvas id="barChart2" width="400" height="400"></canvas>
                             </div>
-                            
-                            
-                                                
-                                    
-                                     
-            
-                                     
-                            
-                                    
-                                    
-                                    
-                                    
-                                      
+                            <div class="col-lg-4">
+                                <canvas id="barChart3" width="400" height="400"></canvas>
+                            </div>
+                                                               
+                               
                                     </div>
                   
-             
-                
               </div>
+            </div>
         
     </body>
     <script>
         $(function(){
-             var datas1= <?php echo json_encode($categorias);?>;
-             var datas2= <?php echo json_encode($valores);?>;
-             var datas3= <?php echo json_encode($colores);?>;
-             var barCanvas=$("#barChart");
-             var barChart = new Chart(barCanvas,{
+             var datas11= <?php echo json_encode($categorias1);?>;
+             var datas12= <?php echo json_encode($valores1);?>;
+             var datas13= <?php echo json_encode($colores1);?>;
+             var barCanvas1=$("#barChart1");
+             var barChart1 = new Chart(barCanvas1,{
             type:"bar",
-            maintainAspectRatio: false,
-responsive: true,
+            
             data:{
-                labels:datas1,
+                labels:datas11,
                 datasets:[{
                         label:'Valor en Adquisiciones, por Categorias',
-                        data:datas2,
-                        backgroundColor:datas3
+                        data:datas12,
+                        backgroundColor:datas13
                             
                 }]
             },
@@ -73,4 +63,65 @@ responsive: true,
         })
         });
     </script>
+    <script>
+    $(function(){
+             var datas21= <?php echo json_encode($categorias2);?>;
+             var datas22= <?php echo json_encode($valores2);?>;
+             var datas23= <?php echo json_encode($colores2);?>;
+             var barCanvas2=$("#barChart2");
+             var barChart2 = new Chart(barCanvas2,{
+            type:"bar",
+            
+            data:{
+                labels:datas21,
+                datasets:[{
+                        label:'Valor en Adquisiciones, por Categorias',
+                        data:datas22,
+                        backgroundColor:datas23
+                            
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }
+        })
+        });
+    </script>
+    <script>
+    $(function(){
+             var datas31= <?php echo json_encode($categorias3);?>;
+             var datas32= <?php echo json_encode($valores3);?>;
+             var datas33= <?php echo json_encode($colores3);?>;
+             var barCanvas3=$("#barChart3");
+             var barChart3 = new Chart(barCanvas3,{
+            type:"bar",
+            
+            data:{
+                labels:datas31,
+                datasets:[{
+                        label:'Valor en Adquisiciones, por Categorias',
+                        data:datas32,
+                        backgroundColor:datas33
+                            
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }
+        })
+        });
+    </script>
+   
 </html>

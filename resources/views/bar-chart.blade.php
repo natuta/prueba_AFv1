@@ -189,27 +189,31 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
+    <div class="col-lg-12"><h2>Reportes Graficos</h2> </div>
+    <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>
     
-    
-    <button type="button" id="downloadPdf"> Descargar PDF </button> 
     <br/><br/>
     <div id="reportPage" style="width: 100%; height:100%;">
-        <div class="col-lg-6" style="width: 30%; height:30%; clear: both;">
-        <canvas id="myChart"></canvas>
+        <div class="card-body">
+                     <div class="row"> 
+        <div class="col-lg-6" >
+        <canvas id="myChart"style="width: 40px; height:40px;"></canvas>
     </div>
 
-    <div class="col-lg-6" style="width: 30%; height:30%; clear: both;">
-        <canvas id="myChart2"></canvas>
+    <div class="col-lg-6">
+        <canvas id="myChart2"style="width: 60px; height:40px;"></canvas>
     </div>
 
     <br/><br/><br/>
 
-    <div class="col-lg-6" style="width: 30%; height:30%; clear: both;">
-        <canvas id="myChart3"></canvas>
+    <div class="col-lg-6">
+        <canvas id="myChart3"style="width: 40px; height:60px;"></canvas>
     </div>
-    <div  class="col-lg-6"style="width: 30%; height:30%; clear: both;">
-        <canvas id="myChart4"></canvas>
+    <div  class="col-lg-6">
+        <canvas id="myChart4"style="width:60px; height:40px;" ></canvas>
     </div>
+</div>
+</div>
 
     </div>
 

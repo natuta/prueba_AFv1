@@ -68,43 +68,31 @@ var myBar = new Chart(document.getElementById("myChart"), {
          var datas23= <?php echo json_encode($colores2);?>;
 var myBar2 = new Chart(document.getElementById("myChart2"), {
   type: 'horizontalBar', 
-  data: {
-    labels:datas21,
+  data:{
+            labels:datas21,
             datasets:[{
-                   
+                    label:'Valor de Adquisiciones, por Categoria',
                     data:datas22,
                     backgroundColor:datas23
                         
             }]
-
-  } ,
-  options: {
-    responsive: true,
-    title: {
-      display: true,
-      text: "Valor de Adquisiciones, por Categoria"
-    },
-    tooltips: {
-      mode: 'index',
-      intersect: false
-    },
-    legend: {
-      display: false,
-    },
-    scales: {
-      xAxes: [{
-        ticks: {
-          beginAtZero: true,
-          stepSize: 2
-        }
-      }]
-    },
-    title: {
+        },
+        options:{
+            responsive:true,
+            scales:{
+                yAxes:[{
+                        ticks:{
+                            beginAtZero:true
+                        }
+                }]
+            },
+            title: {
             display: true,
             text: 'Adquisiciones'
         }
-  }
-})
+        }
+    })
+
 
 var myBar3 = new Chart(document.getElementById("myChart3"), {
   type: 'horizontalBar', 

@@ -22,7 +22,7 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
 #reportPage {
     width: 200px;       
     height: 200px;
-    margin: 0 auto;
+    margin-top: 50%;
 };
       </style> 
       <script type="text/javascript">

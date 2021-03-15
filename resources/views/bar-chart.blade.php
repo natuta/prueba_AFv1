@@ -28,10 +28,9 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
          var datas13= <?php echo json_encode($colores1);?>;
 
 var myBar = new Chart(document.getElementById("myChart"), {
-    type:"bar",
+    type:"pie",
         
-        data:{
-          
+    data:{
             labels:datas11,
             datasets:[{
                     label:'Nro de Egresos, por Categoria',
@@ -41,41 +40,57 @@ var myBar = new Chart(document.getElementById("myChart"), {
             }]
         },
         options:{
-            responsive: true,
-    title: {
-      display: true,
-      text: "Grafica Egresos"},
-            scales:{
-                yAxes:[{
-                        ticks:{
-                            beginAtZero:true
-                        }
-                }]
-            },
-            tooltips: {
-      mode: 'index',
-      intersect: false
-    },
-    legend: {
-      display: false
-    }
-            
+            responsive:true,
+            title: {
+            display: true,
+            text: 'Grafica: Egresos'
+            }
         }
     })
 
-    var datas21= <?php echo json_encode($categorias2);?>;
-         var datas22= <?php echo json_encode($valores2);?>;
-         var datas23= <?php echo json_encode($colores2);?>;
+var datas21= <?php echo json_encode($categorias2);?>;
+var datas22= <?php echo json_encode($valores2);?>;
+var datas23= <?php echo json_encode($colores2);?>;
 var myBar2 = new Chart(document.getElementById("myChart2"), {
-  type: 'horizontalBar', 
-  data:{
-            labels:datas21,
-            datasets:[{
-                    label:'Valor de Adquisiciones, por Categoria',
-                    data:datas22,
-                    backgroundColor:datas23
-                        
-            }]
+        type: 'horizontalBar', 
+        data:{
+                labels:datas21,
+                datasets:[{
+                        label:'Valor de Adquisiciones, por Categoria',
+                        data:datas22,
+                        backgroundColor:datas23
+                        }]
+            },
+        options:{
+                responsive:true,
+                scales:{
+                    xAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                          }]
+                },
+                title: {
+                display: true,
+                text: 'Grafica: Adquisiciones'
+                }
+               } 
+    })
+
+var datas31= <?php echo json_encode($categorias3);?>;
+var datas32= <?php echo json_encode($valores3);?>;
+var datas33= <?php echo json_encode($colores3);?>;
+var myBar3 = new Chart(document.getElementById("myChart3"), {
+  type: 'bar', 
+        data:{
+                labels:datas31,
+                datasets:[{
+                        label:'Costo de Mantenimientos, por Categoria',
+                        data:datas32,
+                        backgroundColor:datas33
+                    
+                            
+                }]
         },
         options:{
             responsive:true,
@@ -88,37 +103,10 @@ var myBar2 = new Chart(document.getElementById("myChart2"), {
             },
             title: {
             display: true,
-            text: 'Adquisiciones'
+            text: 'Grafica: Mantenimientos'
+            }
         }
-        }
-    })
-
-
-var myBar3 = new Chart(document.getElementById("myChart3"), {
-  type: 'horizontalBar', 
-  data: data, 
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    title: {
-      display: true,
-      text: "Chart.js - Setting maintainAspectRatio = false and Setting Parent Width/Height"
-    },
-    tooltips: {
-      mode: 'index',
-      intersect: false
-    },
-    legend: {
-      display: false,
-    },
-    scales: {
-      xAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
+    
 })
 
 $('#downloadPdf').click(function(event) {

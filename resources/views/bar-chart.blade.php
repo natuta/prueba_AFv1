@@ -26,11 +26,11 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
   blue: 'rgb(54, 162, 235)',
   purple: 'rgb(153, 102, 255)',
   grey: 'rgb(231,233,237)'
-};
+}
 
 var randomScalingFactor = function() {
   return (Math.random() > 0.5 ? 1.0 : 1.0) * Math.round(Math.random() * 100);
-};
+}
 
 var data =  {
   labels: ["Car", "Bike", "Walking"],
@@ -46,7 +46,7 @@ var data =  {
       randomScalingFactor(), 
     ]
   }]
-};
+}
 
 var myBar = new Chart(document.getElementById("myChart"), {
   type: 'horizontalBar', 
@@ -72,7 +72,7 @@ var myBar = new Chart(document.getElementById("myChart"), {
       }]
     }
   }
-});
+})
 
 var myBar2 = new Chart(document.getElementById("myChart2"), {
   type: 'horizontalBar', 
@@ -99,7 +99,7 @@ var myBar2 = new Chart(document.getElementById("myChart2"), {
       }]
     }
   }
-});
+})
 
 var myBar3 = new Chart(document.getElementById("myChart3"), {
   type: 'horizontalBar', 
@@ -126,7 +126,7 @@ var myBar3 = new Chart(document.getElementById("myChart3"), {
       }]
     }
   }
-});
+})
 
 $('#downloadPdf').click(function(event) {
   // get size of report page
@@ -138,7 +138,7 @@ $('#downloadPdf').click(function(event) {
     id: "canvaspdf",
     width: reportPageWidth,
     height: reportPageHeight
-  });
+  })
   
   // keep track canvas position
   var pdfctx = $(pdfCanvas)[0].getContext('2d');
@@ -161,7 +161,7 @@ $('#downloadPdf').click(function(event) {
       pdfctxX = 0;
       pdfctxY += canvasHeight + buffer;
     }
-  });
+  })
   
   // create new pdf and add our new canvas as an image
   var pdf = new jsPDF('l', 'pt', [reportPageWidth, reportPageHeight]);
@@ -169,7 +169,7 @@ $('#downloadPdf').click(function(event) {
   
   // download the pdf
   pdf.save('filename.pdf');
-});
+})
     });
       </script> 
    </head> 

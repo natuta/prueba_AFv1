@@ -21,61 +21,40 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
       </style> 
       <script type="text/javascript">
     window.onload=function(){
-        var chartColors = {
-  red: 'rgb(255, 99, 132)',
-  orange: 'rgb(255, 159, 64)',
-  yellow: 'rgb(255, 205, 86)',
-  green: 'rgb(75, 192, 192)',
-  blue: 'rgb(54, 162, 235)',
-  purple: 'rgb(153, 102, 255)',
-  grey: 'rgb(231,233,237)'
-}
+ 
 
-var randomScalingFactor = function() {
-  return (Math.random() > 0.5 ? 1.0 : 1.0) * Math.round(Math.random() * 100);
-}
-
-var data =  {
-  labels: ["Car", "Bike", "Walking"],
-  datasets: [{
-    label: 'Fuel',
-    backgroundColor: [
-      chartColors.red,
-      chartColors.blue,
-      chartColors.yellow],
-    data: [
-      randomScalingFactor(), 
-      randomScalingFactor(), 
-      randomScalingFactor(), 
-    ]
-  }]
-}
+        var datas11= <?php echo json_encode($categorias1);?>;
+         var datas12= <?php echo json_encode($valores1);?>;
+         var datas13= <?php echo json_encode($colores1);?>;
 
 var myBar = new Chart(document.getElementById("myChart"), {
-  type: 'horizontalBar', 
-  data: data, 
-  options: {
-    responsive: true,
-    title: {
-      display: true,
-      text: "Chart.js - Base Example"
-    },
-    tooltips: {
-      mode: 'index',
-      intersect: false
-    },
-    legend: {
-      display: false,
-    },
-    scales: {
-      xAxes: [{
-        ticks: {
-          beginAtZero: true
+    type:"bar",
+        
+        data:{
+            label: 'nro',
+            labels:datas11,
+            datasets:[{
+                    label:'Nro de Egresos, por Categoria',
+                    data:datas12,
+                    backgroundColor:datas13
+                        
+            }]
+        },
+        options:{
+            scales:{
+                yAxes:[{
+                        ticks:{
+                            beginAtZero:true
+                        }
+                }]
+            },
+            title: {
+            display: true,
+            text: 'Egresos'
         }
-      }]
-    }
-  }
-})
+        }
+    })
+
 
 var myBar2 = new Chart(document.getElementById("myChart2"), {
   type: 'horizontalBar', 

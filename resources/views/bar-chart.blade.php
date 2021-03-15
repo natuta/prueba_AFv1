@@ -15,7 +15,8 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
          var datas22= <?php echo json_encode($valores2);?>;
          var datas23= <?php echo json_encode($colores2);?>;
          var canvas = document.querySelector('#cool-canvas');
-         var barChart2 = new Chart(canvas,{
+         var context = canvas.getContext('2d');
+         var barChart2 = new Chart(context,{
         type:"bar",
         
         data:{
@@ -44,12 +45,7 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
 //original canvas
 
 //hidden canvas
-var newCanvas = document.querySelector('#supercool-canvas');
-newContext = newCanvas.getContext('2d');
-var supercoolcanvas = new Chart(newContext).Line(chart_data);
-supercoolcanvas.defaults.global = {
-   scaleFontSize: 600
-}
+
 //add event listener to button
 document.getElementById('download-pdf').addEventListener("click", downloadPDF);
 //donwload pdf from original canvas
@@ -63,17 +59,6 @@ function downloadPDF() {
    doc.save('canvas.pdf');
 }
 
-document.getElementById('download-pdf2').addEventListener("click", downloadPDF2);
-
-function downloadPDF2() {
-   var newCanvas = document.querySelector('#supercool-canvas');
-   var newCanvasImg = newCanvas.toDataURL("image/jpeg", 1.0);
-   var doc = new jsPDF('landscape');
-   doc.setFontSize(20);
-   doc.text(15, 15, "Super Cool Chart");
-   doc.addImage(newCanvasImg, 'JPEG', 10, 10, 280, 150 );
-   doc.save('new-canvas.pdf');
- }
     }
 
       </script> 

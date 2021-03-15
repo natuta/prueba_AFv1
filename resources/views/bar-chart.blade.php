@@ -195,7 +195,7 @@ $('#downloadPdf').click(function(event) {
     <br/><br/>
     <div id="reportPage" style="width: 100%; height:100%">
         <div  style="width: 50%; height:50%; float:left;">
-        <canvas id="myChart" style="width: 30%; height:30%;"></canvas>
+        <canvas id="myChart" style="width: 80px; height:80px;"></canvas>
     </div>
 
     <div  style="width: 50%; height:50%; float:right;">

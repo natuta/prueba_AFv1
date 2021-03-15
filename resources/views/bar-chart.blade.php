@@ -110,28 +110,27 @@ var myBar3 = new Chart(document.getElementById("myChart3"), {
 })
 var datas= <?php echo json_encode($datas);?>;
 var datas1= <?php echo json_encode($colores4);?>;
+
 var myBar4 = new Chart(document.getElementById("myChart4"), {
-    type:'line',
+            type:'line',
             data:{
-                labels:['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
-                datasets:[{
-                        label:'Incremento de nuevos Usuarios,2021',
-                        data:datas,
-                        borderWidth:5,
-                        backgroundColor:datas1
+                labels: ['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
+                datasets: [{
+                    label: "Car Speed",
+                    data: datas,
                 }]
+                
             },
             options:{
-                scales:{
-                    yAxes:[{
-                        stacked: true
-                    }]
-                },
-                title: {
-            display: true,
-            text: 'Grafico: Usuarios'
-                        }
-            }
+                legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+                   }
+               }   
+           }
 })
 
 
@@ -202,11 +201,11 @@ $('#downloadPdf').click(function(event) {
         <br/><br/><br/>
 
         <div style="width: 30%;  clear: both;">
-            <canvas id="myChart3" style="width: 40%"></canvas>
+            <canvas id="myChart3" style="width: 30%"></canvas>
         </div>
 
         <div style="width: 30%;  clear: both;">
-            <canvas id="myChart4" style="width: 40%"></canvas>
+            <canvas id="myChart4" style="width: 30%"></canvas>
         </div>
         </div>
    </body>

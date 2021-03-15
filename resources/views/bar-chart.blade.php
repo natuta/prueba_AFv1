@@ -196,10 +196,7 @@ $('#downloadPdf').click(function(event) {
    </head> 
    <body> 
     <div class="contenedor" >
-   <div id="reportPage"style="position: relative;
-        bottom: 0;
-        right: 50%;
-        margin-right: -100px;">
+   <div id="reportPage"style="margin: 0 auto;">
             <div><h2>Reportes Graficos</h2> </div>
             
             <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>

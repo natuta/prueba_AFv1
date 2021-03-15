@@ -64,6 +64,7 @@ class ChartController extends Controller
    
    
 */
+// obtener el nro de egresos por categoria
 $valores1= DB::table('egresos')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, count(*) as egresoss')
@@ -79,19 +80,19 @@ $valores1= DB::table('egresos')
  ->join('activos_fijos','revisiones_tecnicas.AF_id','=','activos_fijos.id_AF')
  ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
  ->pluck('categorias.nombre');
+ 
  $colores1= array();
  for ( $i = 0; $i < sizeof($categorias1); $i++ ) {
    $colores1[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
 
+   //obtener el valor de adquisiciones por categoria
 $valores2= DB::table('detalles_de_compras')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
  ->pluck('valor');
 
- 
-
- $categorias2= DB::table('detalles_de_compras')
+  $categorias2= DB::table('detalles_de_compras')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(detalles_de_compras.total) as valor')
  ->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
@@ -101,6 +102,8 @@ $valores2= DB::table('detalles_de_compras')
   $colores2= array();
   for ( $i = 0; $i < sizeof($categorias2); $i++ ) {
     $colores2[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
+
+    
 // el valor de todos los mantenimientos, por categoria
 $categorias3= DB::table('mantenimientos')
  ->groupBy('categorias.nombre')

@@ -15,7 +15,7 @@
     <body>
         <div class="col-lg-12" style="padding-top:20px;">
             <div class="card">
-                <div class="card-header">jhkhkj</div>
+                <div class="card-header center">Reportes Graficos</div>
                  
                 <div class="card-body">
                      <div class="row"> 
@@ -52,7 +52,7 @@
         data:{
             labels:datas11,
             datasets:[{
-                    label:'Valor en Adquisiciones, por Categorias',
+                    label:'Nro de Egresos, por Categoria',
                     data:datas12,
                     backgroundColor:datas13
                         
@@ -65,7 +65,11 @@
                             beginAtZero:true
                         }
                 }]
-            }
+            },
+            title: {
+            display: true,
+            text: 'Egresos'
+        }
         }
     })
     });
@@ -82,7 +86,7 @@ $(function(){
         data:{
             labels:datas21,
             datasets:[{
-                    label:'Valor en Adquisiciones, por Categorias',
+                    label:'Valor de Adquisiciones, por Categoria',
                     data:datas22,
                     backgroundColor:datas23
                         
@@ -95,7 +99,11 @@ $(function(){
                             beginAtZero:true
                         }
                 }]
-            }
+            },
+            title: {
+            display: true,
+            text: 'Adquisiciones'
+        }
         }
     })
     });

@@ -197,17 +197,17 @@ $('#downloadPdf').click(function(event) {
         <div class="card-body">
                      <div class="row"> 
         <div class="col-lg-6" >
-        <canvas id="myChart"style="width: 40px; height:40px;"></canvas>
+        <canvas id="myChart"style="width:40px; height:40px;"></canvas>
     </div>
 
     <div class="col-lg-6">
-        <canvas id="myChart2"style="width: 60px; height:40px;"></canvas>
+        <canvas id="myChart2"style="width:60px; height:40px;"></canvas>
     </div>
 
     <br/><br/><br/>
 
     <div class="col-lg-6">
-        <canvas id="myChart3"style="width: 40px; height:60px;"></canvas>
+        <canvas id="myChart3"style="width:40px; height:60px;"></canvas>
     </div>
     <div  class="col-lg-6">
         <canvas id="myChart4"style="width:60px; height:40px;" ></canvas>

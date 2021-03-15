@@ -19,11 +19,7 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
   width: 45%
 };
 
-#reportPage {
-    width: 200px;       
-    height: 200px;
-    margin-top: 50%;
-};
+
       </style> 
       <script type="text/javascript">
     window.onload=function(){
@@ -202,6 +198,7 @@ $('#downloadPdf').click(function(event) {
    </head> 
    <body> 
     <div class="contenedor" >
+    <div class="content" style="margin: 0 auto;">
    <div id="reportPage">
             <div><h2>Reportes Graficos</h2> </div>
             
@@ -224,6 +221,7 @@ $('#downloadPdf').click(function(event) {
         <div style="width: 40%;clear: both; border-color: gray; border-width: 1px; border-style: dotted; padding:10px 20px;">
             <canvas id="myChart4" style="width: 40%"></canvas>
         </div>
+</div>
 </div>
 </div>
   

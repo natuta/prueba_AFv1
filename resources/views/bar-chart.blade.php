@@ -108,6 +108,38 @@ var myBar3 = new Chart(document.getElementById("myChart3"), {
         }
     
 })
+var datas= <?php echo json_encode($datas);?>;
+var datas1= <?php echo json_encode($colores4);?>;
+var myBar4 = new Chart(document.getElementById("myChart4"), {
+    type:'line',
+            data:{
+                labels:['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
+                datasets:[{
+                        label:'Incremento de nuevos Usuarios,2021',
+                        data:datas,
+                        borderWidth:5,
+                        backgroundColor:datas1
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                        stacked: true
+                    }]
+                },
+                title: {
+            display: true,
+            text: 'Grafico: Usuarios'
+                        }
+            }
+})
+
+
+
+
+
+
+}
 
 $('#downloadPdf').click(function(event) {
   // get size of report page
@@ -159,18 +191,22 @@ $('#downloadPdf').click(function(event) {
       <button type="button" id="downloadPdf"> Download Higher Quality PDF </button>  
 
         <div id="reportPage">
-        <div id="chartContainer" style="width: 50%;float: left;">
+        <div id="chartContainer" style="width: 30%;float: left;">
             <canvas id="myChart"></canvas>
         </div>
 
-        <div style="width: 50%; float: left;">
+        <div style="width: 30%; float: left;">
             <canvas id="myChart2"></canvas>
         </div>
 
         <br/><br/><br/>
 
-        <div style="width: 50%;  clear: both;">
+        <div style="width: 30%;  clear: both;">
             <canvas id="myChart3" style="width: 40%"></canvas>
+        </div>
+
+        <div style="width: 30%;  clear: both;">
+            <canvas id="myChart4" style="width: 40%"></canvas>
         </div>
         </div>
    </body>

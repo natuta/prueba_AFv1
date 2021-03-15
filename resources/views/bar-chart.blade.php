@@ -63,15 +63,26 @@ var myBar = new Chart(document.getElementById("myChart"), {
         }
     })
 
-
+    var datas21= <?php echo json_encode($categorias2);?>;
+         var datas22= <?php echo json_encode($valores2);?>;
+         var datas23= <?php echo json_encode($colores2);?>;
 var myBar2 = new Chart(document.getElementById("myChart2"), {
   type: 'horizontalBar', 
-  data: data, 
+  data: {
+    labels:datas21,
+            datasets:[{
+                   
+                    data:datas22,
+                    backgroundColor:datas23
+                        
+            }]
+
+  } ,
   options: {
     responsive: true,
     title: {
       display: true,
-      text: "Chart.js - Changing X Axis Step Size"
+      text: "Valor de Adquisiciones, por Categoria"
     },
     tooltips: {
       mode: 'index',
@@ -87,7 +98,11 @@ var myBar2 = new Chart(document.getElementById("myChart2"), {
           stepSize: 2
         }
       }]
-    }
+    },
+    title: {
+            display: true,
+            text: 'Adquisiciones'
+        }
   }
 })
 

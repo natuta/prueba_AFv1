@@ -12,11 +12,11 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
    margin-top:30px; padding:10px 20px; border-radius:0;
 }
 #chartContainer {
-  width: 50%
+  width: 30%
 };
 
 #myChart2 {
-  width: 50%
+  width: 30%
 };
       </style> 
       <script type="text/javascript">
@@ -116,7 +116,7 @@ var myBar4 = new Chart(document.getElementById("myChart4"), {
             data:{
                 labels: ['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
                 datasets: [{
-                    label: "Car Speed",
+                    label: "Incremento de nuevos Usuarios, 2021",
                     data: datas,
                 }]
                 
@@ -127,9 +127,13 @@ var myBar4 = new Chart(document.getElementById("myChart4"), {
                 position: 'top',
                 labels: {
                 boxWidth: 80,
-                fontColor: 'black'
+                fontColor: 'blue'
                    }
-               }   
+               }   ,
+               title: {
+                display: true,
+                text: 'Grafica: Usuarios'
+                }
            }
 })
 
@@ -179,27 +183,28 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
-      
-      <button type="button" id="downloadPdf"> Download Higher Quality PDF </button>  
+    
+    
+    <button type="button" id="downloadPdf"> Descargar PDF </button> 
+    <br/><br/>
+    <div id="reportPage">
+    <div id="chartContainer" style="width: 30%;float: left;">
+        <canvas id="myChart"></canvas>
+    </div>
 
-        <div id="reportPage">
-        <div id="chartContainer" style="width: 30%;float: left;">
-            <canvas id="myChart"></canvas>
-        </div>
+    <div style="width: 30%; float: left;">
+        <canvas id="myChart2"></canvas>
+    </div>
 
-        <div style="width: 30%; float: left;">
-            <canvas id="myChart2"></canvas>
-        </div>
+    <br/><br/><br/>
 
-        <br/><br/><br/>
+    <div style="width: 30%; clear: both;">
+        <canvas id="myChart3" style="width: 30%"></canvas>
+    </div>
+    </div>
 
-        <div style="width: 30%;  clear: both;">
-            <canvas id="myChart3" style="width: 30%"></canvas>
-        </div>
+  
 
-        <div style="width: 30%;  clear: both;">
-            <canvas id="myChart4" style="width: 30%"></canvas>
-        </div>
-        </div>
+       
    </body>
 </html>

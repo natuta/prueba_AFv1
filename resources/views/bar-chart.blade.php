@@ -117,17 +117,29 @@ var myBar4 = new Chart(document.getElementById("myChart4"), {
                 labels: ['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
                 datasets: [{
                     label: "Incremento de nuevos Usuarios, 2021",
-                    data: datas,
+                       data: datas,
+                        borderColor: 'orange',
+                        backgroundColor: 'transparent',
+                        borderDash: [5, 5],
+                        pointBorderColor: 'orange',
+                        pointBackgroundColor: 'rgba(255,150,0,0.5)',
+                        pointRadius: 5,
+                        pointHoverRadius: 10,
+                        pointHitRadius: 30,
+                        pointBorderWidth: 2,
+                        pointStyle: 'rectRounded'
+
                 }]
                 
             },
             options:{
+                responsive:true
                 legend: {
                 display: true,
                 position: 'top',
                 labels: {
                 boxWidth: 80,
-                fontColor: 'blue'
+                fontColor: 'black'
                    }
                }   ,
                title: {

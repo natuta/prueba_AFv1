@@ -11,24 +11,38 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
       </style> 
       <script type="text/javascript">
     window.onload=function(){
-var chart_data = {
-         labels: ['Player1', 'Player2', 'Player3', 'Player4'],
-         datasets: [
-             {
-                 fillColor: "rgba(6, 118, 152, 0.71)",
-                 strokeColor: "rgba(220,220,220,1)",
-                 pointColor: "rgba(220,220,220,1)",
-                 pointStrokeColor: "#fff",
-                 pointHighlightFill: "#fff",
-                 pointHighlightStroke: "rgba(220,220,220,1)",
-                 data: [20,34,15,64,]
-             }
-         ]
-}
+        var datas21= <?php echo json_encode($categorias2);?>;
+         var datas22= <?php echo json_encode($valores2);?>;
+         var datas23= <?php echo json_encode($colores2);?>;
+         var canvas = document.querySelector('#cool-canvas');
+         var barChart2 = new Chart(canvas,{
+        type:"bar",
+        
+        data:{
+            labels:datas21,
+            datasets:[{
+                    label:'Valor de Adquisiciones, por Categoria',
+                    data:datas22,
+                    backgroundColor:datas23
+                        
+            }]
+        },
+        options:{
+            scales:{
+                yAxes:[{
+                        ticks:{
+                            beginAtZero:true
+                        }
+                }]
+            },
+            title: {
+            display: true,
+            text: 'Adquisiciones'
+        }
+        }
+    })
 //original canvas
-var canvas = document.querySelector('#cool-canvas');
-var context = canvas.getContext('2d');
-new Chart(context).Line(chart_data);
+
 //hidden canvas
 var newCanvas = document.querySelector('#supercool-canvas');
 newContext = newCanvas.getContext('2d');

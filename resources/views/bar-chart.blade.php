@@ -9,7 +9,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js"></script>
       <style id="compiled-css" type="text/css">
 button {/*from ww  w .  jav  a 2  s  .c  o m*/
-   margin-top:30px; padding:10px 20px; border-radius:0;
+   padding:10px 20px; border-radius:0;
 }
 #chartContainer {
   width: 28%
@@ -195,27 +195,29 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
-    <div class="contenedor"><h2>Reportes Graficos</h2> 
-    <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>
-    
-    <br/><br/>
-    <div id="reportPage"style=" margin: 0 auto;">
-  <div id="chartContainer" style="width: 28%;float: left; border-color:gray; border-width: 1px; border-style: dotted; margin-top:30px; padding:10px 20px;">
-    <canvas id="myChart"></canvas>
-  </div>
+    <div class="contenedor">
+   <div id="reportPage"style=" margin: 0 auto;">
+            <div><h2>Reportes Graficos</h2> </div>
+            
+            <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>
+            
+            <br/><br/>
+        <div id="chartContainer" style="width: 28%; border-color:gray; border-width: 1px; border-style: dotted; padding:10px 20px;">
+            <canvas id="myChart"></canvas>
+        </div>
 
-  <div style="width: 45%; float: left; border-color: gray; border-width: 1px; border-style: dotted; margin-top:30px; padding:10px 20px;">
-    <canvas id="myChart2"></canvas>
-  </div>
+        <div style="width: 45%; border-color: gray; border-width: 1px; border-style: dotted; padding:10px 20px;">
+            <canvas id="myChart2"></canvas>
+        </div>
 
-  <br/><br/><br/>
+        <br/><br/><br/>
 
-  <div style="width: 45%; clear: both; border-color: gray; border-width: 1px;border-style: dotted; margin-top:30px; padding:10px 20px;">
-    <canvas id="myChart3" style="width: 45%"></canvas>
-  </div>
-  <div style="width: 40%;clear: both; border-color: gray; border-width: 1px; border-style: dotted; margin-top:30px; padding:10px 20px;">
-    <canvas id="myChart4" style="width: 40%"></canvas>
-  </div>
+        <div style="width: 45%; clear: both; border-color: gray; border-width: 1px;border-style: dotted; padding:10px 20px;">
+            <canvas id="myChart3" style="width: 45%"></canvas>
+        </div>
+        <div style="width: 40%;clear: both; border-color: gray; border-width: 1px; border-style: dotted; padding:10px 20px;">
+            <canvas id="myChart4" style="width: 40%"></canvas>
+        </div>
 </div>
 </div>
   

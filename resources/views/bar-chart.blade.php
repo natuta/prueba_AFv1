@@ -201,6 +201,10 @@ $('#downloadPdf').click(function(event) {
     <div style="width: 30%; clear: both;">
         <canvas id="myChart3" style="width: 30%"></canvas>
     </div>
+    <div style="width: 30%; clear: both;">
+        <canvas id="myChart4" style="width: 30%"></canvas>
+    </div>
+
     </div>
 
   

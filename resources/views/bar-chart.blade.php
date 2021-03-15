@@ -26,9 +26,7 @@
           };</style>
 </head>
     <body>
-        <div class="col-lg-12" style="padding-top:20px;">
-            <div class="card">
-                <div class="card-header center">Reportes Graficos
+        
 
                         <a href="#" id="downloadPdf" >Download Report Page as PDF</a>
                         <br/><br/>
@@ -47,11 +45,7 @@
                             <canvas id="myChart3" style="width: 40%"></canvas>
                         </div>
                         </div>
-                </div>
-                 
               
-            </div>
-        </div>
     </body>
      
 </html>

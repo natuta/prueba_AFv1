@@ -133,7 +133,7 @@ var myBar4 = new Chart(document.getElementById("myChart4"), {
                 
             },
             options:{
-                responsive:true
+               
                 legend: {
                 display: true,
                 position: 'top',

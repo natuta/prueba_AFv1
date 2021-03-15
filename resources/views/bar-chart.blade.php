@@ -197,8 +197,9 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
-    <div class="contenedor" >
-    <div class="content" style="margin: 0 auto;">
+    <div class="contenedor" style="display: flex;
+  justify-content: center;" >
+    <div class="content" >
    <div id="reportPage">
             <div><h2>Reportes Graficos</h2> </div>
             

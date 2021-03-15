@@ -11,13 +11,7 @@
 button {/*from ww  w .  jav  a 2  s  .c  o m*/
    padding:10px 20px; border-radius:0;
 }
-#chartContainer {
-  width: 28%
-};
 
-#myChart2 {
-  width: 45%
-};
 
 
       </style> 
@@ -197,8 +191,7 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
-    <div class="contenedor" style="display: flex;
-  justify-content: center;" >
+    <div class="contenedor" style="display: flex; justify-content: center;" >
     <div class="content" >
    <div id="reportPage"  style="width: 100%; height: 100%;" >
             <div><h2>Reportes Graficos</h2> </div>
@@ -206,21 +199,21 @@ $('#downloadPdf').click(function(event) {
             <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>
             
             <br/><br/>
-        <div id="chartContainer" style="width: 45%; border-color:gray; border-width: 1px; border-style:dotted; padding:10px 20px; float:left;">
+        <div id="chartContainer" style="width: 42%; border-color:gray; border-width: 1px; border-style:dotted; padding:10px 20px; float:left;">
             <canvas id="myChart"></canvas>
         </div>
 
-        <div style="width: 55%; border-color: gray; border-width: 1px; border-style:dotted; padding:10px 20px; float: left;">
+        <div style="width: 52%; border-color: gray; border-width: 1px; border-style:dotted; padding:10px 20px; float: left;">
             <canvas id="myChart2"></canvas>
         </div>
 
         <br/><br/><br/>
 
-        <div style="width: 55%; clear: both; border-color: gray; border-width: 1px;border-style:dotted; padding:10px 20px; clear: both;">
-            <canvas id="myChart3" style="width: 55%"></canvas>
+        <div style="width: 52%; clear: both; border-color: gray; border-width: 1px;border-style:dotted; padding:10px 20px; clear: both;">
+            <canvas id="myChart3" style="width: 52%"></canvas>
         </div>
-        <div style="width: 55%;clear: both; border-color: gray; border-width: 1px; border-style: dotted; padding:10px 20px; clear: both;">
-            <canvas id="myChart4" style="width: 55%"></canvas>
+        <div style="width: 52%;clear: both; border-color: gray; border-width: 1px; border-style: dotted; padding:10px 20px; clear: both;">
+            <canvas id="myChart4" style="width: 52%"></canvas>
         </div>
 </div>
 </div>

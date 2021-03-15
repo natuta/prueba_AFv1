@@ -200,7 +200,7 @@ $('#downloadPdf').click(function(event) {
     <div class="contenedor" style="display: flex;
   justify-content: center;" >
     <div class="content" >
-   <div id="reportPage"  style="width: 100%; height: 100%; >
+   <div id="reportPage"  style="width: 100%; height: 100%;" >
             <div><h2>Reportes Graficos</h2> </div>
             
             <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>

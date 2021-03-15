@@ -200,21 +200,21 @@ $('#downloadPdf').click(function(event) {
     <button type="button" id="downloadPdf"> Descargar PDF </button> 
     <br/><br/>
     <div id="reportPage" style="width: 100%; height:100%">
-    <div id="chartContainer" style="width: 30%;float: left;">
+     <div class="col-lg-6">
         <canvas id="myChart"></canvas>
     </div>
 
-    <div style="width: 30%; float: left;">
+    <div class="col-lg-6">
         <canvas id="myChart2"></canvas>
     </div>
 
     <br/><br/><br/>
 
-    <div style="width: 30%; float: left;">
-        <canvas id="myChart3" style="width: 30%"></canvas>
+    <div class="col-lg-6">
+        <canvas id="myChart3"></canvas>
     </div>
-    <div style="width: 30%; float: left;">
-        <canvas id="myChart4" style="width: 30%"></canvas>
+    <div class="col-lg-6">
+        <canvas id="myChart4"></canvas>
     </div>
 
     </div>

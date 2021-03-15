@@ -8,24 +8,30 @@
         <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <!-- JavaScript Bundle with Popper -->
-<style>
-#chartContainer {
-    width: 40%
-  };
-  
-  #myChart2 {
-    width: 40%
-  };</style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
+       
+        <!-- JavaScript Bundle with Popper -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js"></script>
+
+    <style>
+        #chartContainer {
+            width: 40%
+          };
+          
+          #myChart2 {
+            width: 40%
+          };</style>
+</head>
     <body>
         <div class="col-lg-12" style="padding-top:20px;">
             <div class="card">
                 <div class="card-header center">Reportes Graficos
 
-                        <a href="#" id="downloadPdf">Download Report Page as PDF</a>
+                        <a href="#" id="downloadPdf" >Download Report Page as PDF</a>
                         <br/><br/>
                         <div id="reportPage">
                         <div id="chartContainer" style="width: 30%;float: left;">
@@ -314,7 +320,8 @@ var myBar3 = new Chart(document.getElementById("myChart3"), {
     }
   }
 });
-
+</script>
+    <script>
 $('#downloadPdf').click(function(event) {
   // get size of report page
   var reportPageHeight = $('#reportPage').innerHeight();

@@ -103,8 +103,8 @@ $valores2= DB::table('detalles_de_compras')
   for ( $i = 0; $i < sizeof($categorias2); $i++ ) {
     $colores2[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
 
-    
-// el valor de todos los mantenimientos, por categoria
+
+// Costo de los mantenimientos, por categoria
 $categorias3= DB::table('mantenimientos')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, sum(mantenimientos.costo) as valor')
@@ -125,9 +125,25 @@ $categorias3= DB::table('mantenimientos')
   for ( $i = 0; $i < sizeof($categorias3); $i++ ) {
     $colores3[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';}
 
+//obtener los cantidad de nuevos usuarios, por mes
+$users= User::select(DB::raw("COUNT(*)as count"))
+->whereYear("created_at",date('Y'))
+->groupBy(DB::raw("Month(created_at)"))
+->pluck('count');
 
+$months= User:: select(DB::raw("Month(created_at) as month"))
+->whereYear("created_at",date('Y'))
+->groupBy(DB::raw("Month(created_at)"))
+->pluck('month');
+$colores4= array();
+$datas= array(0,0,0,0,0,0,0,0,0,0,0,0);
+foreach($months as $index => $month)
+{
+    $datas[$month-1]=$users[$index];
+    $colores4[$i]='rgb('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 0.73)';
+}
 
-     return view ('bar-chart',compact('categorias1','valores1','colores1','categorias2','valores2','colores2','categorias3','valores3','colores3'));
+     return view ('bar-chart',compact('categorias1','valores1','colores1','categorias2','valores2','colores2','categorias3','valores3','colores3','datas','colores4'));
     
     }
   

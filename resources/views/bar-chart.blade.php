@@ -20,18 +20,20 @@
                 <div class="card-body">
                      <div class="row"> 
                   
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <canvas id="barChart1" width="400" height="400"></canvas>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <canvas id="barChart2" width="400" height="400"></canvas>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <canvas id="barChart3" width="400" height="400"></canvas>
                             </div>
-                                                               
+                            <div class="col-lg-6">
+                                <canvas id="barChart4" width="400" height="400"></canvas>
+                            </div>                                
                                
-                                    </div>
+                            </div>
                   
               </div>
             </div>
@@ -115,14 +117,15 @@ $(function(){
          var datas33= <?php echo json_encode($colores3);?>;
          var barCanvas3=$("#barChart3");
          var barChart3 = new Chart(barCanvas3,{
-        type:"bar",
+        type:"horizontalBar",
         
         data:{
             labels:datas31,
             datasets:[{
-                    label:'Valor en Adquisiciones, por Categorias',
+                    label:'Costo de Mantenimientos, por Categoria',
                     data:datas32,
                     backgroundColor:datas33
+                   
                         
             }]
         },
@@ -133,8 +136,44 @@ $(function(){
                             beginAtZero:true
                         }
                 }]
-            }
+            },
+            title: {
+            display: true,
+            text: 'Mantenimientos'
+        }
         }
     })
     });
+</script>
+
+<script>
+    $(function(){
+             var datas= <?php echo json_encode($datas);?>;
+             var datas1= <?php echo json_encode($colores4);?>;
+             var barCanvas4=$("#barChart4");
+             var barChart4 = new Chart(barCanvas4,{
+            type:"bar",
+            data:{
+                labels:['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
+                datasets:[{
+                        label:'Incremento de nuevos Usuarios,2021',
+                        data:datas,
+                        backgroundColor:datas1
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                },
+                title: {
+            display: true,
+            text: 'Usuarios'
+        }
+            }
+        })
+        });
 </script>

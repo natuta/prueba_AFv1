@@ -11,13 +11,7 @@
 button {/*from ww  w .  jav  a 2  s  .c  o m*/
    margin-top:30px; padding:10px 20px; border-radius:0;
 }
-#chartContainer {
-  width: 30%
-};
 
-#myChart2 {
-  width: 30%
-};
       </style> 
       <script type="text/javascript">
     window.onload=function(){
@@ -199,7 +193,7 @@ $('#downloadPdf').click(function(event) {
     
     <button type="button" id="downloadPdf"> Descargar PDF </button> 
     <br/><br/>
-    <div id="reportPage" style="width: 100%; height:100%">
+    <div id="reportPage" style="width: 50%; height:50%">
      <div class="col-lg-6">
         <canvas id="myChart"></canvas>
     </div>

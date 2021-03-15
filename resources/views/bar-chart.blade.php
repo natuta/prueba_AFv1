@@ -31,7 +31,7 @@ var myBar = new Chart(document.getElementById("myChart"), {
     type:"bar",
         
         data:{
-            label: 'nro',
+          
             labels:datas11,
             datasets:[{
                     label:'Nro de Egresos, por Categoria',
@@ -41,17 +41,18 @@ var myBar = new Chart(document.getElementById("myChart"), {
             }]
         },
         options:{
+            responsive: true,
+    title: {
+      display: true,
+      text: "Grafica Egresos"},
             scales:{
                 yAxes:[{
                         ticks:{
                             beginAtZero:true
                         }
                 }]
-            },
-            title: {
-            display: true,
-            text: 'Egresos'
-        }
+            }
+            
         }
     })
 

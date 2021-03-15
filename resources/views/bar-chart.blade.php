@@ -169,7 +169,7 @@ $('#downloadPdf').click(function(event) {
   
   // download the pdf
   pdf.save('filename.pdf');
-})
+});
     });
       </script> 
    </head> 

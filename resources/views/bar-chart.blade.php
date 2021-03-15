@@ -12,11 +12,11 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
    margin-top:30px; padding:10px 20px; border-radius:0;
 }
 #chartContainer {
-  width: 40%
+  width: 50%
 };
 
 #myChart2 {
-  width: 40%
+  width: 50%
 };
       </style> 
       <script type="text/javascript">
@@ -181,17 +181,17 @@ $('#downloadPdf').click(function(event) {
       <button type="button" id="downloadPdf"> Download Higher Quality PDF </button>  
 
         <div id="reportPage">
-        <div id="chartContainer" style="width: 30%;float: left;">
+        <div id="chartContainer" style="width: 50%;float: left;">
             <canvas id="myChart"></canvas>
         </div>
 
-        <div style="width: 30%; float: left;">
+        <div style="width: 50%; float: left;">
             <canvas id="myChart2"></canvas>
         </div>
 
         <br/><br/><br/>
 
-        <div style="width: 30%; height: 400px; clear: both;">
+        <div style="width: 50%;  clear: both;">
             <canvas id="myChart3" style="width: 40%"></canvas>
         </div>
         </div>

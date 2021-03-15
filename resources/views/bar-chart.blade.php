@@ -194,21 +194,21 @@ $('#downloadPdf').click(function(event) {
     <button type="button" id="downloadPdf"> Descargar PDF </button> 
     <br/><br/>
     <div id="reportPage" style="width: 100%; height:100%">
-        <div  style="width: 25%; height:25%; float:left;">
-        <canvas id="myChart"></canvas>
+        <div  style="width: 50%; height:50%; float:left;">
+        <canvas id="myChart" style="width: 30%; height:30%;"></canvas>
     </div>
 
-    <div  style="width: 40%; height:40%; float:right;">
-        <canvas id="myChart2"></canvas>
+    <div  style="width: 50%; height:50%; float:right;">
+        <canvas id="myChart2"style="width: 30%; height:30%;"></canvas>
     </div>
 
     <br/><br/><br/>
 
-    <div  style="width: 40%; height:40%; float:left;">
-        <canvas id="myChart3"></canvas>
+    <div  style="width: 50%; height:50%; float:left;">
+        <canvas id="myChart3"style="width: 30%; height:30%;"></canvas>
     </div>
-    <div  style="width: 40%; height:40%; float:right;">
-        <canvas id="myChart4"></canvas>
+    <div  style="width: 50%; height:50%; float:right;">
+        <canvas id="myChart4"style="width: 30%; height:30%;"></canvas>
     </div>
 
     </div>

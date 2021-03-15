@@ -11,20 +11,20 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
       </style> 
       <script type="text/javascript">
     window.onload=function(){
-        var datas21= <?php echo json_encode($categorias2);?>;
-         var datas22= <?php echo json_encode($valores2);?>;
-         var datas23= <?php echo json_encode($colores2);?>;
-         var canvas = document.querySelector('#cool-canvas');
-         var context = canvas.getContext('2d');
-         var barChart2 = new Chart(context,{
-        type:"bar",
+        var datas31= <?php echo json_encode($categorias3);?>;
+         var datas32= <?php echo json_encode($valores3);?>;
+         var datas33= <?php echo json_encode($colores3);?>;
+         var barCanvas3=$("#cool-canvas");
+         var barChart3 = new Chart(barCanvas3,{
+        type:"horizontalBar",
         
         data:{
-            labels:datas21,
+            labels:datas31,
             datasets:[{
-                    label:'Valor de Adquisiciones, por Categoria',
-                    data:datas22,
-                    backgroundColor:datas23
+                    label:'Costo de Mantenimientos, por Categoria',
+                    data:datas32,
+                    backgroundColor:datas33
+                   
                         
             }]
         },
@@ -38,7 +38,7 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
             },
             title: {
             display: true,
-            text: 'Adquisiciones'
+            text: 'Mantenimientos'
         }
         }
     })

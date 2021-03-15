@@ -26,7 +26,9 @@ var chart_data = {
          ]
 }
 //original canvas
-
+var canvas = document.querySelector('#cool-canvas');
+var context = canvas.getContext('2d');
+new Chart(context).Line(chart_data);
 //hidden canvas
 var newCanvas = document.querySelector('#supercool-canvas');
 newContext = newCanvas.getContext('2d');
@@ -35,7 +37,17 @@ supercoolcanvas.defaults.global = {
    scaleFontSize: 600
 }
 //add event listener to button
-
+document.getElementById('download-pdf').addEventListener("click", downloadPDF);
+//donwload pdf from original canvas
+function downloadPDF() {
+  var canvas = document.querySelector('#cool-canvas');
+   var canvasImg = canvas.toDataURL("image/jpeg", 1.0);
+   var doc = new jsPDF('landscape');
+   doc.setFontSize(20);
+   doc.text(15, 15, "Cool Chart");
+   doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );
+   doc.save('canvas.pdf');
+}
 
 document.getElementById('download-pdf2').addEventListener("click", downloadPDF2);
 
@@ -53,11 +65,13 @@ function downloadPDF2() {
       </script> 
    </head> 
    <body> 
-      
+      <div> 
+         <canvas id="cool-canvas" width="600" height="300"></canvas> 
+      </div> 
       <div style="height:0; width:0; overflow:hidden;"> 
          <canvas id="supercool-canvas" width="1200" height="600"></canvas> 
       </div> 
-    
+      <button type="button" id="download-pdf"> Download PDF </button> 
       <button type="button" id="download-pdf2"> Download Higher Quality PDF </button>  
    </body>
 </html>

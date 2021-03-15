@@ -177,14 +177,8 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
-      <div> 
-         <canvas id="cool-canvas" width="600" height="300"></canvas> 
-      </div> 
-      <div style="height:0; width:0; overflow:hidden;"> 
-         <canvas id="supercool-canvas" width="1200" height="600"></canvas> 
-      </div> 
-      <button type="button" id="download-pdf"> Download PDF </button> 
-      <button type="button" id="download-pdf2"> Download Higher Quality PDF </button>  
+      
+      <button type="button" id="downloadPdf"> Download Higher Quality PDF </button>  
 
         <a href="#" id="downloadPdf">Download Report Page as PDF</a>
         <br/><br/>

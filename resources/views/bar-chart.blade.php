@@ -14,8 +14,8 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
         var datas31= <?php echo json_encode($categorias3);?>;
          var datas32= <?php echo json_encode($valores3);?>;
          var datas33= <?php echo json_encode($colores3);?>;
-         var barCanvas3=$("#cool-canvas");
-         var barChart3 = new Chart(barCanvas3,{
+         var canvas = document.querySelector('#cool-canvas');
+         var barChart3 = new Chart(canvas,{
         type:"horizontalBar",
         
         data:{

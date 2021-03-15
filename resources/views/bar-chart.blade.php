@@ -195,7 +195,7 @@ $('#downloadPdf').click(function(event) {
       </script> 
    </head> 
    <body> 
-    <div class="col-lg-12" style=" margin: 0 auto;"><h2>Reportes Graficos</h2> </div>
+    <div class="contenedor"><h2>Reportes Graficos</h2> 
     <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>
     
     <br/><br/>
@@ -217,7 +217,7 @@ $('#downloadPdf').click(function(event) {
     <canvas id="myChart4" style="width: 40%"></canvas>
   </div>
 </div>
-
+</div>
   
 
        

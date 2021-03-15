@@ -152,7 +152,7 @@ $(function(){
              var datas1= <?php echo json_encode($colores4);?>;
              var barCanvas4=$("#barChart4");
              var barChart4 = new Chart(barCanvas4,{
-            type:"bar",
+            type:"line",
             data:{
                 labels:['Ene','Feb','Mzo','Abr','May','Jun','Jul','Agt','Sep','Oct','Nov','Dic'],
                 datasets:[{
@@ -164,9 +164,7 @@ $(function(){
             options:{
                 scales:{
                     yAxes:[{
-                            ticks:{
-                                beginAtZero:true
-                            }
+                        stacked: true
                     }]
                 },
                 title: {

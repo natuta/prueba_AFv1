@@ -206,21 +206,21 @@ $('#downloadPdf').click(function(event) {
             <div class="col-lg-12"><button type="button" id="downloadPdf"> Descargar PDF </button> </div>
             
             <br/><br/>
-        <div id="chartContainer" style="width: 55%; border-color:gray; border-width: 1px; border-style:dotted; padding:10px 20px; float:left;">
+        <div id="chartContainer" style="width: 40%; border-color:gray; border-width: 1px; border-style:dotted; padding:10px 20px; float:left;">
             <canvas id="myChart"></canvas>
         </div>
 
-        <div style="width: 65%; border-color: gray; border-width: 1px; border-style:dotted; padding:10px 20px; float: left;">
+        <div style="width: 50%; border-color: gray; border-width: 1px; border-style:dotted; padding:10px 20px; float: left;">
             <canvas id="myChart2"></canvas>
         </div>
 
         <br/><br/><br/>
 
-        <div style="width: 65%; clear: both; border-color: gray; border-width: 1px;border-style:dotted; padding:10px 20px; clear: both;">
-            <canvas id="myChart3" style="width: 65%"></canvas>
+        <div style="width: 50%; clear: both; border-color: gray; border-width: 1px;border-style:dotted; padding:10px 20px; clear: both;">
+            <canvas id="myChart3" style="width: 50%"></canvas>
         </div>
-        <div style="width: 65%;clear: both; border-color: gray; border-width: 1px; border-style: dotted; padding:10px 20px; clear: both;">
-            <canvas id="myChart4" style="width: 65%"></canvas>
+        <div style="width: 50%;clear: both; border-color: gray; border-width: 1px; border-style: dotted; padding:10px 20px; clear: both;">
+            <canvas id="myChart4" style="width: 50%"></canvas>
         </div>
 </div>
 </div>

@@ -12,11 +12,11 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
    margin-top:30px; padding:10px 20px; border-radius:0;
 }
 #chartContainer {
-  width: 40%
+  width: 35%
 };
 
 #myChart2 {
-  width: 40%
+  width: 35%
 };
       </style> 
       <script type="text/javascript">
@@ -200,21 +200,21 @@ $('#downloadPdf').click(function(event) {
     
     <br/><br/>
     <div id="reportPage">
-  <div id="chartContainer" style="width: 30%;float: left;">
+  <div id="chartContainer" style="width: 35%;float: left;">
     <canvas id="myChart"></canvas>
   </div>
 
-  <div style="width: 30%; float: left;">
+  <div style="width: 35%; float: left;">
     <canvas id="myChart2"></canvas>
   </div>
 
   <br/><br/><br/>
 
-  <div style="width: 30%; height: 400px; clear: both;">
-    <canvas id="myChart3" style="width: 40%"></canvas>
+  <div style="width: 35%; clear: both;">
+    <canvas id="myChart3" style="width: 35%"></canvas>
   </div>
-  <div style="width: 30%; height: 400px; clear: both;">
-    <canvas id="myChart4" style="width: 40%"></canvas>
+  <div style="width: 35%;">
+    <canvas id="myChart4" style="width: 35%"></canvas>
   </div>
 </div>
 

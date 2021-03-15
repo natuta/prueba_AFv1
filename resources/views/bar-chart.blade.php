@@ -16,7 +16,7 @@ button {/*from ww  w .  jav  a 2  s  .c  o m*/
 };
 
 #myChart2 {
-  width: 40%
+  width: 45%
 };
       </style> 
       <script type="text/javascript">
@@ -200,20 +200,20 @@ $('#downloadPdf').click(function(event) {
     
     <br/><br/>
     <div id="reportPage">
-  <div id="chartContainer" style="width: 28%;float: left; border-color:gray; border-width: 1px; margin-top:30px; padding:10px 20px;">
+  <div id="chartContainer" style="width: 28%;float: left; border-color:gray; border-width: 1px; border-style: dotted; margin-top:30px; padding:10px 20px;">
     <canvas id="myChart"></canvas>
   </div>
 
-  <div style="width: 40%; float: left; border-color: gray; border-width: 1px; margin-top:30px; padding:10px 20px;">
+  <div style="width: 45%; float: left; border-color: gray; border-width: 1px; border-style: dotted; margin-top:30px; padding:10px 20px;">
     <canvas id="myChart2"></canvas>
   </div>
 
   <br/><br/><br/>
 
-  <div style="width: 40%; clear: both; border-color: gray; border-width: 1px; margin-top:30px; padding:10px 20px;">
-    <canvas id="myChart3" style="width: 40%"></canvas>
+  <div style="width: 45%; clear: both; border-color: gray; border-width: 1px;border-style: dotted; margin-top:30px; padding:10px 20px;">
+    <canvas id="myChart3" style="width: 45%"></canvas>
   </div>
-  <div style="width: 40%;clear: both; border-color: gray; border-width: 1px; margin-top:30px; padding:10px 20px;">
+  <div style="width: 40%;clear: both; border-color: gray; border-width: 1px; border-style: dotted; margin-top:30px; padding:10px 20px;">
     <canvas id="myChart4" style="width: 40%"></canvas>
   </div>
 </div>

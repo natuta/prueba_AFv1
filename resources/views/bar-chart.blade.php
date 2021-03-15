@@ -196,9 +196,8 @@ $('#downloadPdf').click(function(event) {
    </head> 
    <body> 
     <div class="contenedor" >
-   <div id="reportPage"style="position: absolute;
-        top:50%;
-        left: 50%;           
+   <div id="reportPage"style="
+               
         margin-top: -100px;
         margin-left: -100px;">
             <div><h2>Reportes Graficos</h2> </div>

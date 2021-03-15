@@ -51,7 +51,14 @@ var myBar = new Chart(document.getElementById("myChart"), {
                             beginAtZero:true
                         }
                 }]
-            }
+            },
+            tooltips: {
+      mode: 'index',
+      intersect: false
+    },
+    legend: {
+      display: false
+    }
             
         }
     })

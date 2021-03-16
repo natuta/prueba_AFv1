@@ -6,10 +6,14 @@ use App\Models\Contacto;
 use App\Models\Estado;
 use App\Models\Proveedor;
 use App\Models\Rubro;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\This;
 
 class ProveedorController extends Controller
 {
+    use HasBitacora;
+
     public function __construct(){
         $this->middleware('can:proveedores.index')->only('index');
         $this->middleware('can:proveedores.create')->only('create');
@@ -24,7 +28,7 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $proveedor= Proveedor::paginate(5);
+        $proveedor= Proveedor::paginate(10);
         return view('proveedores.index',['proveedor'=>$proveedor]);
     }
 
@@ -60,6 +64,9 @@ class ProveedorController extends Controller
         $prov->contacto_id = $contact->id_contacto;
         $prov->save();
         //return dd($request);
+        $modelo = class_basename($prov);
+        HasBitacora::Created($modelo,$prov->id_proveedor);
+
         return redirect()->route('proveedores.index')->with('success','Proveedor registrado correctamente');
         //TODO: El estado_id siempre envia siempre 'No activo'
     }
@@ -110,8 +117,11 @@ class ProveedorController extends Controller
         $contac->telefono = $request->input('telefono');
         $contac->email_personal = $request->input('email_personal');
         $contac->save();
+
+        $modelo = class_basename($prov);
+        HasBitacora::Edited($modelo,$prov->id_proveedor);
         //return dd($prov,$contac);
-        return redirect()->route('proveedores.index');
+        return redirect()->route('proveedores.index')-with('success','El proveedor ha sido actualizado exitosamente');
     }
 
     /**
@@ -128,6 +138,9 @@ class ProveedorController extends Controller
 
         $contac->delete();
         //$prov->delete();
+        $modelo = class_basename($prov);
+        HasBitacora::Deleted($modelo,$prov->id_proveedor);
+
         return redirect()->route('proveedores.index');
         //return dd($prov,$contac);
     }

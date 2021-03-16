@@ -19,7 +19,7 @@ class CreateRubrosTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->unsignedBigInteger('vida_util');
-            $table->unsignedBigInteger('coeficiente_depr');
+            $table->unsignedDouble('coeficiente_depr');
         });
     }
 

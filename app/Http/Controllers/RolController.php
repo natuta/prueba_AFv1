@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rol;
 use App\Models\User;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -13,6 +14,8 @@ use function Livewire\str;
 
 class RolController extends Controller
 {
+    use HasBitacora;
+
     public function __construct(){
         $this->middleware('can:administrar_roles');
     }
@@ -23,8 +26,7 @@ class RolController extends Controller
      */
     public function index()
     {
-        $roles = Role::paginate(5);
-        //return dd($roles);
+        $roles = Role::paginate(10);
         return view('roles.index',['roles'=>$roles]);
     }
 
@@ -53,6 +55,8 @@ class RolController extends Controller
         $rol = Role::create($request->all());
         $rol->permissions()->sync($request->permissions);
 
+        $modelo = class_basename($rol);
+        HasBitacora::Created($modelo,$rol->id);
         return redirect()->route('roles.index')->with('success','El rol fue creado exitosamente');
     }
 
@@ -80,8 +84,6 @@ class RolController extends Controller
         $permissions = Permission::all();
         $rol = Role::findOrFail($rol);
         $ownedroles = $rol->getAllPermissions();
-        //$ownedroles = array_intersect_key([$permissions],[$rol->permissions]);
-
 
         return view('roles.edit',['permissions'=>$permissions,'rol' =>$rol,'ownedroles'=>$ownedroles]);
  //       return dd($rol->permissions,$permissions, $ownedroles);
@@ -103,6 +105,9 @@ class RolController extends Controller
         $rol->update($request->all());
         $rol->permissions()->sync($request->permissions);
         //return dd($request->all(), $rol);
+
+        $modelo = class_basename($rol);
+        HasBitacora::Edited($modelo,$rol->id);
         return redirect()->route('roles.index')->with('success','El rol fse actualizo exitosamente');
     }
 

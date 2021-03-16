@@ -28,7 +28,7 @@
 
                         <div class="col-span-6 sm:col-span-6">
                             <x-jet-label for="codigo" value="{{ __('Codigo') }}" />
-                            <input value="{{$codificacion->codigo}}" type="text"  name="codigo" class="form-control" disabled required>
+                            <input value="{{$codificacion->codigo}}" type="png"  name="codigo" class="form-control" disabled required>
                             <x-jet-input-error for="codigo" class="mt-2" />
                         </div>
 

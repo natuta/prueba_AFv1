@@ -11,13 +11,11 @@ class Codificacion extends Model
     protected $table='codificaciones';
     protected $primaryKey='id_codificacion';
     protected $fillable=[
-        'AF_id','codigo','estado_id',
+        'AF_id','codigo',
     ];
     public function activo(){
         return $this->belongsTo(Activo_Fijo::class,'AF_id');
     }
 
-    public function estado(){
-        return $this->belongsTo(Estado::class,'estado_id');
-    }
+
 }

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Revision_Tecnica;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 use App\Models\Egreso;
 
 class EgresoController extends Controller
 {
+    use HasBitacora;
+
     public function __construc(){
         $this->middleware('can:egresos.index')->only('index');
         $this->middleware('can:egresos.crear')->only('crear');
@@ -21,7 +24,7 @@ class EgresoController extends Controller
      */
     public function index()
     {
-        $egreso = Egreso::paginate(5);
+        $egreso = Egreso::paginate(10);
         return view('egresos.index',['egresos'=>$egreso]);
     }
 
@@ -53,6 +56,9 @@ class EgresoController extends Controller
         $revision = Revision_Tecnica::findOrFail($egreso->revision_id);
         $revision->conclusion = 3;
         $revision->save();
+
+        $modelo = class_basename($egreso);
+        HasBitacora::Created($modelo,$egreso->id_egreso);
         return redirect()->route('egresos.index')->with('success','el activo fijo se ha egresado correctamente');
         //return dd($request);
     }
@@ -94,7 +100,10 @@ class EgresoController extends Controller
         $egreso->descripcion = $request->input('descripcion');
         $egreso->revision_id = $request->input('revision_id');
         $egreso->save();
-        return redirect()->route('egresos.index');
+
+        $modelo = class_basename($egreso);
+        HasBitacora::Edited($modelo,$egreso->id_egreso);
+        return redirect()->route('egresos.index')->with('success','El egreso se ha actualizado exitosamente');
     }
 
     /**
@@ -106,7 +115,11 @@ class EgresoController extends Controller
     public function destroy($id)
     {
         $egreso = Egreso::findOrFail($id);
+
+        $modelo = class_basename($egreso);
+        HasBitacora::Deleted($modelo,$egreso->id_egreso);
+
         $egreso->delete();
-        return redirect()->route('egresos.index');
+        return redirect()->route('egresos.index')->with('deleted','El egreso se ha eliminado');
     }
 }

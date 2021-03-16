@@ -6,6 +6,8 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Estado;
 use App\Models\Rol;
 use App\Models\User;
+use App\Traits\HasBitacora;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -24,7 +26,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $user = User::paginate(5);
+        $user = User::paginate(10);
         return view('usuarios.index',['user'=>$user]);
     }
 
@@ -41,14 +43,15 @@ class UsuarioController extends Controller
     public function habilitar($id){
         $us = User::findOrFail($id);
         $us->estado_id = 1;
+        $us->banned_until = NULL;
         $us->save();
         return redirect()->route('usuarios.index');
     }
 
     public function deshabilitar($id){
         $us = User::findOrFail($id);
-        $us->estado_id = null;
         $us->estado_id = 2;
+        $us->banned_until = Carbon::create(2050,12,25,23,59,59,'America/Caracas');
         $us->save();
         return redirect()->route('usuarios.index');
     }
@@ -69,8 +72,10 @@ class UsuarioController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->save();
-        //return dd($user);
 
+        $modelo = class_basename($user);
+        HasBitacora::Created($modelo,$user->id);
+        //return dd($user);
         return redirect()->route('usuarios.index')->with('succes','El usuario ha sido registrado correctamente');
     }
 
@@ -148,6 +153,8 @@ class UsuarioController extends Controller
             $usuario->save();
         }
 
+        $modelo = class_basename($usuario);
+        HasBitacora::Created($modelo,$usuario->id);
         return redirect()->route('usuarios.show',[$usuario->id]);
     }
 

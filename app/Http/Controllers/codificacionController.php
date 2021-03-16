@@ -5,26 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Activo_Fijo;
 use App\Models\Codificacion;
 use Illuminate\Http\Request;
-use LaravelQRCode\Facades\QRCode;
+use PhpParser\Node\Stmt\Return_;
 
-class codificacionController extends Controller
+class CodificacionController extends Controller
 {
-
-    public function __construct(){
-        $this->middleware(['can:codificaciones.index'])->only('index');
-        $this->middleware(['can:codificaciones.create'])->only('create');
-        $this->middleware(['can:codificaciones.edit'])->only('edit');
-        $this->middleware(['can:codificaciones.destroy'])->only('destroy');
-    }
+    //
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('can:codificacion.index')->only('index');
+        $this->middleware('can:codificacion.create')->only('create');
+        $this->middleware('can:codificacion.edit')->only('edit');
+        $this->middleware('can:codificacion.destroy')->only('destroy');
+        $this->middleware('can:codificacion.show')->only('show');
+    }
     public function index()
     {
         $codificaciones = Codificacion::paginate(5);
-        return view('codificaciones.index',['codificaciones'=>$codificaciones]);
+
+        return view('codificacion.index',['codificacion'=>$codificaciones]);
     }
 
     /**
@@ -34,23 +36,8 @@ class codificacionController extends Controller
      */
     public function create()
     {
-        $activos = Activo_Fijo::all();
-        return view('codificaciones.create',['activo'=>$activos] )->with('success','Codigo generado correctamente');
-    }
-public function crearcodigoqr($request,$activo)
-{
-    $qrimage= public_path(' public/storage/qr.png');
-    QRCode::url('www.pharalax.com')->setOutfile($qrimage)->png();
-    QRCode::text($activo)->setOutfile($qrimage)->png();
-return($qrimage);
-}
-    public function llenar(Request $request){
-        $activo = Activo_Fijo::findOrFail($request->AF_id);
-        $qr=$this->crearcodigoqr($activo);
-        $activo->AF_id = $request->input('AF_id');
-        $activo->codigo=$request->input('codigo');
-        $activo->estado=$request->input('estado');
-        return view('depreciacion.llenar',['activo'=>$activo,'qr_code'=>$qr]);
+        $activo =  Activo_Fijo::all();
+        return view('codificacion.create',['activo'=>$activo]);
     }
 
     /**
@@ -59,14 +46,36 @@ return($qrimage);
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function generatecode($input, $strength = 16){
+        $input_length = strlen($input);
+        $random_string = '';
+        for($i = 0; $i < $strength; $i++) {
+            $random_character = $input[mt_rand(0, $input_length - 1)];
+            $random_string .= $random_character;
+        }
+
+        return $random_string;
+
+    }
+    public function llenar(Request $request){
+
+        $activo = Activo_Fijo::findOrFail($request->activo_id);
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $codigo = self::generatecode($permitted_chars);
+
+        return view('codificacion.llenar',['activo'=>$activo,'codigo'=>$codigo]);
+    }
+
     public function store(Request $request)
     {
         $codi =  new Codificacion();
-        $codi->AF_id = $request->input('AF_id');
-        $codi->codigo=$request->input('codigo');
-        $codi->estado=$request->input('estado');
+        $codi->AF_id= $request->input('AF_id');
+        $codi->codigo= $request->input('codigo');
+
         $codi->save();
-        return redirect()->route('codificaciones.index');
+        return redirect()->route('codificacion.index')->with('success','codificacion registrado correctamente');
+        //return dd($edif);
+
     }
 
     /**
@@ -77,8 +86,9 @@ return($qrimage);
      */
     public function show($id)
     {
-        $codi = Ciudad::findOrFail($id);
-        return view('codificaciones.show',['codi'=>$codi]);
+        $cod = Codificacion::findOrFail($id);
+        $act = Activo_Fijo::all();
+        return view('codificacion.show',['cod'=>$cod,'act'=>$act]);
     }
 
     /**
@@ -101,12 +111,13 @@ return($qrimage);
      */
     public function update(Request $request, $id)
     {
-        $codi =  new Codificacion();
-        $codi->AF_id = $request->input('AF_id');
-        $codi->codigo=$request->input('codigo');
-        $codi->estado=$request->input('estado');
+        $codi = Codificacion::findOrFail(id);
+        $codi->AF_id= $request->input('AF_id');
+        $codi->estado_id=$request->input('estado_id');
         $codi->save();
-        return redirect()->route('codificaciones.index');
+        return redirect()->route('codificacion.index')->with('success','Codigo actualizado correctamente');
+
+        //return dd($edif);
     }
 
     /**
@@ -117,8 +128,8 @@ return($qrimage);
      */
     public function destroy($id)
     {
-        $codi = Codificacion::findOrFail($id);
-        $codi->delete();
-        return redirect()->route('codificaciones.index');
+        $cod = Codificacion::findOrFail($id);
+        $cod->delete();
+        return redirect()->route('codificacion.index');
     }
 }

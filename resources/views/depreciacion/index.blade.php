@@ -28,7 +28,7 @@
 
                 <th>Descripcion</th>
                 <th colspan="2">&nbsp</th>
-                <th>depreciacion acumulada</th>
+                <th>depreciacion acumulada ( Bs. )</th>
                 <th>fecha</th>
                 <th>activo</th>
                 <th colspan="2">&nbsp</th>
@@ -38,10 +38,11 @@
             @foreach($depreciaciones as $depre)
                 <tr>
                     <td>{{$depre->id_depreciacion}}</td>
-                    <td>{{$depre->nombre}}</td>
                     <td>{{$depre->descripcion}}</td>
                     <th colspan="2">&nbsp</th>
-                    <td>{{$depre->AF_id->nombre}}</td>
+                    <td>{{$depre->depreciacion_acumulada}}</td>
+                    <td>{{$depre->fecha}}</td>
+                    <td>{{$depre->activo->nombre}}</td>
                     <td>
                         <a href="{{route('depreciacion.show',[$depre->id_depreciacion])}}" class="inline-flex items-center px-4 py-2 bg-green-400
                 border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
@@ -52,7 +53,7 @@
                     </td>
 
                     <td>
-                        <form method="POST" action="{{route('$depreciacion.destroy',[$depre->id_depreciacion]) }}">
+                        <form method="POST" action="{{route('depreciacion.destroy',[$depre->id_depreciacion]) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border

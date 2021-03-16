@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ciudad;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Self_;
+use phpDocumentor\Reflection\Types\This;
 
 class CiudadController extends Controller
 {
+
+    use HasBitacora;
+
     public function __construct(){
         $this->middleware(['can:ciudades.index'])->only('index');
         $this->middleware(['can:ciudades.create'])->only('create');
@@ -20,7 +26,7 @@ class CiudadController extends Controller
      */
     public function index()
     {
-        $cities = Ciudad::paginate(5);
+        $cities = Ciudad::Paginate(10);
         return view('ciudades.index',['cities'=>$cities]);
     }
 
@@ -40,12 +46,18 @@ class CiudadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function store(Request $request)
     {
         $city =  new Ciudad();
         $city->nombre = $request->input('nombre');
         $city->save();
-        return redirect()->route('ciudades.index');
+        $modelo = class_basename($city);
+        HasBitacora::Created($modelo,$city->id_ciudad);
+        return redirect()->route('ciudades.index')->with('success','La ciudad se ha registrado exitosamente');
+        //return dd($bitacora, $modelo);
     }
 
     /**
@@ -83,6 +95,10 @@ class CiudadController extends Controller
         $city = Ciudad::findOrFail($id);
         $city->nombre = $request->input('nombre');
         $city->save();
+
+        $modelo = class_basename($city);
+        HasBitacora::Edited($modelo,$city->id_ciudad);
+
         return redirect()->route('ciudades.index');
     }
 
@@ -95,7 +111,12 @@ class CiudadController extends Controller
     public function destroy($id)
     {
         $city = Ciudad::findOrFail($id);
+
+        $modelo = class_basename($city);
+        HasBitacora::Deleted($modelo,$city->id_ciudad);
+
         $city->delete();
+
         return redirect()->route('ciudades.index');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Accion;
 use App\Models\Categoria;
 use App\Models\Proveedor;
 use App\Models\Rubro;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ContactoSeeder::class,
             ProveedorSeeder::class,
             UserSeeder::class,
+            AccionSeeder::class,
             RubroSeeder::class,
             CategoriaSeeder::class,
             CiudadSeeder::class,

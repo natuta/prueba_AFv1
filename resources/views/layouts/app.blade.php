@@ -17,7 +17,7 @@
         @livewireStyles
         <style>
             body{
-                background-image: url('{{ asset('/backgrounds/fondo.jpg') }}');
+                background-image: url('{{ asset('/backgrounds/fondooptimizado.jpg') }}');
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
@@ -67,18 +67,6 @@
                 {{ $slot }}
             </main>
 
-
-
-            <!-- <footer class="footer bg-blue-900 relative pt-2 ">
-                <div class="container mx-auto px-6">
-                    <div class="mt-1 flex flex-col items-center">
-                            <p class="text-sm text-gray-50 font-bold mb-2">
-                                © 2021 by UAGRM - Sistemas de Informacion II - Grupo E
-                            </p>
-                    </div>
-                </div>
-            </footer>
--->
 
         </div>
 

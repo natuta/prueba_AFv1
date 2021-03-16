@@ -38,25 +38,25 @@
                         <div class="col-span-6 sm:col-span-4 ">
                             <x-jet-label for="sexo" value="{{ __('Sexo') }}" />
                             <x-jet-input id="sexo" class="block mt-1 w-full" type="text" name="sexo" :value="old('sexo')" required autofocus />
-                            <x-jet-input-error for="apellido" class="mt-2" />
+                            <x-jet-input-error for="sexo" class="mt-2" />
                         </div>
 
                         <div class="col-span-6 sm:col-span-4 ">
                             <x-jet-label for="email" value="{{ __('Email') }}" />
                             <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-                            <x-jet-input-error for="apellido" class="mt-2" />
+                            <x-jet-input-error for="email" class="mt-2" />
                         </div>
 
                         <div class="col-span-6 sm:col-span-4 ">
                             <x-jet-label for="password" value="{{ __('Contraseña') }}" />
                             <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-                            <x-jet-input-error for="apellido" class="mt-2" />
+                            <x-jet-input-error for="password" class="mt-2" />
                         </div>
 
                         <div class="col-span-6 sm:col-span-4 ">
                             <x-jet-label for="password_confirmation" value="{{ __('Confirmar contraseña') }}" />
                             <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-                            <x-jet-input-error for="apellido" class="mt-2" />
+                            <x-jet-input-error for="password_confirmation" class="mt-2" />
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">

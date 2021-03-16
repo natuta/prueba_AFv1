@@ -79,12 +79,12 @@
                                 {{ __('Activos fijos') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('rubros.index') }}">
-                                {{ __('Rubros') }}
+                            <x-jet-dropdown-link href="{{ route('almacenes.index') }}">
+                                {{ __('Almacenes') }}
                             </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="{{route('categorias.index')}}">
-                                {{ __('Categorias') }}
+                            <x-jet-dropdown-link href="{{route('activos_fijos.index')}}">
+                                {{ __('Activos fijos') }}
                             </x-jet-dropdown-link>
 
                         </x-slot>
@@ -93,7 +93,6 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-
 
 
                 <!-- Settings Dropdown -->
@@ -128,10 +127,12 @@
                                 {{ __('Perfil') }}
                             </x-jet-dropdown-link>
 
+                            @can('administrar_usuarios')
                             <x-jet-dropdown-link href="{{ route('usuarios.index') }}">
                                 {{ __('Gestionar todos los usuarios') }}
                             </x-jet-dropdown-link>
 
+                            @endcan
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
@@ -168,7 +169,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden relative" style="background-color: #FCD34D">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -186,7 +187,7 @@
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{route('estados.index')}}" :active="request()->routeIs('categorias.index')">
+            <x-jet-responsive-nav-link href="{{route('estados.index')}}" :active="request()->routeIs('estados.index')">
                 {{ __('Estados') }}
             </x-jet-responsive-nav-link>
         </div>

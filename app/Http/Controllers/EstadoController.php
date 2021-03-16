@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estado;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class EstadoController extends Controller
 {
+    use HasBitacora;
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +23,7 @@ class EstadoController extends Controller
     }
     public function index()
     {
-        $status = Estado::paginate(5);
+        $status = Estado::paginate(10);
         return view('estados.index',['status'=>$status]);
     }
 
@@ -47,7 +49,11 @@ class EstadoController extends Controller
         $stat->nombre = $request->input('nombre');
         $stat->descripcion = $request->input('descripcion');
         $stat->save();
-        return redirect()->route('estados.index')->with('success','Estado registrada correctamente');
+
+        $modelo = class_basename($stat);
+        HasBitacora::Created($modelo,$stat->id_estado);
+
+        return redirect()->route('estados.index')->with('success','Estado registrado correctamente');
     }
 
     /**
@@ -86,7 +92,11 @@ class EstadoController extends Controller
         $stat->nombre = $request->input('nombre');
         $stat->descripcion = $request->input('descripcion');
         $stat->save();
-        return redirect()->route('estados.index');
+
+        $modelo = class_basename($stat);
+        HasBitacora::Edited($modelo,$stat->id_estado);
+
+        return redirect()->route('estados.index')->with('success','El estado se ha actualizado correctamente');
     }
 
     /**
@@ -98,7 +108,9 @@ class EstadoController extends Controller
     public function destroy($id)
     {
         $stat = Estado::findOrFail($id);
+        $modelo = class_basename($stat);
+        HasBitacora::Deleted($modelo,$stat->id_estado);
         $stat->delete();
-        return redirect()->route('estados.index');
+        return redirect()->route('estados.index')->with('deleted','El estado se ha eliminado');
     }
 }

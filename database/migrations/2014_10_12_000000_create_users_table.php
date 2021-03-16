@@ -26,7 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('sexo')->nullable();
             $table->unsignedBigInteger('estado_id')->nullable();
             $table->unsignedBigInteger('contacto_id')->nullable();
-            $table->timestamp('banned_until')->nullable();
+
+            $table->dateTime('banned_until')->nullable();
             $table->timestamps();
 
             $table->foreign('estado_id')->references('id_estado')->on('estados')->cascadeOnDelete()->cascadeOnUpdate();

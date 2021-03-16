@@ -14,7 +14,7 @@
                 {{ __('Formulario para registrar una revalorizacion sobre un Activo Fijo') }}
             </x-slot>
         </x-jet-section-title>
-        <form action="{{route('revaluos.store')}}" method="POST" class="mt-4 md:mt-0 md:col-span-2">
+        <form action="{{route('revaluos.guardar')}}" method="POST" class="mt-4 md:mt-0 md:col-span-2">
             @csrf
             @method("POST")
             <div class="shadow overflow-hidden sm:rounded-md">
@@ -44,7 +44,14 @@
                             <input type="text" name="activo_id" value="{{$activo->id_AF}}" readonly>
                         </div>
 
-                        <div class="col-span-6 sm:col-span-4">
+
+
+                        <div class="col-span-6 sm:col-span-2">
+                            <x-jet-label for="nuevoValor" value="{{ __('Costo de mantenimiento Bs.') }}" />
+                            <input type="text" name="nuevoValor" value="{{$monto}}" readonly>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-6">
                             <x-jet-label for="nuevoValor" value="{{ __('Nombre del activo') }}" />
                             <input type="text" name="activo_name" value="{{$activo->nombre}}" readonly>
                         </div>
@@ -53,15 +60,6 @@
                             <input type="text" name="monto" value="{{$monto}}" hidden>
                         </div>
 
-                        <div class="col-span-6 sm:col-span-3">
-                            <x-jet-label for="antiguoValor" value="{{ __('Antiguo valor Bs.') }}" />
-                            <input type="text" name="antiguoValor" value="{{$antvalu}}" readonly>
-                        </div>
-
-                        <div class="col-span-6 sm:col-span-3">
-                            <x-jet-label for="nuevoValor" value="{{ __('Nuevo valor Bs.') }}" />
-                            <input type="text" name="nuevoValor" value="{{$monto}}" readonly>
-                        </div>
 
                         <div class="col-span-6 sm:col-span-6">
                             <x-jet-label for="descripcion" value="{{ __('Descripcion acerca de la Revalorizacion') }}" />

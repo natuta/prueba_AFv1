@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Rubro;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
 
+    use HasBitacora;
     public function __construct()
     {
         $this->middleware(['can:categorias.index'])->only('index');
@@ -23,7 +25,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::paginate(5);
+        $categoria = Categoria::paginate(10);
         return  view('Categoria.index',['categoria'=>$categoria]);
     }
 
@@ -54,6 +56,11 @@ class CategoriaController extends Controller
         $cat->depreciar = $request->input('depreciar');
         $cat->actualiza = $request->input('actualiza');
         $cat->save();
+
+
+        $modelo = class_basename($cat);
+        HasBitacora::Created($modelo,$cat->id_categoria);
+
         return redirect()->route('categorias.index')->with('success','Categoria registrada correctamente');
 
         //return dd($request)->with('success','Categoria registrada correctamente');
@@ -98,6 +105,11 @@ class CategoriaController extends Controller
         $cat->depreciar = $request->input('depreciar');
         $cat->actualiza = $request->input('actualiza');
         $cat->save();
+
+
+        $modelo = class_basename($cat);
+        HasBitacora::Edited($modelo,$cat->id_categoria);
+
         return redirect()->route('categorias.index');
     }
 
@@ -110,6 +122,9 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $cat = Categoria::findOrFail($id);
+
+        $modelo = class_basename($cat);
+        HasBitacora::Edited($modelo,$cat->id_almacen);
         $cat->delete();
         return redirect()->route('categorias.index');
     }

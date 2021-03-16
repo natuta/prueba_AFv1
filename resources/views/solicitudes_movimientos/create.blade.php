@@ -30,6 +30,7 @@
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="col-span-6 sm:col-span-6">
                             <x-jet-label for="direccion" value="{{ __('Seleccion el departamento de destino') }}" />
                             <select name="destino_dpto" >

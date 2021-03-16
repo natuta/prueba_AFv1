@@ -7,14 +7,16 @@ use App\Models\Detalle_Compra;
 use App\Models\Proveedor;
 use App\Models\Solicitud;
 use App\Models\Solicitud_Compra;
+use App\Traits\HasBitacora;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Self_;
 
 class SolicitudCompraController extends Controller
 {
-    public static $TipoSolicitud = 2;
+    use HasBitacora;
 
+    public static $TipoSolicitud = 2;
     public function __construct()
     {
         $this->middleware('can:compras.index')->only('index');
@@ -28,7 +30,7 @@ class SolicitudCompraController extends Controller
      */
     public function index()
     {
-        $compras = Solicitud_Compra::paginate(5);
+        $compras = Solicitud_Compra::paginate(10);
         return view('solicitudes_compras.index',['compras'=>$compras]);
     }
 
@@ -91,6 +93,8 @@ class SolicitudCompraController extends Controller
         $detalle_compra->total = self::montoTotal($request->input('costo'),$request->input('cantidad'));
         $detalle_compra->save();
 
+        $modelo = class_basename($sol_compra);
+        HasBitacora::Created($modelo,$sol_compra->id_sol_compra);
         //return dd($solicitud,$sol_compra,$detalle_compra);
         return redirect()->route('compras.index')->with('success','Solicitud de compra registrada correctamente');
 
@@ -139,6 +143,8 @@ class SolicitudCompraController extends Controller
     public function destroy($id)
     {
         $cmp = Solicitud_Compra::findOrFail($id);
+        $modelo = class_basename($cmp);
+        HasBitacora::Deleted($modelo,$cmp->id_sol_compra);
         $cmp->delete();
         return redirect()->route('compras.index');
     }

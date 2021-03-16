@@ -85,8 +85,8 @@
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
                     <div class="grid grid-cols-6 gap-6">
+                        @if($cant_revisiones > 0)
                         @foreach($revisiones as $revision)
-
                             <div class="col-span-6 sm:col-span-6">
                                 <h6 class="text-bold">Revaluo debido al mantenimiento:</h6>
                             </div>
@@ -120,6 +120,134 @@
                             </div>
 
                         @endforeach
+                        @else
+                            <div class="col-span-6 sm:col-span-6 ">
+                                <div class="bg-red-lightest border border-red-400 bg-red-200 text-center text-red-dark pl-4 pr-8 py-3 rounded relative" role="alert">
+                                    <strong class="font-bold">Uy, pero que bien vamos!</strong>
+                                    <span class="block sm:inline">El activo fijo aun no tiene ninguna revision tecnica</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-span-6 sm:col-span-6">
+                                <a type="button" href="{{route('revisiones_tecnicas.index')}}" class="inline-flex items-center px-4 py-2 bg-indigo-500 border
+                                border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
+                                active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition
+                                ease-in-out duration-150">
+                                    Realizar revision tecnica
+                                </a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <x-jet-section-title>
+            <x-slot name="title">
+                {{ __('Ver informacion del activo fijo con codigo: '. $activo->id_AF) }}
+            </x-slot>
+            <x-slot name="description">
+                {{ __('Codigo del activo fijo.') }}
+            </x-slot>
+        </x-jet-section-title>
+        <div class="mt-4 md:mt-0 md:col-span-2">
+            <div class="shadow overflow-hidden sm:rounded-md">
+                <div class="px-4 py-5 bg-white sm:p-6">
+                    <div class="grid grid-cols-6 gap-6">
+
+                        @if($cant_codigo > 0)
+                        <div class="col-span-6 sm:col-span-6">
+                            <h6 class="text-bold">Revaluo debido al mantenimiento:</h6>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-6">
+                            <x-jet-label for="frevision_id" value="{{ __('Codigo QR') }}" />
+                            <x-jet-input type="text" value="{{$codigo}}" class="mt-1 block w-full" disabled />
+                            <x-jet-input-error for="revision_id" class="mt-2" />
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-6">
+                            <br>
+                        </div>
+                        @else
+                            <div class="col-span-6 sm:col-span-6 ">
+                                <div class="bg-red-lightest border border-red-400 bg-red-200 text-center text-red-dark pl-4 pr-8 py-3 rounded relative" role="alert">
+                                    <strong class="font-bold">Uy, pero que ha pasao!</strong>
+                                    <span class="block sm:inline">El activo fijo aun no tiene codigo, agregale uno.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-span-6 sm:col-span-6">
+                                <a type="button" href="{{route('codificacion.index')}}" class="inline-flex items-center px-4 py-2 bg-indigo-500 border
+                                border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
+                                active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition
+                                ease-in-out duration-150">
+                                    Crear codigo
+                                </a>
+                            </div>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <x-jet-section-title>
+            <x-slot name="title">
+                {{ __('Ver informacion del activo fijo con codigo: '. $activo->id_AF) }}
+            </x-slot>
+            <x-slot name="description">
+                {{ __('Codigo del activo fijo.') }}
+            </x-slot>
+        </x-jet-section-title>
+        <div class="mt-4 md:mt-0 md:col-span-2">
+            <div class="shadow overflow-hidden sm:rounded-md">
+                <div class="px-4 py-5 bg-white sm:p-6">
+                    <div class="grid grid-cols-6 gap-6">
+
+                        @if($cant_depreciaciones > 0)
+                            <div class="col-span-6 sm:col-span-6">
+                                <h6 class="text-bold">Dpreciaciones del activo:</h6>
+                            </div>
+                            @foreach($depreciaciones as $depreciacion)
+                                <div class="col-span-6 sm:col-span-6">
+                                    <x-jet-label for="revision_id" value="{{ __('Descripcion') }}" />
+                                    <x-jet-input type="text" value="{{$depreciacion->descripcion}}" class="mt-1 block w-full" disabled />
+                                    <x-jet-input-error for="revision_id" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <x-jet-label for="revision_id" value="{{ __('Depreciacion acumulada') }}" />
+                                    <x-jet-input type="text" value="{{$depreciacion->depreciacion_acumulada}}" class="mt-1 block w-full" disabled />
+                                    <x-jet-input-error for="revision_id" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <x-jet-label for="revision_id" value="{{ __('Fecha') }}" />
+                                    <x-jet-input type="text" value="{{$depreciacion->fecha}}" class="mt-1 block w-full" disabled />
+                                    <x-jet-input-error for="revision_id" class="mt-2" />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-6">
+                                    <br>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="col-span-6 sm:col-span-6 ">
+                                <div class="bg-red-lightest border border-red-400 bg-red-200 text-center text-red-dark pl-4 pr-8 py-3 rounded relative" role="alert">
+                                    <strong class="font-bold">Uy, pero que ha pasao!</strong>
+                                    <span class="block sm:inline">El activo fijo aun no tiene ninguna depreciacion.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-span-6 sm:col-span-6">
+                                <a type="button" href="{{route('depreciacion.index')}}" class="inline-flex items-center px-4 py-2 bg-indigo-500 border
+                                border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
+                                active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition
+                                ease-in-out duration-150">
+                                    Depreciar
+                                </a>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>

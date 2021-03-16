@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'sexo' => 'Hombre',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
-            'estado_id' => rand(1,3),
+            'estado_id' => 1,
             'remember_token' => Str::random(10),
         ])->assignRole('Propietario');
 
@@ -35,8 +35,7 @@ class UserSeeder extends Seeder
             'sexo' => 'Hombre',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
-            'estado_id' => rand(1,3),
-            'contacto_id' => rand(1,1),
+            'estado_id' => 1,
             'remember_token' => Str::random(10),
         ])->assignRole('Administrador');
 
@@ -47,7 +46,7 @@ class UserSeeder extends Seeder
             'sexo' => 'Hombre',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
-            'estado_id' => rand(1,3),
+            'estado_id' => 1,
             'remember_token' => Str::random(10),
         ])->assignRole('Responsable');
 
@@ -58,7 +57,7 @@ class UserSeeder extends Seeder
             'sexo' => 'Hombre',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // password
-            'estado_id' => rand(1,3),
+            'estado_id' => 1,
             'remember_token' => Str::random(10),
         ])->assignRole('Operador');
 

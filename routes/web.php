@@ -1,18 +1,21 @@
 <?php
 
+use App\Http\Controllers\ActivoController;
+use App\Http\Controllers\AlmacenController;
+use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\ChartController;
 use App\Http\Controllers\CiudadController;
+use App\Http\Controllers\CodificacionController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\EdificioController;
 use App\Http\Controllers\EgresoController;
-use App\Http\Controllers\DepreciacionController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RevaluoController;
 use App\Http\Controllers\RevisionTecnicaController;
+use App\Http\Controllers\RolController;
 use App\Http\Controllers\SolicitudCompraController;
 use App\Http\Controllers\SolicitudMovimientoController;
 use App\Http\Controllers\UsuarioController;
@@ -68,9 +71,6 @@ Route::get('/', function(){
 Route::get('/dashboard', function(){
     return view('dashboard');
 })->middleware(['auth','verified'])->name('dashboard');
-Route::get('/depreciacion', function(){
-    route::resource('depreciacion', DepreciacionController::class);
-});
 
 
 Route::middleware(['auth'])->group(function(){
@@ -91,10 +91,6 @@ Route::middleware(['auth'])->group(function(){
     route::resource('proveedores', ProveedorController::class);
     route::resource('ciudades', CiudadController::class);
     route::resource('edificios', EdificioController::class);
-    route::resource('depreciacion', DepreciacionController::class);
-    route::post('depreciaciones/llenarformulario',[DepreciacionController::class,'llenar'])->name('depreciacion.llenar');
-    route::resource('codificacion', codificacionController::class);
-    route::post('Codificaciones/llenarformulario',[codificacionController::class,'llenar'])->name('codificacion.llenar');
     route::resource('departamentos', DepartamentoController::class);
     route::resource('solicitudes/movimientos', SolicitudMovimientoController::class);
     route::resource('solicitudes/compras', SolicitudCompraController::class);
@@ -104,14 +100,25 @@ Route::middleware(['auth'])->group(function(){
     route::resource('egresos', EgresoController::class);
     route::get('egresos/{id}/crear', [EgresoController::class,'crear'])->name('egresos.crear');
     route::resource('revisiones_tecnicas', RevisionTecnicaController::class);
-    route::resource('revaluos', RevaluoController::class);
     route::get('revaluos/crear/{activo}/{revision}/{monto}',[RevaluoController::class,'crear'])->name('revaluos.crear');
-    route::resource('roles', \App\Http\Controllers\RolController::class);
+    route::post('revaluos/crear/guardar',[RevaluoController::class,'guardar'])->name('revaluos.guardar');
+    route::resource('revaluos', RevaluoController::class);
+    route::resource('roles', RolController::class);
+
+    route::resource('depreciacion',\App\Http\Controllers\DepreciacionController::class);
+    route::post('solicitudes/depreciation/llenar',[\App\Http\Controllers\DepreciacionController::class,'llenar'])->name('depreciacion.llenar');
+
+    route::resource('codificacion', CodificacionController::class);
+    route::post('codificacion/llenarformulario',[CodificacionController::class,'llenar'])->name('codificacion.llenar');
+
     route::get('privilegios', function (){
         return view('privilegios.index');
     })->name('privilegios.index');
-    route::resource('activos_fijos',\App\Http\Controllers\ActivoController::class);
-    route::resource('almacenes',\App\Http\Controllers\AlmacenController::class);
+
+    route::resource('activos_fijos', ActivoController::class);
+    route::resource('almacenes', AlmacenController::class);
+    route::resource('bitacoras', BitacoraController::class)->names(['only','show']);
+    route::get('/bitacoras/descargar/pdf', [BitacoraController::class,'Exportar2'])->name('bitacoras.descargar');
 });
 
 
@@ -142,5 +149,5 @@ route::get('prueba/mantenimientos/revisiones',function (){
     return ['edificio'=> $edificio];
 })->name('prueba/mantenimientos');
 
-Route::get('/bar-chart',[ChartControllerller::class,'barChart']);
+
 //route::delete('/prueba/{id}/destroy/proveedores/',[\App\Http\Controllers\ProveedorController::class,'prueba'])->name('proveedores.prueba');

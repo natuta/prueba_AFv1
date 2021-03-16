@@ -46,6 +46,7 @@
                                         Acciones:
                                         <a class="orange-text" href="{{route('usuarios.index')}}">Gestionar Usuarios</a>
                                         <a class="orange-text" href="{{route('privilegios.index')}}">Gestionar Privilegios</a>
+                                        <a class="orange-text" href="{{route('bitacoras.index')}}">Gestionar Bitacora</a>
                                     </div>
                                 </div>
                             </div>

@@ -7,38 +7,39 @@
 
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <div >
+            <a type="button" href="{{route('codificacion.create')}}"
+               class="inline-flex items-center px-4 py-2 bg-indigo-500 border
+            border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700
+            active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition
+            ease-in-out duration-150">
+                {{__('Agregar codificacion')}}
+            </a>
+
+        </div>
+        <div >
             <li class="divider" style="margin: 10px"></li>
         </div>
         <table class="table">
             <thead>
             <tr>
                 <th>#</th>
-                <th>AF_id</th>
+                <th>Cod activo</th>
                 <th>Codigo</th>
-                <th>estado_id</th>
+                <th>Acciones</th>
                 <th colspan="2">&nbsp</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($codificaciones as $codificacion)
+            @foreach($codificacion as $codifica)
                 <tr>
-                    <td>{{$codificacion->id_codificacion}}</td>
-                    <td>{{$codificacion->activos_fijos->id_AF}}</td>
-                    <td>{{$codificacion->codigo}}</td>
-                    <td>{{$codificacion->estados->id_estado}}</td>
-                @can('codificacion.show')
-                        <td>
-                            <a href="{{route('codificacion.show',[$codificacion->id_codificacion])}}" class="inline-flex items-center px-4 py-2 bg-green-400
-                border border-gray-300 rounded-md font-semibold text-xs text-gray-50 uppercase tracking-widest shadow-sm
-                hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800
-                active:bg-gray-50 transition ease-in-out duration-150" >
-                                Ver
-                            </a>
-                        </td>
-                    @endcan
+                    <td>{{$codifica->id_codificacion}}</td>
+                    <td>{{$codifica->activo->nombre}}</td>
+                    <td>{{$codifica->codigo}}</td>
+
+
                     @can('codificacion.destroy')
                         <td>
-                            <form method="POST" action="{{route('codificacion.destroy',[$codificacion->id_codificacion]) }}">
+                            <form method="POST" action="{{route('codificacion.destroy',[$codifica->id_codificacion]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="inline-flex items-center justify-center px-4 py-2 bg-red-600 border
@@ -51,6 +52,6 @@
             @endforeach
             </tbody>
         </table>
-        <span>{{$codificaciones->links()}}</span>
+        <span>{{$codificacion->links()}}</span>
     </div>
 </x-app-layout>

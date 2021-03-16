@@ -24,7 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('inspire')->everyMinute();
+        $schedule->command('migrate:fresh --seed')
+            ->timezone('America/Caracas')
+            ->everyMinute();
     }
 
     /**

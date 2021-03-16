@@ -18,10 +18,10 @@ class CreateCodificacionesTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('AF_id');
             $table->string('codigo');
-            $table->unsignedBigInteger('estado_id');
+
 
             $table->foreign('AF_id')->references('id_AF')->on('activos_fijos')->onDelete('cascade');
-            $table->foreign('estado_id')->references('id_estado')->on('estados')->onDelete('cascade');
+
         });
     }
 

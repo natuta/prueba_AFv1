@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Activo_Fijo;
 use App\Models\Almacen;
 use App\Models\Categoria;
+use App\Models\Codificacion;
 use App\Models\Departamento;
+use App\Models\Depreciacion;
 use App\Models\Estado;
 use App\Models\Revaluo;
 use App\Models\Revision_Tecnica;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class ActivoController extends Controller
 {
+    use HasBitacora;
+
     public function __construct(){
         $this->middleware('can:activos.index')->only('index');
         $this->middleware('can:activos.create')->only('create');
@@ -27,7 +32,7 @@ class ActivoController extends Controller
      */
     public function index()
     {
-        $activos = Activo_Fijo::paginate(5);
+        $activos = Activo_Fijo::paginate(10);
         return view('activos.index',['activos'=>$activos]);
     }
 
@@ -68,6 +73,9 @@ class ActivoController extends Controller
         $activo->almacen_id = $request->input('almacen_id');
         $activo->save();
 
+        $modelo = class_basename($activo);
+        HasBitacora::Created($modelo,$activo->id_AF);
+
         return redirect()->route('activos_fijos.index')->with('success','Activo fijo registrado con exito');
     }
 
@@ -81,7 +89,21 @@ class ActivoController extends Controller
     {
         $activo = Activo_Fijo::findOrFail($id);
         $revisiones = Revaluo::all()->where('AF_id','=',$id);
-        return view('activos.show',['activo'=>$activo,'revisiones'=>$revisiones]);
+        $cant_revisiones = count($revisiones);
+        $codigo = Codificacion::all()->where('AF_id','=',$id);
+        $cant_codigo = count($codigo);
+        $depreciaciones = Depreciacion::all()->where('AF_id','=',$id);
+        $cant_depreciaciones = count($depreciaciones);
+
+        return view('activos.show',[
+            'activo'=>$activo,
+            'revisiones'=>$revisiones,
+            'cant_revisiones'=>$cant_revisiones,
+            'codigo' => $codigo,
+            'cant_codigo' => $cant_codigo,
+            'depreciaciones' => $depreciaciones,
+            'cant_depreciaciones' => $cant_depreciaciones,
+        ]);
         //return dd($revisiones);
     }
 
@@ -127,6 +149,9 @@ class ActivoController extends Controller
         $activo->almacen_id = $request->input('almacen_id');
         $activo->save();
 
+        $modelo = class_basename($activo);
+        HasBitacora::Edited($modelo,$activo->id_AF);
+
         return redirect()->route('activos_fijos.index')->with('success','Activo fijo editado con exito');
     }
 
@@ -139,6 +164,8 @@ class ActivoController extends Controller
     public function destroy($id)
     {
         $activo = Activo_Fijo::findOrFail($id);
+        $modelo = class_basename($activo);
+        HasBitacora::Deleted($modelo,$activo->id_AF);
         $activo->delete();
         return redirect()->route('activos_fijos.index');
     }

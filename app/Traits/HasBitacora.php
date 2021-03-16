@@ -2,9 +2,9 @@
 
 namespace App\Traits;
 
-use App\Models\Accion;
 use App\Models\Bitacora;
 use Carbon\Carbon;
+
 
 
 trait HasBitacora{
@@ -13,7 +13,7 @@ trait HasBitacora{
             $bitacora = new Bitacora();
             $bitacora->user_id = auth()->user()->id;
             $bitacora->Fecha = Carbon::now('America/Caracas');
-            $bitacora->accion_id = 1;
+            $bitacora->accion_id = 3;
             $descripcion = ("El usuario " . auth()->user()->name . " ha creado un nuevo ". $modelo . " con codigo: " . $id);
             $bitacora->Descripcion = $descripcion;
             $bitacora->save();
@@ -24,7 +24,7 @@ trait HasBitacora{
             $bitacora = new Bitacora();
             $bitacora->user_id = auth()->user()->id;
             $bitacora->Fecha = Carbon::now('America/Caracas');
-            $bitacora->accion_id = 1;
+            $bitacora->accion_id = 4;
             $descripcion = ("El usuario " . auth()->user()->name . " ha editado un ". $modelo . " con codigo: " . $id);
             $bitacora->Descripcion = $descripcion;
             $bitacora->save();
@@ -35,19 +35,32 @@ trait HasBitacora{
             $bitacora = new Bitacora();
             $bitacora->user_id = auth()->user()->id;
             $bitacora->Fecha = Carbon::now('America/Caracas');
-            $bitacora->accion_id = 1;
+            $bitacora->accion_id = 5;
             $descripcion = ("El usuario " . auth()->user()->name . " ha eliminado un ". $modelo . " con codigo: " . $id);
             $bitacora->Descripcion = $descripcion;
             $bitacora->save();
             return $bitacora;
         }
 
-        public static function Login(){
-            return ("este trait funciona muy bien para crear cosas");
+        public static function Login($user){
+            $bitacora = new Bitacora();
+            $bitacora->user_id = $user->id;
+            $bitacora->Fecha = Carbon::now('America/Caracas');
+            $bitacora->accion_id = 1;
+            $bitacora->Descripcion =  $user->name . ' ' .$user->apellido . ' ha inciado sesion.';
+            $bitacora->save();
+            return $bitacora;
         }
 
-        public static function Logout(){
-            return ("este trait funciona muy bien para crear cosas");
+        public static function Logout($user){
+            $bitacora = new Bitacora();
+            $bitacora->user_id = $user->id;
+            $bitacora->Fecha = Carbon::now('America/Caracas');
+            $bitacora->accion_id = 2;
+            $descripcion = ($user->name . ' ' . $user->apellido. ' ha cerrado sesion');
+            $bitacora->Descripcion = $descripcion;
+            $bitacora->save();
+            return $bitacora;
         }
     }
 

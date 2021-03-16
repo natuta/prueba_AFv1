@@ -17,8 +17,8 @@ class CreateBitacorasTable extends Migration
             $table->id('id_bitacora');
             $table->unsignedBigInteger('accion_id');
             $table->unsignedBigInteger('user_id');
-            $table->dateTime('Fecha');
-            $table->string('Descripcion');
+            $table->dateTime('fecha');
+            $table->string('descripcion');
             $table->timestamps();
 
             $table->foreign('accion_id')->references('id_accion')->on('acciones')->cascadeOnUpdate()->cascadeOnDelete();

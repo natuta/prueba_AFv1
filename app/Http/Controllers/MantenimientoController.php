@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Revision_Tecnica;
+use App\Traits\HasBitacora;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Mantenimiento;
 
 class MantenimientoController extends Controller
 {
+    use HasBitacora;
+
     public function __construct(){
         $this->middleware('can:mantenimientos.index')->only('index');
         $this->middleware('can:mantenimientos.show')->only('show');
@@ -21,7 +24,7 @@ class MantenimientoController extends Controller
      */
     public function index()
     {
-        $mantenimiento = Mantenimiento::paginate(5);
+        $mantenimiento = Mantenimiento::paginate(10);
         return view('mantenimientos.index',['mantenimientos'=>$mantenimiento]);
     }
 
@@ -51,6 +54,10 @@ class MantenimientoController extends Controller
         $mantenimiento->costo = $request->input('costo');
         $mantenimiento->revision_id = $request->input('revision_id');
         $mantenimiento->save();
+
+        $modelo = class_basename($mantenimiento);
+        HasBitacora::Created($modelo,$mantenimiento->id_mantenimiento);
+
         return redirect()->route('mantenimientos.index');
     }
 
@@ -105,6 +112,9 @@ class MantenimientoController extends Controller
             $revision->estado_id = 3;
             $mantenimiento->save();
             $revision->save();
+
+            $modelo = class_basename($mantenimiento);
+            HasBitacora::Edited($modelo,$mantenimiento->id_estado);
             //return dd($revision->activo->id_AF,$revision->id_revision,$mantenimiento->costo);
             return redirect()->route('revaluos.crear',[$revision->activo->id_AF,$revision->id_revision,$mantenimiento->costo]);
             }
@@ -122,7 +132,9 @@ class MantenimientoController extends Controller
     public function destroy($id)
     {
         $mantenimiento = Mantenimiento::findOrFail($id);
+        $modelo = class_basename($mantenimiento);
+        HasBitacora::Deleted($modelo,$mantenimiento->id_mantenimiento);
         $mantenimiento->delete();
-        return redirect()->route('mantenimientos.index');
+        return redirect()->route('mantenimientos.index')->with('deleted','El mantenimiento ha sido elimiando con exito');
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Depreciacion;
 use App\Models\Rubro;
+use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class RubroController extends Controller
 {
+    use HasBitacora;
+
     public function __construct(){
         $this->middleware('can:rubros.index')->only('index');
         $this->middleware('can:rubros.create')->only('create');
@@ -15,7 +17,6 @@ class RubroController extends Controller
         $this->middleware('can:rubros.edit')->only('edit');
         $this->middleware('can:rubros.destroy')->only('destroy');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -25,7 +26,7 @@ class RubroController extends Controller
     public function index()
     {
         //$rubro = Rubro::orderBy('id_rubro','ASC')->paginate(10);
-        $rubro = Rubro::paginate(5);
+        $rubro = Rubro::paginate(10);
         return view('Rubro.index',['rubro'=>$rubro]);
     }
     /**
@@ -51,11 +52,13 @@ class RubroController extends Controller
         $rubro->descripcion = $request->input('descripcion');
         $rubro->vida_util = $request->input('vida_util');
         $rubro->coeficiente_depr = $request->input('coeficiente_depr');
-
         $rubro->save();
+
+        $modelo = class_basename($rubro);
+        HasBitacora::Created($modelo,$rubro->id_rubro);
+
         return redirect()->route('rubros.index')->with('success','Rubro registrado correctamente');
         //return dd($request->input('nombre'));
-
     }
 
     /**
@@ -97,6 +100,8 @@ class RubroController extends Controller
         $rubro->vida_util = $request->input('vida_util');
         $rubro->coeficiente_depr = $request->input('coeficiente_depr');
         $rubro->save();
+        $modelo = class_basename($rubro);
+        HasBitacora::Edited($modelo,$rubro->id_rubro);
         return redirect()->route('rubros.index')->with('Exito', 'Rubro actualizado con exito.');
     }
 
@@ -109,6 +114,8 @@ class RubroController extends Controller
     public function destroy($id)
     {
         $rubro = Rubro::findOrFail($id);
+        $modelo = class_basename($rubro);
+        HasBitacora::Deleted($modelo,$rubro->id_rubro);
         $rubro->delete();
         return redirect()->route('rubros.index');
     }

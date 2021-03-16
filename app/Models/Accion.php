@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Accion extends Model
 {
     use HasFactory;
+
     protected $table = 'acciones';
     protected $primaryKey = 'id_accion';
     protected $fillable = [
@@ -15,6 +16,6 @@ class Accion extends Model
     ];
 
     public function bitacora(){
-        return $this->hasMany(Bitacosa::class,'accion_id');
+        return $this->hasMany(Bitacora::class,'accion_id');
     }
 }

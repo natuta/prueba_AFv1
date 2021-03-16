@@ -2,11 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Traits\HasBitacora;
 use Closure;
 use Illuminate\Http\Request;
 
 class CheckBanned
 {
+    use HasBitacora;
     /**
      * Handle an incoming request.
      *

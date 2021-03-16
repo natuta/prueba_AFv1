@@ -22,7 +22,7 @@ class DepreciacionController extends Controller
     }
     public function index()
     {
-        $depreciaciones = Depreciacion::paginate(5);
+        $depreciaciones = Depreciacion::paginate(10);
         return view('depreciacion.index',['depreciaciones'=>$depreciaciones]);
     }
 
@@ -50,7 +50,7 @@ class DepreciacionController extends Controller
         $coeDpr = $activo->categoria->rubro->coeficiente_depr;
         $valorCompra = $activo->valor_compra;
         $valor2 = self::depreciacion_acu($vidaUtil, $coeDpr, $valorCompra);
-//RETURN dd($vidaUtil,$coeDpr,$valorCompra,$valor2);
+
         return view('depreciacion.llenar',['activo'=>$activo,'rubro'=>$rubro,'valor2'=> $valor2]);
     }
 
@@ -66,18 +66,17 @@ class DepreciacionController extends Controller
 
         $depreciacion->descripcion = $request->input('descripcion');
         $depreciacion->fecha = $request->input('fecha');
-        $depreciacion->AF_id = $request->input('AF_id');
+        $depreciacion->AF_id = $request->input('af_id');
 
-        $activo = Activo_Fijo::findOrFail($request->AF_id);
+        $activo = Activo_Fijo::findOrFail($request->af_id);
         $vidaUtil = $activo->categoria->rubro->vida_util;
         $coeDpr = $activo->categoria->rubro->coeficiente_depr;
 
         $valorCompra = $activo->valor_compra;
-        $valor2=self::depreciacion_acu($vidaUtil,$coeDpr,$valorCompra);
-        $depreciacion->depreciacion_acumulnada = $valor2;
-        return dd($depreciacion);
-        $monto=self::new_monto($valorCompra,$valor2);
-        $activo->valorcompra=$monto;
+        $valor2=$this->depreciacion_acu($vidaUtil,$coeDpr,$valorCompra);
+        $depreciacion->depreciacion_acumulada = $valor2;
+
+        $monto = self::new_monto($valorCompra,$valor2);
         $depreciacion->save();
 
         return redirect()->route('depreciacion.index')->with('success','depreciacion registrada correctamente');
@@ -88,7 +87,7 @@ class DepreciacionController extends Controller
         return ($valor-$valor2);
     }
     public function depreciacion_acu($añosdevida,$porcentaje,$valor){
-        return ((($valor/$añosdevida)*$porcentaje));
+        return ((($valor/$añosdevida)*$porcentaje)/100);
     }
     /**
      * Display the specified resource.

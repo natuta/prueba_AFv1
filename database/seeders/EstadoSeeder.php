@@ -12,8 +12,23 @@ class EstadoSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    
+      //  Estado::factory()->count(3)->create();
+      public function run()
     {
-        Estado::factory()->count(3)->create();
+       // Estado::factory()->count(3)->create();
+       Estado::created(['nombre'=>'Activo',
+            'descripcion'=>'se refiere cuando algo se puede usar o alguien esta libre',
+            ]);
+        Estado::created(['nombre'=>'No Activo',
+            'descripcion'=>'se refiere cuando algo se puede usar o alguien esta libre',
+        ]);
+        Estado::created(['nombre'=>'En curso',
+            'descripcion'=>'se refiere cuando algo esta en proceso o en desarrollo',
+        ]);
+        Estado::created(['nombre'=>'Finalizado',
+            'descripcion'=>'se refiere cuando algo esta completo o se termino',
+        ]);
     }
-}
+    }
+

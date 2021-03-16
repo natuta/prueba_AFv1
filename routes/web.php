@@ -149,5 +149,5 @@ route::get('prueba/mantenimientos/revisiones',function (){
     return ['edificio'=> $edificio];
 })->name('prueba/mantenimientos');
 
-
+Route::get('/bar-chart',[ChartController::class,'barChart']);
 //route::delete('/prueba/{id}/destroy/proveedores/',[\App\Http\Controllers\ProveedorController::class,'prueba'])->name('proveedores.prueba');

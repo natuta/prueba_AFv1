@@ -14,6 +14,7 @@ class RubroSeeder extends Seeder
      */
     public function run()
     {
+        //Rubro::factory(20)->create();
         Rubro::create([
             'nombre'=> 'Edificaciones',
             'descripcion'=> 'Rubro de edificaciones',
@@ -230,7 +231,6 @@ class RubroSeeder extends Seeder
             'vida_util'=> 10,
             'coeficiente_depr'=> 10.0,
         ]);
-
 
     }
 }

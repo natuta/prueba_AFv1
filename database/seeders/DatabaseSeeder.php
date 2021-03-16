@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             AlmacenSeeder::class,
             EstadoSeeder::class,
             ContactoSeeder::class,
-            ProveedorSeeder::class,
+           // ProveedorSeeder::class,
             UserSeeder::class,
             AccionSeeder::class,
             RubroSeeder::class,

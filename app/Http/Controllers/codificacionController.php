@@ -111,7 +111,7 @@ class CodificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $codi = Codificacion::findOrFail(id);
+        $codi = Codificacion::findOrFail($id);
         $codi->AF_id= $request->input('AF_id');
         $codi->estado_id=$request->input('estado_id');
         $codi->save();

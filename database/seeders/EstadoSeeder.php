@@ -17,16 +17,16 @@ class EstadoSeeder extends Seeder
       public function run()
     {
        // Estado::factory()->count(3)->create();
-       Estado::created(['nombre'=>'Activo',
+       Estado::create(['nombre'=>'Activo',
             'descripcion'=>'se refiere cuando algo se puede usar o alguien esta libre',
             ]);
-        Estado::created(['nombre'=>'No Activo',
+        Estado::create(['nombre'=>'No Activo',
             'descripcion'=>'se refiere cuando algo se puede usar o alguien esta libre',
         ]);
-        Estado::created(['nombre'=>'En curso',
+        Estado::create(['nombre'=>'En curso',
             'descripcion'=>'se refiere cuando algo esta en proceso o en desarrollo',
         ]);
-        Estado::created(['nombre'=>'Finalizado',
+        Estado::create(['nombre'=>'Finalizado',
             'descripcion'=>'se refiere cuando algo esta completo o se termino',
         ]);
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivoController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\CategoriaController;

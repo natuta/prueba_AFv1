@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Depreciacion;
 use App\Models\Rubro;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class RubroController extends Controller
         $this->middleware('can:rubros.edit')->only('edit');
         $this->middleware('can:rubros.destroy')->only('destroy');
     }
+
 
     /**
      * Display a listing of the resource.
@@ -49,9 +51,11 @@ class RubroController extends Controller
         $rubro->descripcion = $request->input('descripcion');
         $rubro->vida_util = $request->input('vida_util');
         $rubro->coeficiente_depr = $request->input('coeficiente_depr');
+
         $rubro->save();
         return redirect()->route('rubros.index')->with('success','Rubro registrado correctamente');
         //return dd($request->input('nombre'));
+
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\EdificioController;
 use App\Http\Controllers\EgresoController;
+use App\Http\Controllers\DepreciacionController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\ProveedorController;
@@ -67,6 +68,9 @@ Route::get('/', function(){
 Route::get('/dashboard', function(){
     return view('dashboard');
 })->middleware(['auth','verified'])->name('dashboard');
+Route::get('/depreciacion', function(){
+    route::resource('depreciacion', DepreciacionController::class);
+});
 
 
 Route::middleware(['auth'])->group(function(){
@@ -87,6 +91,10 @@ Route::middleware(['auth'])->group(function(){
     route::resource('proveedores', ProveedorController::class);
     route::resource('ciudades', CiudadController::class);
     route::resource('edificios', EdificioController::class);
+    route::resource('depreciacion', DepreciacionController::class);
+    route::post('depreciaciones/llenarformulario',[DepreciacionController::class,'llenar'])->name('depreciacion.llenar');
+    route::resource('codificacion', codificacionController::class);
+    route::post('Codificaciones/llenarformulario',[codificacionController::class,'llenar'])->name('codificacion.llenar');
     route::resource('departamentos', DepartamentoController::class);
     route::resource('solicitudes/movimientos', SolicitudMovimientoController::class);
     route::resource('solicitudes/compras', SolicitudCompraController::class);
@@ -134,7 +142,5 @@ route::get('prueba/mantenimientos/revisiones',function (){
     return ['edificio'=> $edificio];
 })->name('prueba/mantenimientos');
 
-
+Route::get('/bar-chart',[ChartControllerller::class,'barChart']);
 //route::delete('/prueba/{id}/destroy/proveedores/',[\App\Http\Controllers\ProveedorController::class,'prueba'])->name('proveedores.prueba');
-Route::get('/chart',[ChartController::class,'index']);
-Route::get('/bar-chart',[ChartController::class,'barChart']);

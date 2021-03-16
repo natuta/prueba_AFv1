@@ -55,12 +55,12 @@
 
                         <div class="col-span-6 sm:col-span-3">
                             <x-jet-label for="antiguoValor" value="{{ __('Antiguo valor Bs.') }}" />
-                            <input type="text" name="antiguoValor" value="{{$monto}}" readonly>
+                            <input type="text" name="antiguoValor" value="{{$antvalu}}" readonly>
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <x-jet-label for="nuevoValor" value="{{ __('Nuevo valor Bs.') }}" />
-                            <input type="text" name="nuevoValor" value="{{$nuevo_monto}}" readonly>
+                            <input type="text" name="nuevoValor" value="{{$monto}}" readonly>
                         </div>
 
                         <div class="col-span-6 sm:col-span-6">

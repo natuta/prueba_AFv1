@@ -40,31 +40,7 @@ class ChartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function barChart()
-    { /*
-        $users= User::select(DB::raw("COUNT(*)as count"))
-        ->whereYear("created_at",date('Y'))
-        ->groupBy(DB::raw("Month(created_at)"))
-        ->pluck('count');
-
-        $months= User:: select(DB::raw("Month(created_at) as month"))
-        ->whereYear("created_at",date('Y'))
-        ->groupBy(DB::raw("Month(created_at)"))
-        ->pluck('month');
-
-        $datas= array(0,0,0,0,0,0,0,0,0,0,0,0);
-        foreach($months as $index => $month)
-        {
-            $datas[$month-1]=$users[$index];
-        }
-        return view ('bar-chart',compact('datas'));
-*/
-/*
-
- }
-   
-   
-*/
-// obtener el nro de egresos por categoria
+    { 
 $valores1= DB::table('egresos')
  ->groupBy('categorias.nombre')
  ->selectRaw('categorias.nombre, count(*) as egresoss')

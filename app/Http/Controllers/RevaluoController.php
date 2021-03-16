@@ -45,7 +45,9 @@ class RevaluoController extends Controller
         $activo = Activo_Fijo::findOrFail($activo_id);
         $revision = Revision_Tecnica::findOrFail($revision_id);
         $nuevoMonto = $this->nuevoValor($monto);
-        return view('revaluos.create',['activo'=>$activo,'revision'=>$revision,'nuevo_monto'=>$nuevoMonto,'monto'=>$monto]);
+        $antvalu =0;
+        $antvalu->$activo->valor_compra;
+        return view('revaluos.create',['activo'=>$activo,'revision'=>$revision,'nuevo_monto'=>$nuevoMonto,'monto'=>$monto,'antvalu'=>$antvalu]);
     }
 
     /**
@@ -61,8 +63,11 @@ class RevaluoController extends Controller
         $rev->revision_id = $request->input('revision_id');
         $rev->estado_id = 1;
         $rev->fecha = Carbon::now('America/Caracas');
+        $Activos= Activo_Fijo::findOrFail($request->AF_id);
+        $antvalu =0;
+        $antvalu->$Activos->valor_compra;
         $nuevoValor = $this->nuevoValor($request->input('monto'));
-        $rev->monto = $nuevoValor;
+        $rev->monto =$antvalu- $nuevoValor;
         $rev->descripcion = $request->input('descripcion');
         $rev->save();
 
@@ -72,7 +77,7 @@ class RevaluoController extends Controller
     }
 
     public function nuevoValor($costo){
-        return ($costo*10);
+        return ($costo/10);
     }
 
     /**

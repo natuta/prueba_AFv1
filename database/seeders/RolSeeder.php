@@ -1,14 +1,10 @@
 <?php
 
 namespace Database\Seeders;
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Models\User;
-use App\Models\Solicitud;
-use App\Models\Solicitud_Compra;
-
 
 class RolSeeder extends Seeder
 {
@@ -19,29 +15,6 @@ class RolSeeder extends Seeder
      */
     public function run()
     {
-
-        
-
-/*$consulta= DB::table('solicitudes')->groupBy('categorias.nombre')->selectRaw(['categorias.nombre, count(*)'])
-->join('solicitudes_compras','solicitudes.id_solicitud','=','solicitudes_compras.solicitud_id')
-->join('detalles_de_compras','solicitudes_compras.id_sol_compra','=','detalles_de_compras.sol_compra_id')
-->join('categorias','detalles_de_compras.categoria_id','=','categorias.id_categoria')
-->get();
-
- dd($consulta);*/
-//consulta me devuelve el valor neto en compra, por categoria
-//nro de egresos qye se han registrado por categoria
- $estados_activos= DB::table('egresos')
- ->groupBy('categorias.nombre')
- ->selectRaw('categorias.nombre, count(*) as egresos')
- ->join('revisiones_tecnicas','egresos.revision_id','=','revisiones_tecnicas.id_revision')
- ->join('activos_fijos','revisiones_tecnicas.AF_id','=','activos_fijos.id_AF')
- ->join('categorias','activos_fijos.categoria_id','=','categorias.id_categoria')
- ->get ();
-    
-    
- dd($estados_activos);
-        /*
         $rol1 = Role::create(['name'=>'Propietario']);
         $rol2 = Role::create(['name'=>'Administrador']);
         $rol3 = Role::create(['name'=>'Responsable']);
@@ -78,6 +51,12 @@ class RolSeeder extends Seeder
         Permission::create(['name'=>'edificios.edit','description'=>'editar edificios'])->assignRole([$rol1, $rol2]);
         Permission::create(['name'=>'edificios.show','description'=>'ver edificios'])->assignRole([$rol1,$rol2]);
         Permission::create(['name'=>'edificios.destroy','description'=>'eliminar edificios'])->assignRole([$rol1,$rol2]);
+
+        Permission::create(['name'=>'depreciacion.index','description'=>'ver lista de depreciacion'])->assignRole([$rol1,$rol2]);
+        Permission::create(['name'=>'depreciacion.create','description'=>'crear depreciacion'])->assignRole([$rol1, $rol2]);
+        Permission::create(['name'=>'depreciacion.edit','description'=>'editar depreciacion'])->assignRole([$rol1, $rol2]);
+        Permission::create(['name'=>'depreciacion.show','description'=>'ver depreciacion'])->assignRole([$rol1,$rol2]);
+        Permission::create(['name'=>'depreciacion.destroy','description'=>'eliminar depreciacion'])->assignRole([$rol1,$rol2]);
 
         Permission::create(['name'=>'movimientos.index','description'=>'ver lista de movimientos'])->assignRole([$rol1,$rol2,$rol3]);
         Permission::create(['name'=>'movimientos.create','description'=>'realizar movimiento'])->assignRole([$rol1,$rol2]);
@@ -145,6 +124,5 @@ class RolSeeder extends Seeder
         Permission::create(['name'=>'revaluos.destroy','description'=>'eliminar un revaluo'])->assignRole([$rol1]);
         Permission::create(['name'=>'revaluos.create','description'=>'crear un revaluo'])->assignRole([$rol1]);
         Permission::create(['name'=>'revaluos.edit','description'=>'editar un revaluo'])->assignRole([$rol1]);
-    */
     }
 }

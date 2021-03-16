@@ -9,13 +9,10 @@ use App\Models\Departamento;
 use App\Models\Estado;
 use App\Models\Revaluo;
 use App\Models\Revision_Tecnica;
-use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
 
 class ActivoController extends Controller
 {
-    use HasBitacora;
-
     public function __construct(){
         $this->middleware('can:activos.index')->only('index');
         $this->middleware('can:activos.create')->only('create');
@@ -70,9 +67,6 @@ class ActivoController extends Controller
         $activo->departamento_id = $request->input('dpto_id');
         $activo->almacen_id = $request->input('almacen_id');
         $activo->save();
-
-        $modelo = class_basename($activo);
-        HasBitacora::Created($modelo,$activo->id_AF);
 
         return redirect()->route('activos_fijos.index')->with('success','Activo fijo registrado con exito');
     }
@@ -133,9 +127,6 @@ class ActivoController extends Controller
         $activo->almacen_id = $request->input('almacen_id');
         $activo->save();
 
-        $modelo = class_basename($activo);
-        HasBitacora::Edited($modelo,$activo->id_AF);
-
         return redirect()->route('activos_fijos.index')->with('success','Activo fijo editado con exito');
     }
 
@@ -148,8 +139,6 @@ class ActivoController extends Controller
     public function destroy($id)
     {
         $activo = Activo_Fijo::findOrFail($id);
-        $modelo = class_basename($activo);
-        HasBitacora::Deleted($modelo,$activo->id_AF);
         $activo->delete();
         return redirect()->route('activos_fijos.index');
     }

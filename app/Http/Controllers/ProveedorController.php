@@ -6,14 +6,10 @@ use App\Models\Contacto;
 use App\Models\Estado;
 use App\Models\Proveedor;
 use App\Models\Rubro;
-use App\Traits\HasBitacora;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\This;
 
 class ProveedorController extends Controller
 {
-    use HasBitacora;
-
     public function __construct(){
         $this->middleware('can:proveedores.index')->only('index');
         $this->middleware('can:proveedores.create')->only('create');
@@ -64,8 +60,6 @@ class ProveedorController extends Controller
         $prov->contacto_id = $contact->id_contacto;
         $prov->save();
         //return dd($request);
-        $modelo = class_basename($prov);
-        HasBitacora::Created($modelo,$prov->id_proveedor);
         return redirect()->route('proveedores.index')->with('success','Proveedor registrado correctamente');
         //TODO: El estado_id siempre envia siempre 'No activo'
     }

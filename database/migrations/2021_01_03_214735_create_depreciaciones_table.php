@@ -19,9 +19,11 @@ class CreateDepreciacionesTable extends Migration
             $table->unsignedBigInteger('depreciacion_acumulada');
             $table->string('descripcion');
             $table->date('fecha');
-            $table->unsignedBigInteger('AF_id');
+            $table->unsignedBigInteger('AF_id');// valor compra
+            $table->unsignedBigInteger('rubro_id');//años de vida y porcentaje
 
             $table->foreign('AF_id')->references('id_AF')->on('activos_fijos')->onDelete('cascade');
+            $table->foreign('rubro_id')->references('id_rubro')->on('rubros')->onDelete('cascade');
         });
     }
 

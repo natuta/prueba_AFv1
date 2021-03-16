@@ -17,7 +17,7 @@ class CreateCodificacionesTable extends Migration
             $table->id('id_codificacion');
             $table->timestamps();
             $table->unsignedBigInteger('AF_id');
-            $table->unsignedBigInteger('codigo');  //??
+            $table->string('codigo');
             $table->unsignedBigInteger('estado_id');
 
             $table->foreign('AF_id')->references('id_AF')->on('activos_fijos')->onDelete('cascade');
